@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goodsBoardReplyMapper">
+
+<!-- 댓글 조회 -->
+<select id="readReply" resultType="GoodsBoardReplyVO">
+SELECT 
+    GE_RNO AS geRno, GE_CONTENT AS geContent, GE_WRITER AS geWriter, GE_DATE AS geDate
+    FROM SAE_GORERE
+    WHERE GE_BNO = #{geBno}
+</select>
+
+<!-- 댓글 작성 -->
+<insert id="writeReply">
+INSERT INTO SAE_GORERE (
+                    GE_BNO
+                  , GE_RNO
+                  , GE_CONTENT
+                  , GE_WRITER
+)   
+ VALUES( #{geBno}
+         , SAE_GORERE_SEQ.NEXTVAL
+         , #{geContent}
+         , #{geWriter})
+</insert>
+
+<!-- 댓글 수정 -->
+<update id="updateReply" parameterType="GoodsBoardReplyVO">
+UPDATE SAE_GORERE SET GE_CONTENT = #{geContent}
+WHERE GE_RNO = #{geRno}
+</update>
+
+<!-- 댓글 삭제 -->
+<delete id="deleteReply" parameterType="GoodsBoardReplyVO">
+DELETE FROM SAE_GORERE
+WHERE GE_RNO = #{geRno}
+</delete>
+
+<!-- 선택된 댓글 조회 -->
+<select id="selectReply" resultType="GoodsBoardReplyVO">
+SELECT GE_BNO AS geBno, GE_RNO AS geRno, GE_CONTENT AS geContent, GE_WRITER AS geWriter, GE_DATE AS geDate FROM SAE_GORERE WHERE GE_RNO = #{geRno}
+</select>
+</mapper>

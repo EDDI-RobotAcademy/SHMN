@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goodsBoardMapper">
+<!-- 게시판 글 작성 -->
+<insert id="write">
+INSERT INTO SAE_GOREVIEW(
+			GW_BNO
+		  , GW_PNO
+		  , GW_TITLE
+		  , GW_CONTENT
+		  , GW_SCORE
+		  , GW_WRITER
+		  , GW_FILE )
+	  VALUES( SAE_GOREVIEW_SEQ.NEXTVAL
+	  , #{gwPno}
+	  , #{gwTitle}
+	  , #{gwContent}
+	  , #{gwScore}
+	  , #{gwWriter}
+	  , #{gwFile} )
+</insert>
+
+<!-- 게시판 글 조회 -->
+<select id="listPage" resultType="GoodsBoardVO" parameterType="com.kh.saeha.vo.SearchCriteria">
+SELECT GW_BNO AS gwBno,
+       GW_PNO AS gwPno,
+       GW_TITLE AS gwTitle,
+       GW_CONTENT AS gwContent,
+       GW_SCORE AS gwScore,
+       GW_WRITER AS gwWriter,
+       GW_FILE AS gwFile,
+       GW_DATE AS gwDate
+  FROM (
+  	   SELECT GW_BNO,
+       GW_PNO,
+  	   GW_TITLE,
+  	   GW_CONTENT,
+  	   GW_SCORE,
+  	   GW_WRITER,
+  	   GW_FILE,
+  	   GW_DATE,
+  	   ROW_NUMBER() OVER(ORDER BY GW_BNO DESC) AS RNUM
+  	   FROM SAE_GOREVIEW
+  	   WHERE 1=1
+  	   <include refid="search"></include>
+  	   ) SAE
+  WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+  ORDER BY GW_BNO DESC
+</select>
+
+<!-- GW_BNO가 몇 개 있나요?(총 게시글 개수 알아보기) -->
+<select id="listCount" parameterType="com.kh.saeha.vo.SearchCriteria" resultType="int">
+SELECT COUNT(GW_BNO)
+FROM SAE_GOREVIEW
+WHERE 1=1
+<include refid="search"></include>
+AND GW_BNO > 0
+</select>
+
+<!-- search 살리기 (혹시 모르니까) + 별점별로 가져오기~-->
+<sql id="search">
+	AND GW_PNO = #{pno} 
+	<if test="score != 10 "><if test="score != null">AND GW_SCORE = #{score}  </if></if>
+</sql>
+
+<!-- 리뷰게시판 총 평점 / 리뷰갯수 -->
+<select id="devideCount" parameterType="com.kh.saeha.vo.SearchCriteria" resultType="double">
+SELECT NVL(ROUND(AVG(GW_SCORE),2),0)
+FROM SAE_GOREVIEW
+WHERE 1=1
+<include refid="search"></include>
+</select>
+
+<!-- 게시글 상세보기 -->
+<select id="read" parameterType="int" resultType="GoodsBoardVO">
+SELECT GW_BNO AS gwBno
+	 , GW_PNO AS gwPno
+     , GW_TITLE AS gwTitle
+     , GW_CONTENT AS gwContent
+     , GW_SCORE AS gwScore
+     , GW_WRITER AS gwWriter
+     , GW_FILE AS gwFile
+     , GW_DATE AS gwDate
+     FROM SAE_GOREVIEW
+     WHERE GW_BNO = #{gwBno}
+</select>
+
+<!-- 게시글 수정하기 -->
+<update id="update" parameterType="GoodsBoardVO">
+UPDATE SAE_GOREVIEW
+SET GW_TITLE = #{gwTitle},
+	GW_CONTENT = #{gwContent},
+	GW_SCORE = #{gwScore},
+	GW_FILE = #{gwFile}
+WHERE GW_BNO = #{gwBno}
+</update>
+
+<!-- 게시글 삭제하기 -->
+<delete id="delete" parameterType="int">
+DELETE
+FROM SAE_GOREVIEW
+WHERE GW_BNO = #{gwBno}
+</delete>
+</mapper>
+

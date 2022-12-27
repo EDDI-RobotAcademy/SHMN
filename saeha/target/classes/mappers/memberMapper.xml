@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="memberMapper">
+<!-- 회원가입 -->
+<insert id="register">
+INSERT INTO SAE_MEMBER(MEMBER_ID
+                    , MEMBER_PW
+                    , MEMBER_NAME
+                    , MEMBER_BIRTH
+                    , MEMBER_TEL
+                    , MEMBER_MAIL
+                    , MEMBER_ADDRESS )
+             VALUES( #{userId}
+                   , #{userPass}
+                   , #{userName}
+                   , #{userBirth}
+                   , #{userTel}
+                   , #{userMail}
+                   , #{userAddress})
+</insert>
+
+<!-- 회원가입시 ID 중복확인 + 비밀번호 찾을 때 아이디 유효한지 검사 -->
+<select id="over" resultType="String">
+SELECT MEMBER_ID AS userId 
+FROM SAE_MEMBER 
+WHERE MEMBER_ID = #{userId}
+</select>
+
+<!-- 비밀번호 찾기시 ID에서 ID, 이름, MAIL 추출 -->
+<select id="findfind" resultType="memberVO">
+SELECT MEMBER_ID AS userId, MEMBER_NAME AS userName, MEMBER_MAIL AS userMail
+FROM SAE_MEMBER
+WHERE MEMBER_ID = #{userId}
+</select>
+
+<!-- 로그인 -->
+<select id="login" resultType="memberVO">
+SELECT MEMBER_ID AS userId, MEMBER_PW AS userPass, MEMBER_NAME AS userName, 
+MEMBER_BIRTH AS userBirth, MEMBER_TEL AS userTel, MEMBER_MAIL AS userMail, MEMBER_ADDRESS AS userAddress
+FROM SAE_MEMBER
+WHERE MEMBER_ID = #{userId}
+AND MEMBER_PW = #{userPass}
+</select>
+
+<!-- 회원 정보 수정 -->
+<update id="memberUpdate">
+UPDATE SAE_MEMBER SET
+MEMBER_PW=#{userPass},
+MEMBER_TEL=#{userTel},
+MEMBER_MAIL=#{userMail},
+MEMBER_ADDRESS=#{userAddress}
+WHERE MEMBER_ID=#{userId}
+</update>
+
+<!-- 회원 임시비밀번호 발급 -->
+<update id="memberPWupdate">
+UPDATE SAE_MEMBER SET
+MEMBER_PW=#{userPass}
+WHERE MEMBER_ID=#{userId}
+</update>
+
+<!-- 회원 탙퇴 -->
+<delete id="memberDelete">
+DELETE FROM SAE_MEMBER
+WHERE MEMBER_ID = #{userId}
+</delete>
+
+
+<!-- 
+마이바티스의 가장 큰 장점은 매핑구문이다. 이건 간혹 마법을 부리는 것처럼 보일 수 있다.
+SQL Map XML 파일은 상대적으로 간단하다. 더군다나 동일한 기능의 JDBC 코드와 비교하면
+아마도 95% 이상 코드수가 감소하기도 한다. 마이바티스는 SQL을 작성하는데 집중하도록 만들어졌다.
+
+insert - 매핑된 INSERT 구문.
+update - 매핑된 UPDATE 구문.
+delet -  매핑된 DELETE 구문.
+select-  매핑된 SELECT 구문.
+-->
+
+
+</mapper>

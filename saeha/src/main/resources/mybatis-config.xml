@@ -14,9 +14,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <typeAliases>
  <typeAlias type="com.kh.saeha.vo.MemberVO" alias="memberVO"/>
  <typeAlias type="com.kh.saeha.vo.GoodsBoardVO" alias="GoodsBoardVO"/>
- <typeAlias type="com.kh.saeha.vo.GoodsBoardReplyVO" alias="GoodsBoardReplyVO"/> <!-- 
- <typeAlias type="com.kh.saeha.vo.HanbokBoardVO" alias="HanbokBoardVO"/> 
- <typeAlias type="com.kh.saeha.vo.HanbokBoardReplyVO" alias="HanbokBoardReplyVO"/>  -->
+ <typeAlias type="com.kh.saeha.vo.GoodsBoardReplyVO" alias="GoodsBoardReplyVO"/> 
+ <typeAlias type="com.kh.saeha.vo.CouponVO" alias="CouponVO"/>
 </typeAliases>
 
 </configuration>

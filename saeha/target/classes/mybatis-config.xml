@@ -13,10 +13,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <typeAliases>
  <typeAlias type="com.kh.saeha.vo.MemberVO" alias="memberVO"/>
+ <typeAlias type="com.kh.saeha.vo.ProductVO" alias="productVO"/>
+ <typeAlias type="com.kh.saeha.vo.ImgVO" alias="imgVO"/>
+ <typeAlias type="com.kh.saeha.vo.BuyVO" alias="buyVO"/>
  <typeAlias type="com.kh.saeha.vo.GoodsBoardVO" alias="GoodsBoardVO"/>
- <typeAlias type="com.kh.saeha.vo.GoodsBoardReplyVO" alias="GoodsBoardReplyVO"/> <!-- 
- <typeAlias type="com.kh.saeha.vo.HanbokBoardVO" alias="HanbokBoardVO"/> 
- <typeAlias type="com.kh.saeha.vo.HanbokBoardReplyVO" alias="HanbokBoardReplyVO"/>  -->
+ <typeAlias type="com.kh.saeha.vo.BoardnVO" alias="boardnVO"/>
+ <typeAlias type="com.kh.saeha.vo.ProgramVO" alias="programVO"/>
+ <typeAlias type="com.kh.saeha.vo.GoodsBoardReplyVO" alias="GoodsBoardReplyVO"/> 
+ <typeAlias type="com.kh.saeha.vo.FaqVO" alias="faqVO"/>
+ <typeAlias type="com.kh.saeha.vo.CouponVO" alias="CouponVO"/>
 </typeAliases>
 
 </configuration>

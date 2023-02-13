@@ -53,20 +53,20 @@ public class CouponServiceImpl implements CouponService {
 	public int checkall(String bno, int money, String productType) throws Exception {
 		CouponVO vo = dao.checkall(bno);
 		
-		if(productType.equals(vo.getProduct()) == false) {
+		if(productType.equals(vo.getCoupon_product()) == false) {
 			return -1; 
 			//vo에서 product상품명과 구입하려는 상품명이 다를 경우 쿠폰 적용을 시키지 않기 위해서
 			//-1을 리턴해준다.
 			//true일 경우에는 돈을 계산해서 출력할거라 쓰지 않았다.
 		}
 		
-		if(vo.getType().equals("percent")) {
-			String percent = vo.getPercent();
+		if(vo.getCoupon_type().equals("percent")) {
+			String percent = vo.getCoupon_percent();
 			
 			int typePercent = Integer.parseInt(percent);
 			return money*(100-typePercent)/100;
 		}else { //price일 경우
-			String price = vo.getPrice();
+			String price = vo.getCoupon_price();
 			
 			int typePrice = Integer.parseInt(price);
 			int total = money-typePrice;

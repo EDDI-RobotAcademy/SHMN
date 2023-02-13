@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="faqMapper">
+
+
+<select id="list" resultType="faqVO">
+SELECT * FROM sae_faq ORDER BY faq_bno DESC
+</select>
+<!--  
+<select id="maxSeq" resultType="java.lang.Integer">
+	select max(faq_bno) from sae_faq
+</select>-->
+
+<insert id = "insert">
+INSERT INTO 
+sae_faq(
+     	faq_bno,
+   	 	faq_title,
+   		faq_content
+) 
+VALUES (
+ SAE_FAQ_SEQ.NEXTVAL,
+    	#{faq_title},
+   		#{faq_content}
+)
+</insert>
+
+
+<select id = "read" parameterType="int" resultType="faqVO">
+SELECT 
+	faq_bno, faq_title, faq_content
+FROM 
+	sae_faq 
+WHERE 
+	faq_bno = #{faq_bno}
+</select>
+
+
+<update id = "update" parameterType="faqVO">
+UPDATE sae_faq
+SET 	faq_title = #{faq_title},
+    	faq_content = #{faq_content}
+WHERE 	faq_bno = #{faq_bno}   
+</update>
+
+
+<delete id = "delete" parameterType = "int">
+DELETE FROM sae_faq WHERE faq_bno = #{faq_bno}
+</delete>
+
+</mapper>

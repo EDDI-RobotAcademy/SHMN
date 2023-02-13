@@ -79,6 +79,7 @@ public class MemberController {
 			return "redirect:/sae_member/login";
 		} else {
 			session.setAttribute("member", login);
+			session.setAttribute("userid", vo.getUserId());
 			System.out.println(session.getAttribute("member"));
 			logger.info("member777 : " + login);
 			return "redirect:/";

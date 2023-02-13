@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="buyMapper">
+
+	<!-- 상품목록에서 구매하기를 눌렀을때 구매하기한 상품을 얻기 -->
+	<select id="buylist" resultType="productVO">
+		SELECT pd_bno
+		, pd_name
+		, pd_price
+		, pd_stock
+		, pd_date
+		FROM sae_product
+		WHERE
+		pd_bno =
+		#{pd_bno}
+	</select>
+
+</mapper>

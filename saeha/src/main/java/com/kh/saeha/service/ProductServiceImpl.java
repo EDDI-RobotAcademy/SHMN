@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kh.saeha.dao.ProductDAO;
+import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.ImgVO;
 import com.kh.saeha.vo.ProductVO;
 import com.kh.saeha.vo.SearchCriteria;
@@ -106,6 +107,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<ImgVO> imglist(int pd_bno) throws Exception {
 		
 		return dao.imglist(pd_bno);
+	}
+	
+	// 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
+	@Override
+	public void stock(BuyVO buyVO) throws Exception {
+		dao.stock(buyVO);
 	}
 
 }

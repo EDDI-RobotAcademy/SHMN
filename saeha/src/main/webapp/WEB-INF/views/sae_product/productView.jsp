@@ -18,10 +18,13 @@
 </head>
 <script type="text/javascript">
 	$(document).ready(function() {
-						var formObj = $("form[name='readForm']");
-						// 구매수량 개수
+						var formObj = $("form[name='readForm']");			
+											
 						$("#pd_number").change(function() {
 							if(stockChk()){
+								return false;
+							}
+							if(stockoverChk()){
 								return false;
 							}
 							});
@@ -42,9 +45,14 @@
 						});
 						// 구매
 						$(".buy_btn").on("click", function() {
-							formObj.attr("action", "/sae_buy/buysingle");
-							formObj.attr("method", "get");
-							formObj.submit();
+							if('${member.userId}' == null || '${member.userId}' == ""){
+								alert("로그인 이후 이용가능합니다.");
+								location.href = "/sae_member/login"
+							}else {
+								formObj.attr("action", "/sae_buy/buysingleView");
+								formObj.attr("method", "get");
+								formObj.submit();
+							}
 						});
 						//삭제
 						$(".delete_btn").on("click", function() {
@@ -71,27 +79,42 @@
 							}
 							
 						});
-										
-						//장바구니
-						$(".cart_btn").on("click",function() {
-									location.href = "/sae_product/goodslist?page=${scri.page}"
-											+ "&perPageNum=${scri.perPageNum}"
-											+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
-										});
-										
+						// 장바구니
+						$(".cart_btn").on("click", function() {
+							form.ct_count = $("#pd_number").val();
+							$.ajax({
+								url: '/sae_cart/add',
+								type: 'POST',
+								data: form,
+								success: function(result) {
+									cartAlert(result);
+								}
+							})
+						});
 						
-
-					})
 					
-		function stockChk() {
-		var number = $('#pd_number').val();
-		if (number <= 0){
-			alert("구매수량은 1이상 입력하셔야 합니다");
-			$("#go_price").val(${read.pd_price });
-			$('#pd_number').val('1');
-			return ture;
+					
+			function stockChk() {
+			var number = $('#pd_number').val();
+			if (number <= 0){
+				alert("구매수량은 1이상 입력하셔야 합니다");
+				$("#go_price").val(${read.pd_price });
+				$('#pd_number').val('1');
+				return ture;
+			}
 		}
-	}
+		
+		function stockoverChk() {
+			var number = fnReplace($('#pd_number').val());
+			var stock = ${read.pd_stock }
+			if (number > stock){
+				alert("재고가 부족합니다");
+				$('#pd_number').val(number - 1);
+				$("#go_price").val(fnReplace($('#pd_number').val()) * ${read.pd_price });
+				return ture;
+			}
+		}
+		
 	function fnReplace(val) {
 	    var ret = 0;
 	    if(typeof val != "undefined" && val != null && val != ""){
@@ -99,13 +122,56 @@
 	    }
 	    return ret;        
 	}
+	
+	const form = {
+			
+			pd_bno : '${read.pd_bno }',
+			ct_pno : '${read.pd_bno }',
+			ct_name : '${read.pd_name }',
+			ct_price : '${read.pd_price }',
+			ct_count : ''
+	}
+	
+	function cartAlert(result) {
+		if(result == '1'){
+			alert("장바구니에 추가되었습니다");
+		} else if(result == '2'){
+			alert("장바구니에 이미 추가되어져 있습니다.");
+		} else if(result == '3'){
+			alert("로그인이 필요합니다.");
+			location.href = "/sae_member/login"
+		}
+	
+	}
+	
+	
+	<!-- 문의사항 게시판 -->
+		//댓글 등록 이벤트
+		$(".replyWriteBtn").on("click", function() {
+		   var formObj = $("form[name='replyForm']");
+		   formObj.attr("action", "/sae_product/replyWrite");
+		   formObj.submit();
+		}); 
+		
+		//댓글 삭제 view
+		$(".replyDeleteBtn").on("click", function() {
+			 if(confirm("삭제하시겠습니까?")){
+			//삭제 했을때 이벤트
+				 var modify = $(this).attr("data-pno");
+				 $("#DeleteFormPno").val(modify);
+				 var formObj = $("form[name='deleteForm']");
+					formObj.submit(); 
+			 }
+			});
+	});
 </script>
+
 <body>
 	<section id="container">
-		
+
 
 		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">굿즈 이름</label> <input
+			<label for="title" class="col-sm-2 control-label">상품 이름</label> <input
 				type="text" id="go_name" name="go_name" class="form-control"
 				value="${read.pd_name }" readonly="readonly" />
 		</div>
@@ -128,7 +194,7 @@
 				value="${read.pd_price }" readonly="readonly" />
 		</div>
 
-		
+
 		<form name="readForm" role="form" method="post">
 			<input type="hidden" id="pd_bno" name="pd_bno"
 				value="${read.pd_bno }" /> <input type="hidden" id="page"
@@ -137,9 +203,13 @@
 				type="hidden" id="searchType" name="searchType"
 				value="${scri.searchType }" /> <input type="hidden" id="keyword"
 				name="keyword" value="${scri.keyword }" /> <input type="hidden"
-				id="pd_type" name="pd_type" value="${read.pd_type }" />구매 갯수<input
-				type="number" id="pd_number" name="pd_number" value="1"/>
+				id="pd_type" name="pd_type" value="${read.pd_type }" /><input
+				type="number" id="pd_number" name="pd_number" value="1" />
 		</form>
+
+		<c:if test="${read.pd_stock == 0 }">
+			<h1>품절</h1>
+		</c:if>
 
 		<div class="form-grop">
 			<label for="go_date" class="col-sm-2 control-label">등록 날짜</label>
@@ -159,11 +229,89 @@
 				<button type="button" class="update_btn btn btn-warning">수정</button>
 				<button type="button" class="delete_btn btn btn-danger">삭제</button>
 			</c:if>
-			<button type="button" class="buy_btn btn btn-primary">구매</button>
+			<c:if test="${read.pd_stock != 0 }">
+				<button type="button" class="buy_btn btn btn-primary">구매</button>
+				<button type="button" class="cart_btn btn btn-primary">장바구니에
+					담기</button>
+			</c:if>
+
 			<button type="button" class="list_btn btn btn-primary">목록</button>
-			<button type="button" class="cart_btn btn btn-primary">장바구니에
-				담기</button>
+
 		</div>
 	</section>
+	<!-- 댓글 보기 -->
+	<hr />
+	<div id="reply">
+		<ol class="replyList">
+			<c:forEach items="${replyList}" var="replyList">
+				<!--  var 사용할 변수 명  -->
+				<p>
+					작성자: ${replyList.py_writer }님/
+					<fmt:formatDate value="${replyList.py_date}" pattern="yyyy-MM-dd" />
+				</p>
+				<p>문의 내용 : ${replyList.py_content }</p>
+
+				<%-- <c:if test="${member.userId != true == 'admin'}"> --%>
+				<!-- 댓글을 쓴 사람과 관리자만이 삭제 할 수 있다. -->
+				<div>
+					<%-- <button type="button" class="replyUpdateBtn" data-pno="${replyList.py_pno}">수정</button> --%>
+					<button type="button" class="replyDeleteBtn"
+						data-pno="${replyList.py_pno}">삭제</button>
+					<c:if test="${member.userId == 'admin' }">
+						<!-- 아이디 admin 만이 답글을 달 수 있다. -->
+						<button type="submit">답글달기</button>
+					</c:if>
+				</div>
+
+			</c:forEach>
+		</ol>
+	</div>
+
+	<hr>
+
+
+	<!-- 댓글 작성 폼 -->
+	<c:if test="${member.userId != null}">
+		<div>
+			<form name="replyForm" method="get" >
+				<input type="hidden" id="bno" name="py_bno" value="${read.pd_bno }" />
+				<input type="hidden" id="page" name="page" value="${scri.page}">
+				<input type="hidden" id="perPageNum" name="perPageNum"
+					value="${scri.perPageNum}"> <input type="hidden"
+					id="searchType" name="searchType" value="${scri.searchType}">
+				<input type="hidden" id="keyword" name="keyword"
+					value="${scri.keyword}">
+				<p>
+					<label for="writer"> 작성자 : </label> <input type="text" id="writer"
+						name="py_writer" value="${member.userId}" readonly="readonly" />
+				</p>
+				<p>
+					<label for="content">문의</label> <input type="text" id="content"
+						name="py_content" />
+				</p>
+				<p>
+					<button type="submit" class="replyWriteBtn">댓글 작성</button>
+				</p>
+			</form>
+		</div>
+	</c:if>
+
+<!-- 리뷰 공간 -->
+<iframe src="/sae_goodsboard/list?pno=${read.pd_bno }" style="width:100%; height:600px" frameBorder="0"></iframe>
+<!-- 리뷰 공간 -->
+
+
+	<!-- 삭제 폼 -->
+	<form name="deleteForm" role="form" method="post"
+		action="/sae_product/replyDelete">
+		<input type="hidden" id="bno" name="py_bno" value="${read.pd_bno}"
+			readonly="readonly" /> <input type="hidden" id="DeleteFormPno"
+			name="py_pno" /> <input type="hidden" id="page" name="page"
+			value="${scri.page }" /> <input type="hidden" id="perPageNum"
+			name="perPageNum" value="${scri.perPageNum }" /> <input
+			type="hidden" id="searchType" name="searchType"
+			value="${scri.searchType }" /> <input type="hidden" id="keyword"
+			name="keyword" value="${scri.keyword }" />
+	</form>
 </body>
 </html>

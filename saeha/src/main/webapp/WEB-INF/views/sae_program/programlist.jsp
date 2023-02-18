@@ -91,7 +91,7 @@ $(function(){
 </li>
 </c:if>
 
-<c:if test="${member.userId == 'admin1'}">
+<c:if test="${member.userId == 'admin'}">
   <button type="button">
     <a href="/sae_program/program">프로그램 추가</a>
   </button>

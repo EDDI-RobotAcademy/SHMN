@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kh.saeha.dao.BuyDAO;
+import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.ProductVO;
 
 @Service
@@ -17,6 +18,12 @@ public class BuyServiceImpl implements BuyService {
 	@Override
 	public ProductVO buylist(int pd_bno) throws Exception {
 		return dao.buylist(pd_bno);
+	}
+	
+	// 구매테이블에 입력
+	@Override
+	public void buywrite(BuyVO buyVO) throws Exception {
+		dao.buywrite(buyVO);
 	}
 
 }

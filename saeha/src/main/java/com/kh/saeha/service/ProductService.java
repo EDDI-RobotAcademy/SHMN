@@ -3,6 +3,7 @@ package com.kh.saeha.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.ImgVO;
 import com.kh.saeha.vo.ProductVO;
 import com.kh.saeha.vo.SearchCriteria;
@@ -50,4 +51,7 @@ public interface ProductService {
 	
 	// 게시물 사진 가져오기
 	public List<ImgVO> imglist(int pd_bno) throws Exception;
+	
+	// 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
+	public void stock(BuyVO buyVO) throws Exception;
 }

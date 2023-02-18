@@ -38,18 +38,18 @@ public class BuyController {
 	
 	
 	// 상품목록에서 상품구매를 눌렀을때
-	@RequestMapping(value = "/buysingle", method = RequestMethod.GET)
-	public String buysingle(Model model, ProductVO productVO, BuyVO buyVO,
+	@RequestMapping(value = "/buysingleView", method = RequestMethod.GET)
+	public String buysingleView(Model model, ProductVO productVO, BuyVO buyVO,
 			HttpServletRequest req) throws Exception{
 		
-		logger.info("buysingle");
+		logger.info("buysingleView");
 		
 		HttpSession session = req.getSession();
 		String user_id = (String)session.getAttribute("userid");
 		
 		List<CouponVO> list = cservice.list(user_id);
 		
-		String path = pservice.getImg(productVO.getPd_bno()); 
+		String path = pservice.getImg(productVO.getPd_bno());
 		if (path == null) {
 			model.addAttribute("img", "/productimg/img.png");
 
@@ -65,4 +65,29 @@ public class BuyController {
 		return "sae_buy/singlebuy";
 	}
 	
+	// 구매
+	@RequestMapping(value = "/buysingle", method = RequestMethod.POST)
+	public String buysingle(BuyVO buyVO, CouponVO couponVO,
+			HttpServletRequest req) throws Exception{
+		
+		logger.info("buysingleView");
+		
+		HttpSession session = req.getSession();
+		String user_id = (String)session.getAttribute("userid");
+		
+		buyVO.setBy_id(user_id);
+		couponVO.setCoupon_id(user_id);
+		service.buywrite(buyVO);
+		
+		// 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
+		pservice.stock(buyVO);
+		// 사용한 쿠폰 차감
+		Integer coupon = couponVO.getCoupon_price();
+		if(coupon != null) {
+			cservice.used(couponVO);
+		}
+		
+		
+		return "sae_product/productmain";
+	}
 }

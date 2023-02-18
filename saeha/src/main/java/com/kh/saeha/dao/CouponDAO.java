@@ -14,5 +14,8 @@ public interface CouponDAO {
 	
 	public void couponUpdate(String bno) throws Exception;
 	
-	public CouponVO checkall(String bno) throws Exception;
+	// 쿠폰 사용
+	public void used(CouponVO couponVO) throws Exception;
+	
+	//public CouponVO checkall(String bno) throws Exception;
 }

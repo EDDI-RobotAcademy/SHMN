@@ -6,7 +6,8 @@
 <!-- 쿠폰 조회 -->
 <select id="list" resultType="CouponVO" parameterType="String">
 SELECT * FROM SAE_COUPON
-WHERE COUPON_ID = #{userId}	   
+WHERE COUPON_ID = #{userId}
+ORDER BY COUPON_PRICE ASC 
 </select>
 
 <!-- 쿠폰 사용 여부 -->
@@ -21,27 +22,13 @@ WHERE COUPON_BNO = #{bno}
 INSERT INTO SAE_COUPON(COUPON_BNO,
 	  				   COUPON_ID,
 	   				   COUPON_NAME,
-	   				   COUPON_TERM_START,
-	  				   COUPON_TERM_END,
-	  				   COUPON_TERM_NOW,
-	  				   COUPON_PRICE,
-	  				   COUPON_PERCENT,
-	  				   COUPON_TYPE,
-	  				   COUPON_PRODUCT,
-	  				   COUPON_CONTENT,
-	  				   COUPON_USE)
-	  			VALUES( #{bno},
-	  					#{id},
-	  					#{name},
-	  					#{termStart},
-	  					#{termEnd},
-	  					#{termNow},
-	  					#{price},
-	  					#{percent},
-	  					#{type},
-	  					#{product},
-	  					#{content},
-	  					#{use})	
+	  				   COUPON_PRICE
+	  				   )
+	  			VALUES( sae_coupon_seq.nextval,
+	  					#{coupon_id},
+	  					#{coupon_name},
+	  					#{coupon_price}
+	  					)	
 </insert>
 
 <!-- 쿠폰 적용(사용) -->
@@ -50,6 +37,13 @@ UPDATE SAE_COUPON SET
 "사용완료" 
 FROM SAE_COUPON
 WHERE COUPON_BNO = #{bno}
+</update>
+
+<update id="used">
+UPDATE SAE_COUPON 
+SET
+coupon_content = '사용완료'
+WHERE COUPON_ID = #{coupon_id} and COUPON_PRICE = #{coupon_price}
 </update>
 
 <!--  쿠폰 타입확인(percent인지 price인지)

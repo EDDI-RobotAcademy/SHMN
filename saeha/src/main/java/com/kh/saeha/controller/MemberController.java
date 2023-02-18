@@ -1,6 +1,7 @@
 package com.kh.saeha.controller;
 
-import java.util.Random;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
@@ -16,39 +17,47 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.saeha.service.LikeService;
 import com.kh.saeha.service.MemberService;
+import com.kh.saeha.service.ProgramService;
+import com.kh.saeha.vo.LikeVO;
 import com.kh.saeha.vo.MemberVO;
+import com.kh.saeha.vo.ProgramVO;
 
 @Controller
-@RequestMapping("/sae_member/*") 
+@RequestMapping("/sae_member/*")
 public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@Inject
 	MemberService service;
-
+	
+	@Inject
+	ProgramService programservice;
+	
+	@Inject
+	LikeService likeservice;
+	
 	@Autowired
 	private JavaMailSender mailSender; // smtp기능을 위한 문구
 
-	//회원가입약관 get
+	// 회원가입약관 get
 	@RequestMapping(value = "/agree_register", method = RequestMethod.GET)
 	public String getRegisteragree() throws Exception {
 		logger.info("get register 2022 1201");
-		
+
 		return "sae_member/agree_register";
-		
+
 	}
-	
-	
+
 	// 회원가입 get 11
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void getRegister() throws Exception {
 		logger.info("get register 2022 1201");
-		
+
 	}
 
 	// 회원가입 get 22
@@ -63,7 +72,7 @@ public class MemberController {
 	// 로그인 33
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void getlogin() throws Exception {
-		
+
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -84,7 +93,7 @@ public class MemberController {
 			logger.info("member777 : " + login);
 			return "redirect:/";
 		}
-		
+
 	}
 
 	// 로그아웃
@@ -210,7 +219,8 @@ public class MemberController {
 
 	// 카카오톡 로그인
 	@RequestMapping(value = "/kakao", method = RequestMethod.GET)
-	public String kakao(HttpServletRequest req, String userId, String birthday, String email , RedirectAttributes rttr) throws Exception {
+	public String kakao(HttpServletRequest req, String userId, String birthday, String email, RedirectAttributes rttr)
+			throws Exception {
 
 		HttpSession session = req.getSession();
 		MemberVO login = new MemberVO();
@@ -221,14 +231,15 @@ public class MemberController {
 
 		session.setAttribute("member", login);
 		rttr.addFlashAttribute("msg", true);
-		
+
 		session.setAttribute("loginlogin", "kakao");
 		return "redirect:/";
 	}
 
 	// naver 로그인
 	@RequestMapping(value = "/naver", method = RequestMethod.GET)
-	public String naver(HttpServletRequest req, String userId, String birthday, String email , RedirectAttributes rttr) throws Exception {
+	public String naver(HttpServletRequest req, String userId, String birthday, String email, RedirectAttributes rttr)
+			throws Exception {
 
 		HttpSession session = req.getSession();
 		MemberVO login = new MemberVO();
@@ -236,42 +247,107 @@ public class MemberController {
 		login.setUserId(userId);
 		login.setUserBirth(birthday);
 		login.setUserMail(email);
-		
+
 		session.setAttribute("member", login);
 		rttr.addFlashAttribute("msg", true);
-		
+
 		session.setAttribute("loginlogin", "naver");
 		System.out.println(login);
 
 		return "redirect:/";
 	}
-	
+
 	// naver 로그인
-		@RequestMapping(value = "/callback", method = RequestMethod.GET)
-		public String callback() throws Exception {
+	@RequestMapping(value = "/callback", method = RequestMethod.GET)
+	public String callback() throws Exception {
 
-			
+		return "/sae_member/callback";
+	}
 
-			return "/sae_member/callback";
-		}
-	
 	// 구글 로그인
-		@RequestMapping(value = "/google", method = RequestMethod.GET)
-		public String google(HttpServletRequest req, String userId, String birthday, String email , RedirectAttributes rttr) throws Exception {
+	@RequestMapping(value = "/google", method = RequestMethod.GET)
+	public String google(HttpServletRequest req, String userId, String birthday, String email, RedirectAttributes rttr)
+			throws Exception {
 
-			HttpSession session = req.getSession();
-			MemberVO login = new MemberVO();
+		HttpSession session = req.getSession();
+		MemberVO login = new MemberVO();
 
-			login.setUserId(userId);
-			login.setUserBirth(birthday);
-			login.setUserMail(email);
-			
-			session.setAttribute("member", login);
-			rttr.addFlashAttribute("msg", true);
-			
-			session.setAttribute("loginlogin", "google");
-			System.out.println(login);
+		login.setUserId(userId);
+		login.setUserBirth(birthday);
+		login.setUserMail(email);
 
-			return "redirect:/";
+		session.setAttribute("member", login);
+		rttr.addFlashAttribute("msg", true);
+
+		session.setAttribute("loginlogin", "google");
+		System.out.println(login);
+
+		return "redirect:/";
+	}
+
+	// 마이 페이지 이동
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage() throws Exception {
+
+		return "sae_member/mypage";
+	}
+
+	// 마이페이지 - 프로그램 예약 목록 이동
+	@RequestMapping(value = "/mypageProgram", method = RequestMethod.GET)
+	public String mypageProgram() throws Exception {
+
+		return "sae_member/mypageProgram";
+	}
+	
+	// 찜목록 리스트
+	@RequestMapping(value = "/likelist", method = RequestMethod.POST)
+	public String Mypage(Model model, HttpSession session) throws Exception {
+		MemberVO login = (MemberVO) session.getAttribute("member");
+
+		// 빈 LikeVo를 만든다.
+		LikeVO lvo = new LikeVO();
+		// 빈 LikeVo에 유저 정보를 넣는다.
+		lvo.setLk_id(login.getUserId());
+		// 해당 유저가 좋아요한 pno만 뽑아온다.(1)
+		List<LikeVO> likevo = likeservice.likelist(lvo);
+		// 빈 ProgramVO 리스트를 만든다.(2)
+		List<ProgramVO> pvo = new LinkedList<ProgramVO>();
+
+		for (int i = 0; i < likevo.size(); i++) {
+			// (1)에서 뽑아온 pno 리스트에서 하나씩 뽑아낸다.
+			LikeVO lv = likevo.get(i);
+			// pno값을 빼온다.
+			int pno = lv.getLk_pno();
+			// 해당 pno의 프로그램 정보를 읽어온다.
+			ProgramVO pv = programservice.programread(pno);
+			// (2)의 비어있던 programVO에 읽어온 pno 프로그램 정보들을 하나씩 추가한다.
+			pvo.add(pv);
 		}
+
+		model.addAttribute("likelist", pvo);
+
+		return "sae_member/mypageLike";
+
+	}
+
+	// 마이페이지 - 구매내역 이동
+	@RequestMapping(value = "/mypageBuy", method = RequestMethod.GET)
+	public String mypageBuy() throws Exception {
+
+		return "sae_member/mypageBuy";
+	}
+	
+	// 마이페이지 - 찜목록 이동
+		@RequestMapping(value = "/mypageLike", method = RequestMethod.GET)
+		public String mypageLike() throws Exception {
+
+			return "sae_member/mypageLike";
+		}
+
+	// 마이페이지 - 쿠폰목록 이동
+	@RequestMapping(value = "/mypageCoupon", method = RequestMethod.GET)
+	public String mypageCoupon() throws Exception {
+
+		return "sae_member/mypageCoupon";
+	}
 }

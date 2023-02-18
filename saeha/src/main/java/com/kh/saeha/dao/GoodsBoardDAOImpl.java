@@ -1,12 +1,14 @@
 package com.kh.saeha.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kh.saeha.vo.GoodsBoardImgVO;
 import com.kh.saeha.vo.GoodsBoardVO;
 import com.kh.saeha.vo.SearchCriteria;
 
@@ -64,4 +66,36 @@ public class GoodsBoardDAOImpl implements GoodsBoardDAO {
 	public double devideCount(SearchCriteria scri) throws Exception {
 		return sqlSession.selectOne("goodsBoardMapper.devideCount", scri);
 	}
+
+	@Override
+	public void fileSave(Map<String, String> fileMap) throws Exception {
+		 sqlSession.insert("goodsBoardMapper.fileSave", fileMap);
+	}
+
+	@Override
+	public int productbno(GoodsBoardVO GoodsBoardVO) throws Exception {
+		
+		int pnum;
+		
+		pnum = sqlSession.selectOne("goodsBoardMapper.maxbno");
+		
+		return pnum;
+	}
+
+	@Override
+	public void idelete(int gw_bno) throws Exception {
+		sqlSession.delete("goodsBoardMapper.idelete", gw_bno);
+	}
+
+	@Override
+	public String getImg(int gw_bno) throws Exception {
+		return sqlSession.selectOne("goodsBoardMapper.getimg", gw_bno);
+	}
+
+	@Override
+	public List<GoodsBoardImgVO> imglist(int gw_bno) throws Exception {
+		return null;
+	}
+	
+	
 }

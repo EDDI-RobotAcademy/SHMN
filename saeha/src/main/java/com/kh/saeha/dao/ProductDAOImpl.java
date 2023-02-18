@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.ImgVO;
 import com.kh.saeha.vo.ProductVO;
 import com.kh.saeha.vo.SearchCriteria;
@@ -93,7 +94,6 @@ public class ProductDAOImpl implements ProductDAO {
 		return pnum;
 	}
 
-	
 	// 이미지 삭제(테이블)
 	@Override
 	public void idelete(int pd_bno) throws Exception {
@@ -110,6 +110,12 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<ImgVO> imglist(int pd_bno) throws Exception {
 		return sqlSession.selectList("productMapper.imglist", pd_bno);
+	}
+
+	// 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
+	@Override
+	public void stock(BuyVO buyVO) throws Exception {
+		sqlSession.update("productMapper.stock", buyVO);
 	}
 
 

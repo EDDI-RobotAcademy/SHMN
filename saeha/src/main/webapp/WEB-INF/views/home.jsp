@@ -1,167 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
 <head>
-<title>임시 메인페이지</title>
-<style type="text/css">
-body {
-	justify-content: center;
-}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>main</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="resources/css/fontAwesome.css">
+<link rel="stylesheet" href="resources/css/light-box.css">
+<link rel="stylesheet" href="resources/css/owl-carousel.css">
+<link rel="stylesheet" href="resources/css/templatemo-style.css">
 
-div {
-	margin: 0 auto;
-}
-
-ul li {
-	list-style: none;
-}
-
-a {
-	text-decoration: none;
-	color: inherit;
-}
-
-.head {
-	width: 1000px;
-	text-align: right;
-	line-height: 36px;
-}
-
-.mainmenu1 {
-	height: 70px;
-	width: 1000px;
-	text-align: right;
-	border-bottom: 1px solid #ccc;
-}
-
-.menu {
-	width: 99%;
-	border-bottom: 1px solid #ccc;
-	margin-top: 20px;
-}
-
-.mainmenu2 {
-	display: block;
-	height: 70px;
-	float: right;
-	margin: 0 auto;
-}
-
-.mainmenu2>li {
-	height: 70px;
-	display: inline-block;
-	position: relative;
-	width: 90px;
-}
-
-.li {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 70px;
-}
-
-.mainmenu2>li:hover {
-	background-color: #6680CC;
-}
-
-.sub2 span:hover {
-	background-color: #6680CC;
-}
-
-.sub1 {
-	opacity: 0%;
-	width: 99%;
-	height: 250px;
-	background-color: white;
-	z-index: 2;
-	transition: 1s all;
-	position: absolute;
-}
-
-.sub2 {
-	width: 1000px;
-	text-align: left;
-	margin: 0 auto;
-	padding-left: 10px;
-}
-
-.sub2 span {
-	display: block;
-}
-
-.submenu {
-	vertical-align: top;
-	width: 15%;
-	display: inline-block;
-	border-right: 1px solid #ccc;
-	padding: 5px;
-	height: 95%;
-	text-align: center;
-}
-
-.sublast {
-	vertical-align: top;
-	width: 15%;
-	display: inline-block;
-	padding: 5px;
-	height: 95%;
-}
-
-.subtitle {
-	border-bottom: 1px solid #ccc;
-	height: 30px;
-	font-weight: middle;
-}
-
-.dropmenu {
-	opacity: 98%;
-}
-
-.slider_main {
-	height: 500px;
-	width: 100%;
-	flex-wrap: wrap;
-}
-
-.slider_main_img>img {
-	height: 500px;
-}
-
-.container {
-	margin: 0 auto;
-	width: 1000px;
-	height: 100%
-}
-
-.boardn {
-	width: 460px;
-	height: 347px;
-	background-color: yellow;
-	float: left;
-}
-
-.quick {
-	width: 460px;
-	height: 347px;
-	background-color: red;
-	float: right;
-}
-
-#wrap {
-	width: 100%;
-	max-width: 1000px;
-	margin: 0 auto;
-}
-
-.program {
-	width: 270;
-	height: 350px;
-}
-</style>
-
-
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
+	rel="stylesheet">
+<script src="/resources/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
 <!-- 채팅방 css시작 -->
 <style type="text/css">
 #center-text {
@@ -178,12 +39,13 @@ a {
 	bottom: 50px;
 	right: 50px;
 	background: #5A5EB9;
-	width: 40px;
-	height: 40px;
+	width: 70px;
+	height: 70px;
 	border-radius: 50%;
 	color: white;
-	padding: 28px;
+	padding: 16px;
 	cursor: pointer;
+	border : 2px solid white;
 	box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.6), 0 3px 1px -2px
 		rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
@@ -231,7 +93,7 @@ a {
 
 .chat-box-header {
 	background: #5A5EB9;
-	height: 35px;
+	/*height: 35px;*/
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	color: white;
@@ -393,194 +255,517 @@ a {
 </style>
 
 <!-- 채팅방 css끝 -->
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('.slider_main').bxSlider({
-			auto : true,
-			autoControls : true,
-			stopAutoOnClick : true,
-			pager : true,
-		});
-	});
-
-	$(document).ready(function() {
-		$('.mainmenu2').on("click", function() {
-			$('.sub1').addClass('dropmenu');
-		});
-	});
-	$(document).ready(function() {
-		$('.sub2').hover(function() {
-
-		}, function() {
-			$('.sub1').removeClass('dropmenu');
-		});
-	});
-</script>
-
-<link rel="stylesheet" href="css/jquery.bxslider.css" />
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.bxslider.js"></script>
-<script>
-	$(function() {
-		$('.slider').bxSlider({
-			auto : true,
-			moveSlides : 1, //한번움직일때 한장씩
-			minSlides : 1, //반응형일때 대응한다.
-			maxSlides : 4, //pc크기
-			slideWidth : 230,
-			slideMargin : 20,
-		});
-	});
-</script>
-
-</head>
-
 <body>
-	<div style="width: 99%; margin-top: 20px;">
-		<div class="head">
-			<a href="/sae_member/login">로그인</a> | <a
-				href="/sae_member/agree_register">회원가입</a> &nbsp;
-		</div>
-	</div>
-
-	<div class="menu">
-
-		<div class="mainmenu1">
-			<div style="display: inline-block; float: left; height: 70px;">
-				<img src="<spring:url value='/resources/img/logo.png'/>"
-					style="height: 40px;">
-			</div>
-
-			<div style="height: 70px; padding-right: 56px;">
-				<ul class="mainmenu2">
-					<li><div class="li">관람안내</div></li>
-					<li><div class="li">관람예약</div></li>
-					<li><div class="li">구매</div></li>
-					<li><div class="li">참여마당</div></li>
-					<li><div class="li">경복궁안내</div></li>
-					<li><div class="li">마이페이지</div></li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="sub1">
-			<div class="sub2">
-				<div class="submenu">
-					<span class="subtitle">관람안내</span><br> <span><a
-						href="#">관람규칙</a></span><br> <span><a href="/sae_map/map">오시는길</a></span><br>
-					<span><a href="#">편의시설</a></span><br> <span><a href="#">관람시간/요금</a></span>
-				</div>
-				<div class="submenu">
-					<span class="subtitle">관람예약</span><br> 
-				<span><a href="/sae_program/program">프로그램 등록</a></span><br>
-					<span><a
-						href="/sae_program/programlist?type=1">온라인프로그램</a></span><br> <span><a href="/sae_program/programlist?type=2">어린이프로그램</a></span><br>
-					<span><a href="/sae_program/programlist?type=3">단체프로그램</a></span><br>
-				</div>
-				<div class="submenu">
-					<span class="subtitle">구매하기</span><br> <span><a
-						href="#">입장권</a></span><br> 
-						<span><a href="/sae_product/productmain">상품</a></span><br>
-						<span><a
-						href="/sae_goodsboard/list?pno=1">굿즈</a></span><br> <span><a
-						href="/sae_hanbokboard/list?pno=1">한복대여</a></span><br> <span><a
-						href="#">관람시간/요금</a></span>
-				</div>
-				<div class="submenu">
-					<span class="subtitle">참여마당</span><br> 
-					<span><a href="#">1:1채팅</a></span><br> 
-					<span><a href="/sae_faq/faqList">FAQ</a></span><br>
-					<span><a href="/sae_boardn/nlist">공지사항</a></span><br>
-				</div>
-				<div class="submenu">
-					<span class="subtitle">경복궁안내</span><br> <span><a
-						href="#">사계</a></span><br> <span><a href="#">역사</a></span><br>
-				</div>
-				<div class="sublast">
-					<span class="subtitle">마이페이지</span><br> <span><a
-						href="#">내정보</a></span><br> <span><a href="#">찜목록</a></span><br>
-					<span><a href="#">구매내역</a></span><br> <span><a href="#">쿠폰</a></span>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div style="justify-content: center; display: flex; flex-wrap: wrap;">
-		<div class="slider_main">
-			<div class="slider_main_img">
-				<img src="<spring:url value='/resources/img/main_slider1.jpg'/>">
-			</div>
-			<div class="slider_main_img">
-				<img src="<spring:url value='/resources/img/main_slider2.jpg'/>">
-			</div>
-			<div class="slider_main_img">
-				<img src="<spring:url value='/resources/img/main_slider3.jpg'/>">
-			</div>
-			<div class="slider_main_img">
-				<img src="<spring:url value='/resources/img/main_slider4.jpg'/>">
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="contents" style="margin-top: 20px; height: 400px;">
-			<div class="boardn">공지사항</div>
-			<div class="quick">바로가기버튼</div>
-		</div>
-
-		<div id="wrap">
-			<section class="section1">
-				<ul class="slider">
-					<li class="program" style="background-color: black;"><a
-						href="#">프로그램</a></li>
-					<li class="program" style="background-color: blue;"><a
-						href="#">프로그램</a></li>
-					<li class="program" style="background-color: orange;"><a
-						href="#">프로그램</a></li>
-					<li class="program" style="background-color: purple;"><a
-						href="#">프로그램</a></li>
-					<li class="program" style="background-color: pink;"><a
-						href="#">프로그램</a></li>
-				</ul>
-			</section>
-		</div>
-		<div>굿즈??? 한복???? 온라인 상영관도 있지~~</div>
-
-		<div id="chat-circle" class="btn btn-raised">
-			<div id="chat-overlay"></div>
-			<i class="material-icons">&nbsp;채팅하기</i>
-		</div>
-
-		<!-- 채팅 방 -->
-		<div class="chat-box">
-			<div class="chat-box-header">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;채팅하기 <span class="chat-box-toggle"><i
-					class="material-icons">close</i></span>
-			</div>
-			<div class="chat-box-body">
-				<div class="chat-box-overlay"></div>
-				<div class="chat-logs"></div>
-				<!--chat-log -->
-			</div>
-			<div class="chat-input">
-				<form>
-					<input type="text" id="chat-input" placeholder="Send a message..." />
-					<button type="submit" class="chat-submit" id="chat-submit">
-						<i class="material-icons">send</i>
-					</button>
-				</form>
-			</div>
-		</div>
+		<!-- test용 로그인/마이페이지버튼 -->
+		<div><a href="/sae_member/login">로그인</a></div>
+		<!-- test용 로그인/마이페이지버튼 -->
+		<!-- test용 리뷰게시판 -->
+		<div><a href="/sae_goodsboard/list">리뷰게시판</a></div>
+		<!-- test용 리뷰게시판 -->
+		<!-- test용 리뷰게시판 -->
+		<div><a href="/sae_program/program">프로그램 등록</a></div>
+		<div><a href="/sae_program/programlist?pg_type=1">프로그램1</a></div>
+		<div><a href="/sae_program/programlist?pg_type=2">프로그램2</a></div>
+		<!-- test용 리뷰게시판 -->
+		<div><a href="/sae_ticket/ticketList">입장권</a></div>
+		<div><a href="/sae_faq/faqList">faq</a></div>
+		<div><a href="/sae_product/productmain">상품</a></div>
+		<div><a href="/sae_coupon/couponregisterView">쿠폰</a></div><br>
+		<div><a href="/sae_cart/cartlist">장바구니</a></div>
 		
-		<script type="text/javascript">
-			
-			var wsUri = "ws://localhost:8080/chat-ws";
+	<header class="nav-down responsive-nav hidden-lg hidden-md">
+		<button type="button" id="nav-toggle" class="navbar-toggle"
+			data-toggle="collapse" data-target="#main-nav">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+			<span class="icon-bar"></span> <span class="icon-bar"></span>
+		</button>
+		<!--/.navbar-header-->
+
+		<div id="main-nav" class="collapse navbar-collapse">
+			<nav>
+				<ul class="nav navbar-nav">
+					<li><a href="#top">Home</a></li>
+					<li><a href="#featured">Featured</a></li>
+					<li><a href="#projects">Recent Projects</a></li>
+					<li><a href="#video">Presentation</a></li>
+					<li><a href="#blog">Blog Entries</a></li>
+					<li><a href="#contact">Contact Us</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<div class="sidebar-navigation hidde-sm hidden-xs">
+		<div class="logo">
+			<a href="#">Saha<em>mano</em></a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="#top"> <span class="rect"></span> <span
+						class="circle"></span> Home
+				</a></li>
+				<li><a href="#featured"> <span class="rect"></span> <span
+						class="circle"></span> Programs
+				</a></li>
+				<li><a href="#projects"> <span class="rect"></span> <span
+						class="circle"></span> Saeha Shop
+				</a></li>
+				<li><a href="#video"> <span class="rect"></span> <span
+						class="circle"></span> Presentation
+				</a></li>
+				<li><a href="#blog"> <span class="rect"></span> <span
+						class="circle"></span> Board Entires
+				</a></li>
+				<li><a href="#contact"> <span class="rect"></span> <span
+						class="circle"></span> Contact Us
+				</a></li>
+			</ul>
+		</nav>
+		<ul class="social-icons">
+			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+			<li><a href="#"><i class="fa fa-rss"></i></a></li>
+			<li><a href="#"><i class="fa fa-behance"></i></a></li>
+		</ul>
+	</div>
+
+	<div class="slider">
+		<div class="Modern-Slider content-section" id="top">
+			<!-- Item -->
+			<div class="item item-1">
+				<div class="img-fill">
+					<div class="image"></div>
+					<div class="info">
+						<div>
+							<h1>
+								Beautiful Template<br>Sentra
+							</h1>
+							<p>
+								Sentra is free Bootstrap CSS Template by templatemo website.<br>
+								Please share our site link to your friends.
+							</p>
+							<div class="white-button button">
+								<a href="#featured">Discover More</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- // Item -->
+			<!-- Item -->
+			<div class="item item-2">
+				<div class="img-fill">
+					<div class="image"></div>
+					<div class="info">
+						<div>
+							<h1>
+								Please tell <br>your friends
+							</h1>
+							<p>
+								Support templatemo by sharing a link to your friends. <br>Thank
+								you for helping us.
+							</p>
+
+							<div class="white-button button">
+								<a href="#featured">Share More</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- // Item -->
+			<!-- Item -->
+			<div class="item item-3">
+				<div class="img-fill">
+					<div class="image"></div>
+					<div class="info">
+						<div>
+							<h1>
+								Suspendisse suscipit<br>nulla sed
+							</h1>
+							<p>
+								Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+								<br>posuere cubilia Curae; Sed at massa turpis.
+							</p>
+
+							<div class="white-button button">
+								<a href="#featured">Learn More</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- // Item -->
+		</div>
+	</div>
+
+
+	<div class="page-content">
+		<section id="featured" class="content-section">
+			<div class="section-heading">
+				<h1>
+					Ongoing<br>
+					<em>Programs</em>
+				</h1>
+				<p>
+					Praesent pellentesque efficitur magna, <br>sed pellentesque
+					neque malesuada vitae.
+				</p>
+			</div>
+			<div class="section-content">
+				<div class="owl-carousel owl-theme">
+					<%
+					for (int i = 0; i < 3; i++) {
+					%>
+					<div class="item">
+						<div class="image">
+							<img src="resources/img/program1.jpg" alt="">
+							<div class="featured-button button">
+								<a href="#projects">Continue Reading</a>
+							</div>
+						</div>
+						<div class="text-content">
+							<h4>Lorem ipsum dolor</h4>
+							<span>Proin et sapien</span>
+							<p>#1 You are allowed to use Sentra Template for your
+								business or client websites. You can use it for commercial or
+								non-commercial or educational purposes.</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="image">
+							<img src="resources/img/program2.jpg" alt="">
+							<div class="featured-button button">
+								<a href="#projects">Continue Reading</a>
+							</div>
+						</div>
+						<div class="text-content">
+							<h4>Phasellus a lacus ac odio</h4>
+							<span>Maximus</span>
+							<p>
+								#2 You are NOT allowed to re-distribute this on any template
+								website. You <strong>can post</strong> a screenshot and a link
+								back to original template page on your blog or site. Thank you.
+							</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="image">
+							<img src="resources/img/program3.jpg" alt="">
+							<div class="featured-button button">
+								<a href="#projects">Continue Reading</a>
+							</div>
+						</div>
+						<div class="text-content">
+							<h4>Proin sit amet fringilla</h4>
+							<span>Vulputate</span>
+							<p>#3 Aliquam mollis lacus eget metus efficitur lobortis.
+								Suspendisse libero lacus, accumsan vitae commodo tristique,
+								luctus gravida metus.</p>
+						</div>
+					</div>
+					<%
+					}
+					%>
+				</div>
+			</div>
+		</section>
+		<section id="projects" class="content-section">
+			<div class="section-heading">
+				<h1>
+					Popular<br>
+					<em>Products</em>
+				</h1>
+				<p>
+					Praesent pellentesque efficitur magna, <br>sed pellentesque
+					neque malesuada vitae.
+				</p>
+			</div>
+			<div class="section-content">
+				<div class="masonry">
+					<div class="row">
+						<div class="item">
+							<div class="col-md-8">
+								<a href="resources/img/portfolio_big_1.jpg"
+									data-lightbox="image"><img src="resources/img/product3.jpg"
+									alt="image 1"></a>
+							</div>
+						</div>
+						<div class="item second-item">
+							<div class="col-md-4">
+								<a href="resources/img/portfolio_big_2.jpg"
+									data-lightbox="image"><img src="resources/img/product4.jpg"
+									alt="image 2"></a>
+							</div>
+						</div>
+						<div class="item">
+							<div class="col-md-4">
+								<a href="resources/img/portfolio_big_3.jpg"
+									data-lightbox="image"><img src="resources/img/product1.PNG"
+									alt="image 3"></a>
+							</div>
+						</div>
+						<div class="item">
+							<div class="col-md-4">
+								<a href="resources/img/portfolio_big_4.jpg"
+									data-lightbox="image"><img src="resources/img/product2.jpg"
+									alt="image 4"></a>
+							</div>
+						</div>
+						<div class="item">
+							<div class="col-md-8">
+								<a href="resources/img/portfolio_big_5.jpg"
+									data-lightbox="image"><img
+									src="resources/img/portfolio_5.jpg" alt="image 5"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="video" class="content-section">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-heading">
+						<h1>
+							The Story of <em>Jami-dang</em> in Gyeongbokgung
+						</h1>
+						<p>Jamidang is a palace built for bedrooms during the reign of
+							King Sejong.</p>
+					</div>
+					<div class="text-content">
+						<p>What traces were found in the 2022 excavation survey of
+							Gyeongbokgung Palace Jamidang? Check out the story of building
+							sites and blue tiles from the Joseon Dynasty in the video.</p>
+					</div>
+					<div class="accent-button button">
+						<a href="#blog">Continue Reading</a>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="box-video">
+						<div class="video-container">
+							<iframe width="100%" height="520"
+								src="https://www.youtube.com/embed/4kcek6eo4tc"
+								title="YouTube video player" frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="blog" class="content-section">
+			<div class="section-heading">
+				<h1>
+					Board<br>
+					<em>Entries</em>
+				</h1>
+				<p>
+					Curabitur hendrerit mauris mollis ipsum vulputate rutrum. <br>Phasellus
+					luctus odio eget dui imperdiet.
+				</p>
+			</div>
+			<div class="section-content">
+				<div class="tabs-content">
+					<div class="wrapper">
+						<ul class="tabs clearfix" data-tabgroup="first-tab-group">
+							<li><a href="#tab1" class="active">NOTICE</a></li>
+							<li><a href="#tab2">FAQ</a></li>
+							<li><a href="#tab3"></a></li>
+							<li><a href="#tab4"></a></li>
+						</ul>
+						<section id="first-tab-group" class="tabgroup">
+							<div id="tab1">
+								<ul>
+									<%
+									for (int i = 0; i < 6; i++) {
+									%>
+									<li>
+										<div class="item">
+											<div class="text-content">
+												<h4>Integer ultrices augue</h4>
+												<span>25 July 2018</span>
+											</div>
+										</div>
+									</li>
+									<%
+									}
+									%>
+								</ul>
+							</div>
+							<div id="tab2">
+								<ul>
+									<%
+									for (int i = 0; i < 6; i++) {
+									%>
+									<li>
+										<div class="item">
+											<div class="text-content">
+												<h4>Integer ultrices augue</h4>
+												<span>25 July 2018</span>
+											</div>
+										</div>
+									</li>
+									<%
+									}
+									%>
+
+								</ul>
+							</div>
+							<div id="tab3">
+								<ul>
+									<li>
+										<div class="item">
+											<img src="resources/img/blog_2.jpg" alt="">
+											<div class="text-content">
+												<h4>Cras commodo odio ut</h4>
+												<span>26 May 2018</span>
+												<p>Nam vel egestas nisi. Nullam lobortis magna at enim
+													venenatis luctus. Nam finibus, mauris eu dictum iaculis,
+													dolor tortor cursus quam, in volutpat augue lectus sed
+													magna. Integer mollis lorem quis ipsum maximus finibus.</p>
+
+												<div class="accent-button button">
+													<a href="#contact">Continue Reading</a>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item">
+											<img src="resources/img/blog_1.jpg" alt="">
+											<div class="text-content">
+												<h4>Lorem ipsum dolor sit</h4>
+												<span>22 May 2018</span>
+												<p>Nam vel egestas nisi. Nullam lobortis magna at enim
+													venenatis luctus. Nam finibus, mauris eu dictum iaculis,
+													dolor tortor cursus quam, in volutpat augue lectus sed
+													magna. Integer mollis lorem quis ipsum maximus finibus.</p>
+
+												<div class="accent-button button">
+													<a href="#contact">Continue Reading</a>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item">
+											<img src="resources/img/blog_3.jpg" alt="">
+											<div class="text-content">
+												<h4>Integer ultrices augue</h4>
+												<span>8 May 2018</span>
+												<p>Nam vel egestas nisi. Nullam lobortis magna at enim
+													venenatis luctus. Nam finibus, mauris eu dictum iaculis,
+													dolor tortor cursus quam, in volutpat augue lectus sed
+													magna. Integer mollis lorem quis ipsum maximus finibus.</p>
+
+												<div class="accent-button button">
+													<a href="#contact">Continue Reading</a>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div id="tab4">
+								<ul>
+									<li>
+										<div class="item">
+											<img src="resources/img/blog_1.jpg" alt="">
+											<div class="text-content">
+												<h4>Lorem ipsum dolor sit</h4>
+												<span>26 April 2018</span>
+												<p>Nam vel egestas nisi. Nullam lobortis magna at enim
+													venenatis luctus. Nam finibus, mauris eu dictum iaculis,
+													dolor tortor cursus quam, in volutpat augue lectus sed
+													magna. Integer mollis lorem quis ipsum maximus finibus.</p>
+
+												<div class="accent-button button">
+													<a href="#contact">Continue Reading</a>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item">
+											<img src="resources/img/blog_3.jpg" alt="">
+											<div class="text-content">
+												<h4>Integer ultrices augue eu</h4>
+												<span>24 April 2018</span>
+												<p>Nam vel egestas nisi. Nullam lobortis magna at enim
+													venenatis luctus. Nam finibus, mauris eu dictum iaculis,
+													dolor tortor cursus quam, in volutpat augue lectus sed
+													magna. Integer mollis lorem quis ipsum maximus finibus.</p>
+
+												<div class="accent-button button">
+													<a href="#contact">Continue Reading</a>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item">
+											<img src="resources/img/blog_2.jpg" alt="">
+											<div class="text-content">
+												<h4>Cras commodo odio ut</h4>
+												<span>20 April 2018</span>
+												<p>Nam vel egestas nisi. Nullam lobortis magna at enim
+													venenatis luctus. Nam finibus, mauris eu dictum iaculis,
+													dolor tortor cursus quam, in volutpat augue lectus sed
+													magna. Integer mollis lorem quis ipsum maximus finibus.</p>
+
+												<div class="accent-button button">
+													<a href="#contact">Continue Reading</a>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<section id="chat">
+			<div id="chat-circle" class="btn btn-raised">
+				<div id="chat-overlay"></div>
+				<i class="material-icons">채팅<br>하기</i>
+			</div>
+			<!-- 채팅 방 -->
+			<div class="chat-box">
+				<div class="chat-box-header">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;채팅하기 <span
+						class="chat-box-toggle"><i class="material-icons">close</i></span>
+				</div>
+				<div class="chat-box-body">
+					<div class="chat-box-overlay"></div>
+					<div class="chat-logs"></div>
+					<!--chat-log -->
+				</div>
+				<div class="chat-input">
+					<form>
+						<input type="text" id="chat-input" placeholder="Send a message..." />
+						<button type="submit" class="chat-submit" id="chat-submit">
+							<i class="material-icons">send</i>
+						</button>
+					</form>
+				</div>
+			</div>
+
+			<script type="text/javascript">
+				var wsUri = "ws://localhost:8080/chat-ws";
 
 				websocket = new WebSocket(wsUri);
 				websocket.onopen = function(msg) {
@@ -595,142 +780,198 @@ a {
 				websocket.onerror = function(evt) {
 					onError(evt)
 				};
-			
 
-			function onOpen(msg) {
-				writeToScreen("연결완료");
-				
-			}
+				function onOpen(msg) {
+					writeToScreen("연결완료");
 
-			function onClose(evt) {
-				writeToScreen("연결해제");
-			}
-			function onError(evt) {
-				writeToScreen(evt);
-			}
-
-			function doSend(message) {
-				writeToScreen(message);
-				websocket.send(message);
-			}
-
-			function writeToScreen(message) {
-				console.log(message);
-			}
-
-			var INDEX = 0;
-
-			document.querySelector("#chat-submit").addEventListener('click',
-					function(e) {
-						e.preventDefault();
-						var msg = $("#chat-input").val();
-						if (msg.trim() == '') {
-							return false;
-						}
-						generate_message(msg, 'self');
-						
-						doSend(msg);
-						
-						var buttons = [ {
-							name : 'Existing User',
-							value : 'existing'
-						}, {
-							name : 'New User',
-							value : 'new'
-						} ];
-
-					});
-
-			function onMessage(evt) {
-				writeToScreen(evt.data);
-				generate_message(evt.data, 'user');
-			}
-
-			function generate_message(msg, type) {
-				INDEX++;
-				var str = "";
-				str += "<div id='cm-msg-"+INDEX+"' class=\"chat-msg "+type+"\">";
-				str += "          <span class=\"msg-avatar\">";
-				str += "            <img src=\"\/resources\/img\/chat1.jpg\">";
-				str += "          <\/span>";
-				str += "          <div class=\"cm-msg-text\">";
-				str += msg;
-				str += "          <\/div>";
-				str += "        <\/div>";
-				$(".chat-logs").append(str);
-				$("#cm-msg-" + INDEX).hide().fadeIn(300);
-				if (type == 'self') {
-					$("#chat-input").val('');
 				}
-				$(".chat-logs").stop().animate({
-					scrollTop : $(".chat-logs")[0].scrollHeight
-				}, 1000);
-			}
 
-			function generate_button_message(msg, buttons) {
-				/* Buttons should be object array 
-				  [
-				    {
-				      name: 'Existing User',
-				      value: 'existing'
-				    },
-				    {
-				      name: 'New User',
-				      value: 'new'
-				    }
-				  ]
-				 */
-				INDEX++;
-				var btn_obj = buttons
-						.map(
-								function(button) {
-									return "              <li class=\"button\"><a href=\"javascript:;\" class=\"btn btn-primary chat-btn\" chat-value=\""+button.value+"\">"
-											+ button.name + "<\/a><\/li>";
-								}).join('');
-				var str = "";
-				str += "<div id='cm-msg-"+INDEX+"' class=\"chat-msg user\">";
-				str += "          <span class=\"msg-avatar\">";
-				str += "            <img src=\"\/resources\/img\/chat2.jpg\">";
-				str += "          <\/span>";
-				str += "          <div class=\"cm-msg-text\">";
-				str += msg;
-				str += "          <\/div>";
-				str += "          <div class=\"cm-msg-button\">";
-				str += "            <ul>";
-				str += btn_obj;
-				str += "            <\/ul>";
-				str += "          <\/div>";
-				str += "        <\/div>";
-				$(".chat-logs").append(str);
-				$("#cm-msg-" + INDEX).hide().fadeIn(300);
-				$(".chat-logs").stop().animate({
-					scrollTop : $(".chat-logs")[0].scrollHeight
-				}, 1000);
-				$("#chat-input").attr("disabled", true);
-			}
+				function onClose(evt) {
+					writeToScreen("연결해제");
+				}
+				function onError(evt) {
+					writeToScreen(evt);
+				}
 
-			$(document).delegate(".chat-btn", "click", function() {
-				var value = $(this).attr("chat-value");
-				var name = $(this).html();
-				$("#chat-input").attr("disabled", false);
-				generate_message(name, 'self');
-			});
+				function doSend(message) {
+					writeToScreen(message);
+					websocket.send(message);
+				}
 
-			$("#chat-circle").click(function() {
-				$("#chat-circle").toggle('scale');
-				$(".chat-box").toggle('scale');
-			});
+				function writeToScreen(message) {
+					console.log(message);
+				}
 
-			$(".chat-box-toggle").click(function() {
-				$("#chat-circle").toggle('scale');
-				$(".chat-box").toggle('scale');
-			});
-		</script>
-		<!-- 채팅 방 -->
+				var INDEX = 0;
+
+				document.querySelector("#chat-submit").addEventListener(
+						'click', function(e) {
+							e.preventDefault();
+							var msg = $("#chat-input").val();
+							if (msg.trim() == '') {
+								return false;
+							}
+							generate_message(msg, 'self');
+
+							doSend(msg);
+
+							var buttons = [ {
+								name : 'Existing User',
+								value : 'existing'
+							}, {
+								name : 'New User',
+								value : 'new'
+							} ];
+
+						});
+
+				function onMessage(evt) {
+					writeToScreen(evt.data);
+					generate_message(evt.data, 'user');
+				}
+
+				function generate_message(msg, type) {
+					INDEX++;
+					var str = "";
+					str += "<div id='cm-msg-"+INDEX+"' class=\"chat-msg "+type+"\">";
+					str += "          <span class=\"msg-avatar\">";
+					str += "            <img src=\"resources\/img\/chat1.jpg\">";
+					str += "          <\/span>";
+					str += "          <div class=\"cm-msg-text\">";
+					str += msg;
+					str += "          <\/div>";
+					str += "        <\/div>";
+					$(".chat-logs").append(str);
+					$("#cm-msg-" + INDEX).hide().fadeIn(300);
+					if (type == 'self') {
+						$("#chat-input").val('');
+					}
+					$(".chat-logs").stop().animate({
+						scrollTop : $(".chat-logs")[0].scrollHeight
+					}, 1000);
+				}
+
+				function generate_button_message(msg, buttons) {
+					/* Buttons should be object array 
+					  [
+					    {
+					      name: 'Existing User',
+					      value: 'existing'
+					    },
+					    {
+					      name: 'New User',
+					      value: 'new'
+					    }
+					  ]
+					 */
+					INDEX++;
+					var btn_obj = buttons
+							.map(
+									function(button) {
+										return "              <li class=\"button\"><a href=\"javascript:;\" class=\"btn btn-primary chat-btn\" chat-value=\""+button.value+"\">"
+												+ button.name + "<\/a><\/li>";
+									}).join('');
+					var str = "";
+					str += "<div id='cm-msg-"+INDEX+"' class=\"chat-msg user\">";
+					str += "          <span class=\"msg-avatar\">";
+					str += "            <img src=\"resources\/img\/chat2.jpg\">";
+					str += "          <\/span>";
+					str += "          <div class=\"cm-msg-text\">";
+					str += msg;
+					str += "          <\/div>";
+					str += "          <div class=\"cm-msg-button\">";
+					str += "            <ul>";
+					str += btn_obj;
+					str += "            <\/ul>";
+					str += "          <\/div>";
+					str += "        <\/div>";
+					$(".chat-logs").append(str);
+					$("#cm-msg-" + INDEX).hide().fadeIn(300);
+					$(".chat-logs").stop().animate({
+						scrollTop : $(".chat-logs")[0].scrollHeight
+					}, 1000);
+					$("#chat-input").attr("disabled", true);
+				}
+
+				$(document).delegate(".chat-btn", "click", function() {
+					var value = $(this).attr("chat-value");
+					var name = $(this).html();
+					$("#chat-input").attr("disabled", false);
+					generate_message(name, 'self');
+				});
+
+				$("#chat-circle").click(function() {
+					$("#chat-circle").toggle('scale');
+					$(".chat-box").toggle('scale');
+				});
+
+				$(".chat-box-toggle").click(function() {
+					$("#chat-circle").toggle('scale');
+					$(".chat-box").toggle('scale');
+				});
+			</script>
+			<!-- 채팅 방 -->
+		</section>
 
 
 
+		<section class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</section>
 	</div>
-	<footer>아니면 풋터먼저 고고</footer>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write('<script src="resources/js/vendor/jquery-1.11.2.min.js"><\/script>')
+	</script>
+
+	<script src="resources/js/vendor/bootstrap.min.js"></script>
+	<script src="resources/js/plugins.js"></script>
+	<script src="resources/js/main.js"></script>
+
+	<script>
+		// Hide Header on on scroll down
+		var didScroll;
+		var lastScrollTop = 0;
+		var delta = 5;
+		var navbarHeight = $('header').outerHeight();
+
+		$(window).scroll(function(event) {
+			didScroll = true;
+		});
+
+		setInterval(function() {
+			if (didScroll) {
+				hasScrolled();
+				didScroll = false;
+			}
+		}, 250);
+
+		function hasScrolled() {
+			var st = $(this).scrollTop();
+
+			// Make sure they scroll more than delta
+			if (Math.abs(lastScrollTop - st) <= delta)
+				return;
+
+			// If they scrolled down and are past the navbar, add class .nav-up.
+			// This is necessary so you never see what is "behind" the navbar.
+			if (st > lastScrollTop && st > navbarHeight) {
+				// Scroll Down
+				$('header').removeClass('nav-down').addClass('nav-up');
+			} else {
+				// Scroll Up
+				if (st + $(window).height() < $(document).height()) {
+					$('header').removeClass('nav-up').addClass('nav-down');
+				}
+			}
+
+			lastScrollTop = st;
+		}
+	</script>
+
 </body>
 </html>

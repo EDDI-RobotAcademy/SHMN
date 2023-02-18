@@ -39,11 +39,17 @@ public class CouponDAOImpl implements CouponDAO {
 		sqlSession.update("couponMapper.couponUpdate", bno);
 	}
 	
+	// 쿠폰 사용
+	@Override
+	public void used(CouponVO couponVO) throws Exception {
+		sqlSession.update("couponMapper.used", couponVO);
+	}
+	
 	//쿠폰타입(percent / price) 확인, 상품확인(굿즈 / 한복),
 	//기간확인(지났는지 안지났는지)
-	@Override
-	public CouponVO checkall(String bno) throws Exception {
-		return sqlSession.selectOne("couponMapper.checkall", bno);
-	}
+//	@Override
+//	public CouponVO checkall(String bno) throws Exception {
+//		return sqlSession.selectOne("couponMapper.checkall", bno);
+//	}
 
 }

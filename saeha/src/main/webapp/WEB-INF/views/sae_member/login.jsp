@@ -49,19 +49,20 @@ body {
 	$(document).ready(function() {
 		$("#logoutBtn").on("click", function() {
 			location.href = "/sae_member/logout";
-		})
+		});
 
 		$("#registerBtn").on("click", function() {
 			location.href = "/sae_member/register";
-		})
-
-		$("#memberUpdateBtn").on("click", function() {
-			location.href = "/sae_member/memberUpdateView";
-		})
+		});
 
 		$("#findPassBtn").on("click", function() {
 			location.href = "/sae_member/findPass";
 		});
+		
+		$("#memberpageBtn").on("click", function() {
+			location.href = "/sae_member/mypage";
+		});
+		
 	});
 </script>
 <!-- 카카오 로그인 스크립트 -->
@@ -196,7 +197,7 @@ body {
 						<div>
 							<p>${member.userId}님환영합니다.</p>
 							<c:if test="${loginlogin == null }">
-								<button id="memberUpdateBtn" type="button">회원정보수정</button>
+								<button id="memberpageBtn" type="button">마이페이지</button>
 								<button id="logoutBtn" type="button">로그아웃</button>
 							</c:if>
 

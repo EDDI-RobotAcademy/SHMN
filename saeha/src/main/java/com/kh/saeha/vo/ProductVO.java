@@ -17,8 +17,15 @@ public class ProductVO {
 	private Date pd_date;
 	private String p_filepath;
 	private int pd_number;
+	private String pd_id;
 	
 	
+	public String getPd_id() {
+		return pd_id;
+	}
+	public void setPd_id(String pd_id) {
+		this.pd_id = pd_id;
+	}
 	public int getPd_number() {
 		return pd_number;
 	}

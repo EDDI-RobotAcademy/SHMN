@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ticketMapper">
+
+<!-- 입장권 등록 -->
+<insert id="insert">
+INSERT INTO sae_ticket (tk_bno,
+   						tk_name,
+   						tk_price,
+  						tk_stock,
+  						tk_date
+  					    )
+  			   VALUES (sae_ticket_seq.nextval,
+  			   		   #{tk_name},
+  			   		   #{tk_price},
+  			   		   #{tk_stock},
+  			   		   #{tk_date}
+  					  )
+</insert>
+<!-- 입장권 수정 -->
+<update id="update">
+UPDATE sae_ticket 
+SET
+	tk_name = #{tk_name},
+	tk_price = #{tk_price},
+	tk_stock = #{tk_stock},
+	tk_date = #{tk_date}
+WHERE tk_bno = #{tk_bno}
+</update>
+
+<update id="stockupdate">
+UPDATE sae_ticket 
+SET tk_stock = #{tk_stock}
+WHERE tk_bno = #{tk_bno}
+</update>
+
+<delete id="delete" parameterType="int">
+DELETE FROM sae_ticket
+WHERE tk_bno = #{tk_bno}
+</delete>
+
+<!-- 목록 -->
+<select id="list" resultType="ticketVO" parameterType="String">
+SELECT  tk_bno,
+	 	tk_name,
+	 	tk_price,
+	 	tk_stock,
+	 	tk_date	
+FROM sae_ticket
+ORDER BY tk_bno DESC
+
+</select>
+
+<select id="read" parameterType="int" resultType="ticketVO">
+SELECT  tk_bno,
+		tk_name,
+		tk_price,
+		tk_stock,
+		tk_date
+FROM sae_ticket
+WHERE tk_bno = #{tk_bno}
+</select>
+
+<select id="sday" parameterType="String" resultType="ticketVO">
+SELECT  tk_bno,
+		tk_name,
+		tk_price,
+		tk_stock,
+		tk_date
+FROM sae_ticket
+WHERE tk_date = #{tk_date}
+</select>
+
+
+<sql id = "search">
+<if test = "searchType != null">
+   <if test = "searchType == 'd'.toString()">AND DATE LIKE '%' || #{keyword} || '%'</if>
+</if>
+</sql>
+
+</mapper>

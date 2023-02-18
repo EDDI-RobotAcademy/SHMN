@@ -264,6 +264,7 @@
 <body>
 		<!-- test용 로그인/마이페이지버튼 -->
 		<div><a href="/sae_member/login">로그인</a></div>
+		<div><a href="/sae_event/main">이벤트페이지</a></div>
 		<!-- test용 로그인/마이페이지버튼 -->
 		<!-- test용 리뷰게시판 -->
 		<div><a href="/sae_goodsboard/list">리뷰게시판</a></div>

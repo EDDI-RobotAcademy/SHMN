@@ -209,5 +209,14 @@
 	<select id="imglist" parameterType="int" resultType="imgVO">
 		select * from sae_img where bno = #{pd_bno} order by itotal
 	</select>
+	
+	<!-- 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기  -->
+	<update id="stock" parameterType="buyVO">
+		UPDATE sae_product
+		SET
+		pd_stock = pd_stock - #{by_count},
+		pd_buycount = pd_buycount + #{by_count}
+		WHERE pd_bno = #{by_pno}
+	</update>
 
 </mapper>

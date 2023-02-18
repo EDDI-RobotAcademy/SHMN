@@ -16,5 +16,23 @@
 		pd_bno =
 		#{pd_bno}
 	</select>
+	
+	<!-- 구매테이블 입력 -->
+	<insert id="buywrite">
+		INSERT INTO sae_buy(
+		by_bno,
+		by_pno,
+		by_count,
+		by_id,
+		by_price
+		)
+		VALUES(
+		sae_buy_seq.nextval,
+		#{by_pno},
+		#{by_count},
+		#{by_id},
+		#{by_price}
+		)
+	</insert>
 
 </mapper>

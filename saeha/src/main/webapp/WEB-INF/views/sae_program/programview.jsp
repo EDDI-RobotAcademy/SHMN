@@ -40,8 +40,8 @@ $(document).ready(function(){
 	
 	//목록
 	$(".list_btn").on("click",function(){
-		location.href="/sae_program/programlist?page=${scri.page}"+"&perPageNum=${scri.perPageNum}"+
-				"&serchType=${scri.searchType}&keyword=${scri.keyword}";
+		var type = $("#pg_type").val();
+		location.href="/sae_program/programlist?pg_type="+type ;
 	})
 	
 	//예약페이지로
@@ -52,8 +52,51 @@ $(document).ready(function(){
 		
 	})
 
-})
 
+
+$('#heart').click(function(e){
+		likeupdate(e);
+	});
+	
+	function likeupdate(e){
+		var root = getContextPath(),
+		likeurl = "/sae_like/likeupdate",
+		lk_id = $('#lk_id').val(),
+		lk_pno = $('#lk_pno').val(),
+		count = $('#likecheck').val(),
+		data = {"lk_id" : lk_id,
+				"lk_pno" : Number($("#lk_pno").attr("value")),
+				"lkcount" : count};
+		console.log(data);
+	$.ajax({
+		url : likeurl,
+		type : 'PUT',
+		dataType: "json",
+        contentType: "application/json; charset=utf-8",
+		data : JSON.stringify(data),
+		success : function(result){
+			console.log("수정" + result.result);
+			if(count == 1){
+				console.log("좋아요 취소");
+				 $('#likecheck').val(0);
+				 $('#heart').attr('src','/resources/img/empty.png');
+			}else if(count == 0){
+				console.log("좋아요!");
+				$('#likecheck').val(1);
+				$('#heart').attr('src','/resources/img/full.png');
+			}
+		}, error : function(result){
+			console.log("에러" + result.result)
+		}
+		
+		});
+	};
+	
+	function getContextPath() {
+	    var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	    return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	} 
+})
 </script>
 <body>
 
@@ -77,12 +120,13 @@ $(document).ready(function(){
 <section id="container">
 <form name="readForm" role="form" method="post">
 <input type="hidden" id="pg_bno" name="pg_bno" value="${programread.pg_bno}" />
-<input type="hidden" id="page" name="page" value="${scri.page}" />
-<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}" />
-<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}" />
-<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}" />
+<input type="hidden" id="pg_name" name="pg_name" value="${programread.pg_name}" />
+<input type="hidden" id="pg_time" name="pg_time" value="${programread.pg_time}" />
 </form>
-
+<div class="form-group">
+ <label for="pg_type" class="col-sm-2 control-laber"></label>
+ <input type="text" id="pg_type" name="pg_type" class="form-control" value="${programread.pg_type }" readonly="readonly" />
+ </div>
 <div class="form-group">
 <label for="pg_name" class="col-sm-2 control-laber">관람 이름</label>
 <input type="text" id="pg_name" name="pg_name" class="form-control" value="${programread.pg_name}" readonly="readonly" />
@@ -106,17 +150,32 @@ $(document).ready(function(){
 <label for="pg_time" class="col-sm-2 control-laber">관람 시간</label>
 <input type="text" id="pg_time" name="pg_time" class="form-control" value="${programread.pg_time}" readonly="readonly" />
 </div>
+
+<td id="like">
+					<c:choose>
+						<c:when test="${lk_bno ==0}">
+							<img id="heart" src="/resources/img/empty.png"style="height:40px;" value="${programread.pg_bno}" >
+							<input type="hidden" id="likecheck" value="${lk_bno }">
+						</c:when>					
+						<c:when test="${lk_bno ==1}">
+							<img id="heart" src="/resources/img/full.png"style="height:40px;" value="${programread.pg_bno}" >
+							<input type="hidden" id="likecheck" value="${lk_bno }">
+						</c:when>
+					</c:choose>					
+				</td>
 <!-- <button class="write_btn" type="submit">작성</button> -->
-<c:if test = "${member.userId == 'admin1' }">
+<c:if test = "${member.userId == 'admin' }">
 <button type="button" class="update_btn btn btn-warning">수정</button>
 <button type="button" class="delete_btn btn btn-danger">삭제</button>
 <button type="button" class="list_btn btn btn-primary">목록</button>
 </c:if>
+
 <button type="button" class="book_btn btn btn-primary">예매하기</button>
 <c:if test="${member.userId == null}">
 <p>예매하시려면 로그인 해주세요!</p>
 </c:if>
-
+<input type="hidden" value="${member.userId }" id="lk_id" name="lk_id" />
+<input type="hidden" value="${programread.pg_bno}" id="lk_pno" name="lk_pno" />
 
 </section>
 <hr />

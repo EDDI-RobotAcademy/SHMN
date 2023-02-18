@@ -8,7 +8,7 @@ public class GoodsBoardVO {
 	private String gwWriter;
 	private String gwContent;
 	private int gwScore;
-	private String gwFile;
+	private int gwFile;
 	private String gwDate;
 	
 	public int getGwBno() {
@@ -47,10 +47,10 @@ public class GoodsBoardVO {
 	public void setGwScore(int gwScore) {
 		this.gwScore = gwScore;
 	}
-	public String getGwFile() {
+	public int getGwFile() {
 		return gwFile;
 	}
-	public void setGwFile(String gwFile) {
+	public void setGwFile(int gwFile) {
 		this.gwFile = gwFile;
 	}
 	public String getGwDate() {
@@ -60,12 +60,14 @@ public class GoodsBoardVO {
 		this.gwDate = gwDate;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "GoodsBoardVO [gwBno=" + gwBno + ", gwPno=" + gwPno + ", gwTitle=" + gwTitle + ", gwWriter=" + gwWriter
 				+ ", gwContent=" + gwContent + ", gwScore=" + gwScore + ", gwFile=" + gwFile + ", gwDate=" + gwDate
 				+ "]";
 	}
+	
 	
 	
 }

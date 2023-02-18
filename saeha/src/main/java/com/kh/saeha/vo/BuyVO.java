@@ -1,11 +1,14 @@
 package com.kh.saeha.vo;
 
+import java.sql.Date;
+
 public class BuyVO {
 	
 	private int by_bno;
 	private int by_pno;
 	private int by_count;
 	private String by_id;
+	private Date by_date;
 	private int by_price;
 	public int getBy_bno() {
 		return by_bno;
@@ -31,17 +34,24 @@ public class BuyVO {
 	public void setBy_id(String by_id) {
 		this.by_id = by_id;
 	}
+	public Date getBy_date() {
+		return by_date;
+	}
+	public void setBy_date(Date by_date) {
+		this.by_date = by_date;
+	}
 	public int getBy_price() {
 		return by_price;
 	}
 	public void setBy_price(int by_price) {
 		this.by_price = by_price;
 	}
+	
 	@Override
 	public String toString() {
 		return "BuyVO [by_bno=" + by_bno + ", by_pno=" + by_pno + ", by_count=" + by_count + ", by_id=" + by_id
-				+ ", by_price=" + by_price + "]";
+				+ ", by_date=" + by_date + ", by_price=" + by_price + "]";
 	}
-	
+
 	
 }

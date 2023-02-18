@@ -41,8 +41,8 @@ INSERT INTO SAE_PROGRAM( PG_BNO
   <if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
 </if>
 </sql>
-<!-- 상품 수정 -->
 
+<!-- 상품 수정 -->
 <update id="programUpdate">
 UPDATE SAE_PROGRAM SET
 PG_NAME=#{pg_name},
@@ -110,7 +110,8 @@ SELECT PG_BNO
      , PG_BSTARTDATE
      , PG_BENDDATE
      , PG_TIME
-     FROM SAE_PROGRAM
+     , PG_TYPE
+     FROM SAE_PROGRAM 
      WHERE PG_BNO = #{pg_bno}
 </select>
 
@@ -124,9 +125,12 @@ SELECT PG_BNO
      , PG_BSTARTDATE
      , PG_BENDDATE
      , PG_TIME
+     , PG_TYPE
      FROM SAE_PROGRAM
      WHERE PG_BNO = #{pg_bno}
 </select>
+
+
 
 
 </mapper>

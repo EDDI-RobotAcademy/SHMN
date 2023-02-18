@@ -38,6 +38,19 @@ $(document).ready(function(){
 	   }
 	
 	}
+	
+$(document).ready (function () {                
+    $('.btnAdd').click (function () {                                        
+        $('.buttons').append (                        
+            '<input type="time" name="pg_time"> <input type="button" class="btnRemove" value="Remove"><br>'                    
+        ); // end append                            
+        $('.btnRemove').on('click', function () { 
+            $(this).prev().remove (); // remove the textbox
+            $(this).next ().remove (); // remove the <br>
+            $(this).remove (); // remove the button
+        });
+    }); // end click                                            
+}); // end ready 
 
 
 </script>
@@ -58,7 +71,7 @@ $(document).ready(function(){
 <form name="writeForm" method="post" action="sae_program/upload">
 <table>
 <tbody>
- <c:if test="${member.userId == admin}"> 
+ <c:if test="${member.userId == 'admin'}"> 
   <tr>
   <td>
     <a href="/sae_program/programview?pg_bno=${programread.pg_bno}"><c:out value="${programread.pg_name}" /></a>
@@ -67,8 +80,8 @@ $(document).ready(function(){
   <label for="pg_type">프로그램 분류</label>
   <select  id="pg_type" name="pg_type" class="chk">
     <option value="1">관람</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
+    <option value="2">체험</option>
+    <option value="3">단체</option>
     <option value="4">4</option>
   </select>
   </td>
@@ -101,16 +114,23 @@ $(document).ready(function(){
   </tr>
   <tr>
   <td>
-  <label for="pg_bstartdate">예약 시작일</label><input type="date" id="pg_startdate" name="pg_bstartdate" class="chk" title="기간을 입력하세요."/>
-  <label for="pg_benddate">예약 종료일</label><input type="date" id="pg_enddate" name="pg_benddate" class="chk" title="기간을 입력하세요."/>
+  <label for="pg_bstartdate">예약 시작일</label><input type="date" id="pg_bstartdate" name="pg_bstartdate" class="chk" title="기간을 입력하세요."/>
+  <label for="pg_benddate">예약 종료일</label><input type="date" id="pg_benddate" name="pg_benddate" class="chk" title="기간을 입력하세요."/>
   </td>
   </tr>
-  <tr>
-  <td>
+ <!-- <tr>
+   <td>
     <ul id='pg_time'></ul>
   <label for="pg_time">프로그램 시간</label><input type="time" id="pg_time" name="pg_time" class="chk"/>
       <input type='button' value='추가' onclick='addList()' />
   </td> 
+  </tr> -->
+  <tr>
+  <td>
+  <div class="buttons">            
+        <input type="time" name="pg_time"> <input type="button" class="btnAdd" value="Add"><br>        
+  </div> 
+  </td>
   </tr>
   <tr>
   <td>

@@ -53,18 +53,55 @@ $(document).ready(function(){
    
    //댓글 수정 View
    $(".replyUpdateBtn").on("click",function(){
-      
-      location.href = "/sae_goodsboard/replyUpdateView?gwBno=${read.gwBno}"+"&page=${scri.page}"+
+	   var modify = $(this).attr("data-rno");
+	   $("#"+modify+"-modify2").attr("style","display:none");
+
+	   $("#"+modify+"-Update").attr("style","display:none");
+
+	   $("#"+modify+"-Delete").attr("style","display:none");
+	   $("#"+modify+"-modify").attr("style","display:block");
+	   $("#"+modify+"-modify").val($("#"+modify+"-modify2").text());
+	   $("#"+modify+"-UpdateComplete").attr("style","display:inline-block");
+	   $("#"+modify+"-Cancel").attr("style","display:inline-block");
+      /* location.href = "/sae_goodsboard/replyUpdateView?gwBno=${read.gwBno}"+"&page=${scri.page}"+
             "&perPageNum=${scri.perPageNum}" + "&score=${scri.score}"+
-            "&keyword=${scri.keyword}"+"&geRno="+$(this).attr("data-rno");
+            "&keyword=${scri.keyword}"+"&geRno="+$(this).attr("data-rno"); */
+   });
+   
+ //댓글 수정-취소 View
+   $(".replyCancelBtn").on("click",function(){
+	   var modify = $(this).attr("data-rno");
+	   $("#"+modify+"-modify2").attr("style","display:block");
+
+	   $("#"+modify+"-Update").attr("style","display:inline-block");
+
+	   $("#"+modify+"-Delete").attr("style","display:inline-block");
+	   $("#"+modify+"-modify").attr("style","display:none");
+	   $("#"+modify+"-UpdateComplete").attr("style","display:none");
+	   $("#"+modify+"-Cancel").attr("style","display:none");
+      
+   });  
+ 
+ //댓글 수정-수정하기 View
+   $(".replyUpdateCompleteBtn").on("click",function(){
+	   var modify = $(this).attr("data-rno");
+	   var content = $("#"+modify+"-modify").val();
+	   $("#UpdateFormRno").val(modify);
+	   $("#UpdateFormContent").val(content);
+	   var formObj = $("form[name='updateForm']");
+	   formObj.submit(); 
+      
    });
    
    //댓글 삭제 View
     $(".replyDeleteBtn").on("click",function(){
-      
-      location.href = "/sae_goodsboard/replyDeleteView?gwBno=${read.gwBno}"+"&page=${scri.page}"+
-            "&perPageNum=${scri.perPageNum}" + "&score=${scri.score}"+
-            "&keyword=${scri.keyword}"+"&geRno="+$(this).attr("data-rno");
+      if(confirm("삭제하시겠습니까?")){
+    	 //삭제 했을 때 이벤트
+    	  var modify = $(this).attr("data-rno");
+    	  $("#DeleteFormRno").val(modify);
+    	  var formObj = $("form[name='deleteForm']");
+   	      formObj.submit(); 
+      }
    });    
 })
 
@@ -124,8 +161,10 @@ $(document).ready(function(){
 </div>
 
 <div>
+<c:if test="${member.userId eq read.gwWriter || member.userId eq 'admin' }">
 <button type="button" class="update_btn btn btn-warning">수정</button>
 <button type="button" class="delete_btn btn btn-danger">삭제</button>
+</c:if>
 <button type="button" class="list_btn btn btn-primary">목록</button>
 </div>
 
@@ -135,14 +174,18 @@ $(document).ready(function(){
 <c:forEach items="${replyList}" var="replyList">
 <li>
 <p>
-작성자 : ${replyList.geWriter}<br />
+작성자 : ${replyList.geWriter}님<br />
 작성 날짜 : <c:out value="${replyList.geDate}" />
 </p>
-
-<p>${replyList.geContent}</p>
+<p id="${replyList.geRno}-modify2">${replyList.geContent}</p>
+<input type="text" id="${replyList.geRno}-modify" name="geContent" class="form-control" style="display:none" />
 <div>
-<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.geRno}">수정</button>
-<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.geRno}">삭제</button>
+<c:if test="${member.userName eq replyList.geWriter || member.userId eq 'admin' }">
+<button type="button" id="${replyList.geRno}-Update" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.geRno}">수정</button>
+<button type="button" id="${replyList.geRno}-Delete" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.geRno}">삭제</button>
+</c:if>
+<button type="button" id="${replyList.geRno}-UpdateComplete" class="replyUpdateCompleteBtn btn btn-warning" data-rno="${replyList.geRno}" style="display:none">수정하기</button>
+<button type="button" id="${replyList.geRno}-Cancel" class="replyCancelBtn btn btn-danger" data-rno="${replyList.geRno}" style="display: none">취소</button>
 </div>
 </li>
 </c:forEach>
@@ -159,7 +202,7 @@ $(document).ready(function(){
 <div class="form-group">
 <label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
 <div class="col-sm-10">
-<input type="text" id="writer" name="geWriter" class="form-control" />
+<input type="text" id="writer" name="geWriter" class="form-control" value="${member.userName }" readonly/>
 </div>
 </div>
 
@@ -180,5 +223,23 @@ $(document).ready(function(){
 <hr />
 </div>
 
+
+<form name="updateForm" role="form" method="post" action="/sae_goodsboard/replyUpdate">
+<input type="hidden"  name="geBno" value="${read.gwBno}" readonly="readonly" />
+<input type="hidden" id="UpdateFormRno" name="geRno" />
+<input type="hidden"  name="page" value="${scri.page}" />
+<input type="hidden" name="perPageNum" value="${scri.perPageNum}" />
+<input type="hidden" name="keyword" value="${scri.keyword}" />
+<input type="hidden" id="UpdateFormContent" name="geContent" />
+</form>
+
+<form name="deleteForm" role="form" method="post" action="/sae_goodsboard/replyDelete">
+<input type="hidden" name="geBno" value="${read.gwBno}"  readonly="readonly" />
+<input type="hidden" id="DeleteFormRno" name="geRno" />
+<input type="hidden" name="page" value="${scri.page}" />
+<input type="hidden" name="perPageNum" value="${scri.perPageNum}" />
+<input type="hidden" name="keyword" value="${scri.keyword}" />
+
+</form>
 </body>
 </html>

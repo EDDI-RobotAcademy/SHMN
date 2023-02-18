@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.kh.saeha.dao.ProgramDAO;
+import com.kh.saeha.vo.BookVO;
 import com.kh.saeha.vo.ProgramVO;
 import com.kh.saeha.vo.SearchCriteria;
 

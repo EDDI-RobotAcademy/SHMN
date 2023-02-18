@@ -71,11 +71,9 @@ $(document).ready(function(){
 <section id="container">
 <!-- <form name="updateForm" method="post" action="sae_program/upload"> -->
 <form action="/sae_program/programUpdate" name="updateForm" role="form" method="post">
-<input type="hidden" id="bno" name="bno" value="${update.bno}" readonly="readonly"/>
-      <input type="hidden" id="page" name="page" value="${scri.page}" />
-      <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}" />
-      <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}" />
-      <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}" />
+<input type="hidden" id="pg_bno" name="pg_bno" value="${programUpdate.pg_bno}" readonly="readonly"/>
+<input type="hidden" id="pg_type" name="pg_type" value="${programUpdate.pg_type}" readonly="readonly"/>
+
 <table>
 <tbody>
 <%-- <c:if test="${member.userId != null}"> --%>

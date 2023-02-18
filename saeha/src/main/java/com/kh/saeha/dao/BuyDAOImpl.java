@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.ProductVO;
 
 @Repository
@@ -18,5 +19,11 @@ public class BuyDAOImpl implements BuyDAO {
 	public ProductVO buylist(int pd_bno) throws Exception {
 		
 		return sqlsession.selectOne("buyMapper.buylist", pd_bno);
+	}
+
+	@Override
+	public void buywrite(BuyVO buyVO) throws Exception {
+		
+		sqlsession.insert("buyMapper.buywrite", buyVO);
 	}
 }

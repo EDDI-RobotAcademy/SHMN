@@ -30,29 +30,29 @@
 	<!-- 파일 경로 저장 -->
 	<insert id="fileSave" parameterType="java.util.Map">
 		INSERT INTO
-		SAE_GOREVIEWIMG(rg_ino, rg_itotal, rg_ipath, rg_bno)
+		SAE_REVIEWIMG(rg_ino, rg_itotal, rg_ipath, rg_bno)
 		VALUES(SAE_REVIEWIMG_SEQ.nextval, #{rgIno}, #{rgIpath}, #{rgBno})
 	</insert>
 
 	<!-- 이미지 삭제 -->
 	<delete id="idelete">
 		DELETE
-		FROM SAE_GOREVIEWIMG
+		FROM SAE_REVIEWIMG
 		WHERE bno = #{rgBno}
 	</delete>
 
 	<!-- gw_bno에 해당하는 filepath 가져옴 -->
 	<select id="getimg" parameterType="int" resultType="String">
 		select rg_ipath FROM
-		(select rg_ino, rg_ipath, rg_bno from sae_goreviewimg
+		(select rg_ino, rg_ipath, rg_bno from sae_reviewimg
 		where rg_bno = #{gw_bno} order by rg_ino)
 		where rownum = 1
 	</select>
 
 	<!-- 게시물 사진 정보 가져오기 -->
-	<select id="imglist" parameterType="int" resultType="imgVO">
+	<select id="imglist" parameterType="int" resultType="GoodsBoardImgVO">
 		select *
-		from sae_goreviewimg where rg_bno = #{gw_bno} 
+		from sae_reviewimg where rg_bno = #{gw_bno} 
 		order by rg_itotal
 	</select>
 

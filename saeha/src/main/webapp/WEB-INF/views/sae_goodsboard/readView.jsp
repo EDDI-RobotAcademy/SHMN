@@ -151,9 +151,16 @@ $(document).ready(function(){
 <label for="writer" class="col-sm-2 control-laber">작성자</label>
 <input type="text" id="writer" name="gwWriter" class="form-control" value="${read.gwWriter}" readonly="readonly" />
 </div>
-<div class="form-group">
-<label for="address" class="col-sm-2 control-laber">파일</label>
-<input type="text" id="file" name="gwFile" class="form-control" value="${read.gwFile}" readonly="readonly" />
+
+<div style="display:flex; overflow: scroll">
+<c:forEach items="${imglist }" var="imglist">
+			<div class="form-grop">
+			
+				<img style="width:300px; height:400px" src="/resources/reviewimg/${imglist.rg_ipath }" />
+			</div>
+
+			<br>
+</c:forEach>
 </div>
 <div class="form-group">
 <label for="regdate" class="col-sm-2 control-laber">작성 날짜</label>
@@ -162,7 +169,7 @@ $(document).ready(function(){
 
 <div>
 <c:if test="${member.userId eq read.gwWriter || member.userId eq 'admin' }">
-<button type="button" class="update_btn btn btn-warning">수정</button>
+<!-- <button type="button" class="update_btn btn btn-warning">수정</button> -->
 <button type="button" class="delete_btn btn btn-danger">삭제</button>
 </c:if>
 <button type="button" class="list_btn btn btn-primary">목록</button>

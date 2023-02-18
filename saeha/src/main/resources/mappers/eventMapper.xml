@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="eventMapper">
+<!-- 게시글 작성 -->
+<insert id="write" parameterType="EventVO">
+INSERT INTO SAE_EVENT(
+ET_BNO
+, ET_TITLE
+, ET_WRITER
+, ET_MEMBERID
+, ET_CONTENT
+, ET_VOTE
+, ET_FILE )
+VALUES ( SAE_EVENT_SEQ.NEXTVAL
+, #{et_title}
+, #{et_writer}
+, #{et_memberid}
+, #{et_content}
+, #{et_vote}
+, #{et_file})
+</insert>
+
+<!-- 게시글 삭제 -->
+<delete id="delete" parameterType="int">
+DELETE
+FROM SAE_EVENT
+WHERE ET_BNO = #{et_bno}
+</delete>
+
+<!-- 게시글 상세보기 -->
+<select id="read" parameterType="int" resultType="EventVO">
+SELECT * 
+FROM SAE_EVENT
+WHERE ET_BNO = #{et_bno}
+</select>
+
+<!-- 사진 투표하기 -->
+<update id="vote" parameterType="EventVO">
+UPDATE SAE_EVENT
+SET ET_VOTE = #{et_vote}
+WHERE ET_BNO = #{et_bno}
+</update>
+
+<!-- 게시글 불러오기(최신순) -->
+<select id="recently" resultType="EventVO">
+SELECT *
+FROM SAE_EVENT
+ORDER BY ET_BNO DESC
+</select>
+
+<!-- 게시글 불러오기(투표순) -->
+<select id="popular" resultType="EventVO">
+select * 
+from 
+(SELECT *
+FROM SAE_EVENT
+ORDER BY ET_VOTE DESC)
+<![CDATA[where rownum <= 3]]>
+</select>
+
+<!-- 해당 id의 게시글인지 확인하기 -->
+<select id="check" parameterType="String" resultType="EventVO">
+SELECT *
+FROM SAE_EVENT
+WHERE ET_MEMBERID = #{et_memberid}
+</select>
+
+</mapper>

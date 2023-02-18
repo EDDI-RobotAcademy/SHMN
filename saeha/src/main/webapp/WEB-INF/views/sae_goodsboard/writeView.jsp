@@ -50,7 +50,7 @@ function fn_valiChk(){
 <hr />
 
 <section id="container">
-<form name="writeForm" method="post" action="/sae_goodsboard/write">
+<form name="writeForm" enctype="multipart/form-data" method="post" action="/sae_goodsboard/write">
 <table>
 <tbody>
 <c:if test="${member.userId != null}">
@@ -83,7 +83,7 @@ function fn_valiChk(){
 	</tr>
 	<tr>
 	<td>
-	<label for="file">파일</label><input type="file" id="file" name="gwFile" />
+	<label for="file">사진</label><input multiple="multiple" type="file" id="file" name="file" />
 	</td>
 	</tr>
 	<label for="pno">상품번호</label><input type="text" id="pno" name="gwPno" class="chk" value="${pno}" />

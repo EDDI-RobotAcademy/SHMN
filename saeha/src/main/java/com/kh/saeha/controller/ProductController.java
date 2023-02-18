@@ -151,8 +151,7 @@ public class ProductController {
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(ProductVO prodcutVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
-		
-		
+
 		model.addAttribute("imglist", service.imglist(prodcutVO.getPd_bno()));
 		model.addAttribute("read", service.read(prodcutVO.getPd_bno()));
 		model.addAttribute("readcount", service.readcount(prodcutVO.getPd_bno()));

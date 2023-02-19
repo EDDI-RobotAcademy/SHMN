@@ -82,8 +82,8 @@ public class BuyController {
 		// 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
 		pservice.stock(buyVO);
 		// 사용한 쿠폰 차감
-		Integer coupon = couponVO.getCoupon_price();
-		if(coupon != null) {
+		int coupon = couponVO.getCoupon_price();
+		if(coupon != 0) {
 			cservice.used(couponVO);
 		}
 		

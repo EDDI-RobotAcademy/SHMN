@@ -205,7 +205,7 @@ var finaltotalval = $(".finaltotal").val();
 								 src="/resources/productimg/<%=ct.getP_filepath() %>"></a>
 							</td>
 							<td>
-								<input id="input" type="text" value="<%= ct.getCt_name()%>" readonly="readonly" style="text-align:center">
+								<input name="" id="input" type="text" value="<%= ct.getCt_name()%>" readonly="readonly" style="text-align:center">
 							</td>
 							<td>
 								<input id="input" class="stock<%=i %>" type="text" value="<%= ct.getCt_stock()%>" readonly="readonly" style="text-align:center">
@@ -223,6 +223,7 @@ var finaltotalval = $(".finaltotal").val();
 								<button type="button" onclick="location.href='/sae_cart/cartdelete?ct_pno=<%=ct.getCt_pno()%>'">삭제</button>
 							</td>
 					</tr>
+					<input type="hidden" name="by_pno" value="<%=ct.getCt_pno()%>">
 					<%
 						}
 					%>

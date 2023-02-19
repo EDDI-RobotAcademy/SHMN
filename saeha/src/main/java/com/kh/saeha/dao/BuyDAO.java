@@ -1,6 +1,7 @@
 package com.kh.saeha.dao;
 
 import com.kh.saeha.vo.BuyVO;
+import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.ProductVO;
 
 public interface BuyDAO {
@@ -10,5 +11,12 @@ public interface BuyDAO {
 	
 	// 구매테이블에 입력
 	public void buywrite(BuyVO buyVO) throws Exception;
+	
+	// 장바구니를 구매테이블에 입력
+	public void cartwrite(BuyVO buyVO) throws Exception;
+	
+	// 구매시 장바구니 삭제
+	public void cartdelete(CartVO cartVO) throws Exception;
+
 
 }

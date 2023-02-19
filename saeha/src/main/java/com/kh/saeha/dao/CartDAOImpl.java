@@ -57,4 +57,12 @@ public class CartDAOImpl implements CartDAO {
 		
 	}
 	
+	// 재고 0인 장바구니 삭제
+	@Override
+	public void nonstock(int ct_pno) throws Exception {
+		sqlSession.delete("cartMapper.nonstock", ct_pno);
+	}
+	
+	
+
 }

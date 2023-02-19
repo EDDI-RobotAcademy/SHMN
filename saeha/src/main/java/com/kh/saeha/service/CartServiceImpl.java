@@ -50,6 +50,14 @@ public class CartServiceImpl implements CartService {
 		dao.delete(cartVO);
 		
 	}
+
+	@Override
+	public void nonstock(int ct_pno) throws Exception {
+		dao.nonstock(ct_pno);
+	}
+	
+	
+
 	
 
 }

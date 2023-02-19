@@ -114,5 +114,11 @@ public class ProductServiceImpl implements ProductService {
 	public void stock(BuyVO buyVO) throws Exception {
 		dao.stock(buyVO);
 	}
+	
+	// 장바구니 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
+	@Override
+	public void stocks(BuyVO buyVO) throws Exception {
+		dao.stocks(buyVO);
+	}
 
 }

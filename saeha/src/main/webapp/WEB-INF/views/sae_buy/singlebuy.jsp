@@ -161,7 +161,7 @@ function fnReplace(val) {
 				value="${buylist.pd_bno }"/>
 	<div class="form-grop">
 			<label for="title" class="col-sm-2 control-label">상품 이름</label> <input
-				type="text" id="pd_name" name="go_name" class="form-control"
+				type="text" id="pd_name" name="by_name" class="form-control"
 				value="${buylist.pd_name }" readonly="readonly" />
 		</div>
 

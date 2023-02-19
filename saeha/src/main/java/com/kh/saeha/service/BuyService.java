@@ -1,6 +1,7 @@
 package com.kh.saeha.service;
 
 import com.kh.saeha.vo.BuyVO;
+import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.ProductVO;
 
 public interface BuyService {
@@ -10,5 +11,11 @@ public interface BuyService {
 		
 	// 구매테이블에 입력
 	public void buywrite(BuyVO buyVO) throws Exception;
+	
+	// 장바구니를 구매테이블에 입력
+	public void cartwrite(BuyVO buyVO) throws Exception;
+	
+	// 구매후 장바구니 비우기
+	public void cartdelete(CartVO cartVO) throws Exception;
 
 }

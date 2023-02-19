@@ -118,6 +118,15 @@ public class ProductDAOImpl implements ProductDAO {
 		sqlSession.update("productMapper.stock", buyVO);
 	}
 
+	
+	// 장바구니 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
+	@Override
+	public void stocks(BuyVO buyVO) throws Exception {
+		for(int i = 0; i < buyVO.getBuyvolist().size(); i++) {
+			sqlSession.update("productMapper.stocks", buyVO.getBuyvolist().get(i));
+		}
+	}
+
 
 
 }

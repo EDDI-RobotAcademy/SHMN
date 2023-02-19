@@ -31,9 +31,10 @@
 </style>
 <script type="text/javascript">
 var finaltotalval = $(".finaltotal").val();
-
+var form;
 	$(document).ready(function() {
 		
+		form = $("form[name='cartbuy']");
 		var coupon;
 		$('.couponval').val($(".coupon").val());
 		
@@ -180,7 +181,8 @@ var finaltotalval = $(".finaltotal").val();
 			<h1>${member.userId }님의 장바구니 목록</h1>
 		</header>
 		<hr/>
-			<form>
+		<% if(cartlist.size() != 0){ %>
+			<form name="cartbuy" action="/sae_buy/buycart" role="form" method="post">
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -196,6 +198,11 @@ var finaltotalval = $(".finaltotal").val();
 							<%
 								for(int i = 0; i < cartlist.size(); i++){
 									CartVO ct = (CartVO) cartlist.get(i);
+									if(ct.getCt_stock() == 0){
+							%>
+							<meta http-equiv="refresh" content="0; URL='/sae_cart/cartdelete?ct_pno=<%=ct.getCt_pno()%>'">
+							<%
+							} 
 							%>
 					<tr>
 							<td>
@@ -205,7 +212,9 @@ var finaltotalval = $(".finaltotal").val();
 								 src="/resources/productimg/<%=ct.getP_filepath() %>"></a>
 							</td>
 							<td>
-								<input name="" id="input" type="text" value="<%= ct.getCt_name()%>" readonly="readonly" style="text-align:center">
+								<input type="hidden" name="buyvolist[<%=i %>].by_id" value="${member.userId }">
+								<input type="hidden" name="buyvolist[<%=i %>].by_pno" value="<%=ct.getCt_pno()%>">
+								<input name="buyvolist[<%=i %>].by_name" id="input" type="text" value="<%= ct.getCt_name()%>" readonly="readonly" style="text-align:center">
 							</td>
 							<td>
 								<input id="input" class="stock<%=i %>" type="text" value="<%= ct.getCt_stock()%>" readonly="readonly" style="text-align:center">
@@ -214,16 +223,15 @@ var finaltotalval = $(".finaltotal").val();
 								<input id="input" class="price<%=i %>" type="text" value="<%= ct.getCt_price()%>" readonly="readonly" style="text-align:center">
 							</td>
 							<td>
-								<input type="number" class="count<%=i %>"  value="<%= ct.getCt_count()%>" max="<%= ct.getCt_stock()%>" style="text-align:center">
+								<input name="buyvolist[<%=i %>].by_count" type="number" class="count<%=i %>"  value="<%= ct.getCt_count()%>" max="<%= ct.getCt_stock()%>" style="text-align:center">
 							</td>
 							<td>
-								<input id="input" class="total<%=i %>" style="text-align:center" readonly="readonly">
+								<input name="buyvolist[<%=i %>].by_price" id="input" class="total<%=i %>" style="text-align:center" readonly="readonly">
 							</td>
 							<td>
 								<button type="button" onclick="location.href='/sae_cart/cartdelete?ct_pno=<%=ct.getCt_pno()%>'">삭제</button>
 							</td>
 					</tr>
-					<input type="hidden" name="by_pno" value="<%=ct.getCt_pno()%>">
 					<%
 						}
 					%>
@@ -265,5 +273,8 @@ var finaltotalval = $(".finaltotal").val();
 			</form>
 			<button class="buybtn">카카오페이로 결제하기</button>
 	</div>
+	<%
+		}
+	%>
 </body>
 </html>

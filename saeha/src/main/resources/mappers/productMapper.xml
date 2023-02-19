@@ -218,5 +218,13 @@
 		pd_buycount = pd_buycount + #{by_count}
 		WHERE pd_bno = #{by_pno}
 	</update>
+	
+	<update id="stocks">
+		UPDATE sae_product
+		SET
+		pd_stock = pd_stock - #{by_count},
+		pd_buycount = pd_buycount + #{by_count}
+		WHERE pd_bno = #{by_pno}
+	</update>
 
 </mapper>

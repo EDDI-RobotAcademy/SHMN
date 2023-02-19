@@ -53,5 +53,14 @@
 		WHERE ct_id = #{ct_id} 
 		and ct_pno = #{ct_pno}
 	</delete>
+	
+	<!-- 재고0인 장바구니 삭제 -->
+	<delete id="nonstock">
+		DELETE
+		FROM sae_cart
+		WHERE ct_pno = #{ct_pno} 
+	</delete>
+	
+
 
 </mapper>

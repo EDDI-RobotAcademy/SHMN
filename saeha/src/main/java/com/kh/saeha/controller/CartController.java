@@ -94,6 +94,10 @@ public class CartController {
 			String path = productservice.getImg(cartVO.getCt_pno());
 			int stock = cartservice.stock(cartVO);
 			
+			if(stock == 0) {	
+				cartservice.nonstock(cartVO.getCt_pno());
+			}
+			
 			cartVO.setCt_stock(stock);
 			if (path == null) {
 				cartVO.setP_filepath("/productimg/img.png");

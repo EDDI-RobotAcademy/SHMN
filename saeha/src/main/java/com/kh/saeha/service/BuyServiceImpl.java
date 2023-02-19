@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.saeha.dao.BuyDAO;
 import com.kh.saeha.vo.BuyVO;
+import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.ProductVO;
 
 @Service
@@ -24,6 +25,17 @@ public class BuyServiceImpl implements BuyService {
 	@Override
 	public void buywrite(BuyVO buyVO) throws Exception {
 		dao.buywrite(buyVO);
+	}
+	
+	// 장바구니를 구매테이블에 입력
+	@Override
+	public void cartwrite(BuyVO buyVO) throws Exception {
+		dao.cartwrite(buyVO);
+	}
+
+	@Override
+	public void cartdelete(CartVO cartVO) throws Exception {
+		dao.cartdelete(cartVO);
 	}
 
 }

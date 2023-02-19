@@ -19,4 +19,10 @@ public interface CartDAO {
 	// 재고 수
 	public int stock(CartVO cartVO) throws Exception;
 	
+	// 장바구니 삭제
+	public void delete(CartVO cartVO) throws Exception;
+	
+	// 재고 0인 장바구니 삭제
+	public void nonstock(int ct_pno) throws Exception;
+	
 }

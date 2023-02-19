@@ -22,6 +22,7 @@
 		INSERT INTO sae_buy(
 		by_bno,
 		by_pno,
+		by_name,
 		by_count,
 		by_id,
 		by_price
@@ -29,10 +30,36 @@
 		VALUES(
 		sae_buy_seq.nextval,
 		#{by_pno},
+		#{by_name},
 		#{by_count},
 		#{by_id},
 		#{by_price}
 		)
 	</insert>
+	
+	<insert id="cartwrite">
+		INSERT INTO sae_buy(
+		by_bno,
+		by_pno,
+		by_name,
+		by_count,
+		by_id,
+		by_price
+		)
+		VALUES(
+		sae_buy_seq.nextval,
+		#{by_pno},
+		#{by_name},
+		#{by_count},
+		#{by_id},
+		#{by_price}
+		)
+	</insert>
+	
+	<delete id="cartdelete">
+		DELETE
+		FROM sae_cart
+		WHERE ct_id = #{ct_id}
+	</delete>
 
 </mapper>

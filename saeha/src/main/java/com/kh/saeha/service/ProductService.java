@@ -54,4 +54,7 @@ public interface ProductService {
 	
 	// 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
 	public void stock(BuyVO buyVO) throws Exception;
+	
+	// 카트 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
+	public void stocks(BuyVO buyVO) throws Exception;
 }

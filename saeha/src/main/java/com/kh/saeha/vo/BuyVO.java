@@ -1,15 +1,28 @@
 package com.kh.saeha.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BuyVO {
 	
 	private int by_bno;
 	private int by_pno;
+	private String by_name;
 	private int by_count;
 	private String by_id;
 	private Date by_date;
 	private int by_price;
+	
+	private List<BuyVO> buyvolist;
+	
+	
+	
+	public List<BuyVO> getBuyvolist() {
+		return buyvolist;
+	}
+	public void setBuyvolist(List<BuyVO> buyvolist) {
+		this.buyvolist = buyvolist;
+	}
 	public int getBy_bno() {
 		return by_bno;
 	}
@@ -21,6 +34,12 @@ public class BuyVO {
 	}
 	public void setBy_pno(int by_pno) {
 		this.by_pno = by_pno;
+	}
+	public String getBy_name() {
+		return by_name;
+	}
+	public void setBy_name(String by_name) {
+		this.by_name = by_name;
 	}
 	public int getBy_count() {
 		return by_count;
@@ -46,12 +65,11 @@ public class BuyVO {
 	public void setBy_price(int by_price) {
 		this.by_price = by_price;
 	}
-	
 	@Override
 	public String toString() {
-		return "BuyVO [by_bno=" + by_bno + ", by_pno=" + by_pno + ", by_count=" + by_count + ", by_id=" + by_id
-				+ ", by_date=" + by_date + ", by_price=" + by_price + "]";
+		return "BuyVO [by_bno=" + by_bno + ", by_pno=" + by_pno + ", by_name=" + by_name + ", by_count=" + by_count
+				+ ", by_id=" + by_id + ", by_date=" + by_date + ", by_price=" + by_price + "]";
 	}
-
+	
 	
 }

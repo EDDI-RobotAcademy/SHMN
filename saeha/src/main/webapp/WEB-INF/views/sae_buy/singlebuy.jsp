@@ -44,7 +44,7 @@ $(document).ready(function() {
 		var pd_number = fnReplace($('#pd_number').val());
 		var price = fnReplace($('#pd_price').val());
 		
-		$(".coupon").val("");
+		$(".coupon").val("0");
 		$("#pd_total").val(pd_number * price);
 		totalval = $("#pd_total").val();
 	});
@@ -58,7 +58,7 @@ $(document).ready(function() {
 		var er = totalval - coupon;
 		if(er <= 0){
 			alert("쿠폰할인금액이 가격보다 같거나 높습니다!");
-			$(".coupon").val("");
+			$(".coupon").val("0");
 			$("#pd_total").val(totalval);
 			totalval = $("#pd_total").val();
 		}else{
@@ -161,7 +161,7 @@ function fnReplace(val) {
 				value="${buylist.pd_bno }"/>
 	<div class="form-grop">
 			<label for="title" class="col-sm-2 control-label">상품 이름</label> <input
-				type="text" id="pd_name" name="go_name" class="form-control"
+				type="text" id="pd_name" name="by_name" class="form-control"
 				value="${buylist.pd_name }" readonly="readonly" />
 		</div>
 
@@ -193,7 +193,7 @@ function fnReplace(val) {
 	
 	<div>
 		<select class="coupon" name="coupon_price">
-			<option value="">쿠폰없음</option>
+			<option value="0">쿠폰없음</option>
 			<c:forEach items="${couponlist }" var="couponlist">	
 					<c:if test="${couponlist.coupon_content != '사용완료' }">
 						<option value="${couponlist.coupon_price }">

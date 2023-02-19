@@ -37,7 +37,7 @@ public class ProductController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\Spring_1123\\spring_git\\SHMN\\saeha\\src\\main\\webapp\\resources\\productimg\\";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\spring_1123\\workspace_1\\SHMN\\saeha\\src\\main\\webapp\\resources\\productimg\\";
 
 	@Inject
 	ProductService service;

@@ -8,5 +8,6 @@
 </head>
 <body>
 <h2>구매내역</h2>
+<a href="/">홈</a>
 </body>
 </html>

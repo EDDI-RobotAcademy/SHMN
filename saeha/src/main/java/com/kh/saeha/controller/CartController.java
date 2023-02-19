@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.saeha.service.BuyService;
 import com.kh.saeha.service.CartService;
+import com.kh.saeha.service.CouponService;
 import com.kh.saeha.service.ProductService;
 import com.kh.saeha.vo.CartVO;
+import com.kh.saeha.vo.CouponVO;
 import com.kh.saeha.vo.ProductVO;
 
 
@@ -32,6 +35,12 @@ public class CartController {
 	
 	@Inject
 	ProductService productservice;
+	
+	@Inject
+	BuyService buyservice;
+	
+	@Inject
+	CouponService couponservice;
 	
 	
 	// ajax로 장바구니 추가 및 상태 반환
@@ -77,12 +86,17 @@ public class CartController {
 			return "sae_member/login";
 		}
 		
-		List<CartVO> list = cartservice.cartlist(user_id);
+		List<CartVO> cartlist = cartservice.cartlist(user_id);
+		List<CouponVO> couponlist = couponservice.list(user_id);
 		
-		for (int i = 0; i < list.size(); i++) {
-			cartVO = list.get(i);
+		for (int i = 0; i < cartlist.size(); i++) {
+			cartVO = cartlist.get(i);
 			String path = productservice.getImg(cartVO.getCt_pno());
 			int stock = cartservice.stock(cartVO);
+			
+			if(stock == 0) {	
+				cartservice.nonstock(cartVO.getCt_pno());
+			}
 			
 			cartVO.setCt_stock(stock);
 			if (path == null) {
@@ -94,10 +108,30 @@ public class CartController {
 
 		}
 		
-		model.addAttribute("cartlist", list);
-		
+		model.addAttribute("cartlist", cartlist);
+		model.addAttribute("couponlist", couponlist);
 		
 		return "sae_cart/cartlist";
+	}
+	
+	// 장바구니 삭제
+	@RequestMapping(value = "/cartdelete", method = RequestMethod.GET)
+	public String cartdelete(CartVO cartVO, HttpServletRequest request)throws Exception{
+		
+		logger.info("cartdelete");
+		
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("userid");
+		
+		if(user_id == null || user_id == "") {
+			return "sae_member/login";
+		}
+		
+		cartVO.setCt_id(user_id);
+		
+		cartservice.delete(cartVO);
+		
+		return "redirect:/sae_cart/cartlist";
 	}
 
 }

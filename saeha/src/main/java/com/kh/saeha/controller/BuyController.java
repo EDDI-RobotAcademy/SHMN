@@ -1,6 +1,7 @@
 package com.kh.saeha.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import com.kh.saeha.service.BuyService;
 import com.kh.saeha.service.CouponService;
 import com.kh.saeha.service.ProductService;
 import com.kh.saeha.vo.BuyVO;
+import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.CouponVO;
 import com.kh.saeha.vo.ProductVO;
 
@@ -65,7 +67,7 @@ public class BuyController {
 		return "sae_buy/singlebuy";
 	}
 	
-	// 구매
+	// 단일 구매
 	@RequestMapping(value = "/buysingle", method = RequestMethod.POST)
 	public String buysingle(BuyVO buyVO, CouponVO couponVO,
 			HttpServletRequest req) throws Exception{
@@ -82,12 +84,36 @@ public class BuyController {
 		// 구매시 재고수량에서 구매갯수 빼고 구매횟수만큼 buycount 더하기
 		pservice.stock(buyVO);
 		// 사용한 쿠폰 차감
-		Integer coupon = couponVO.getCoupon_price();
-		if(coupon != null) {
+		int coupon = couponVO.getCoupon_price();
+		if(coupon != 0) {
 			cservice.used(couponVO);
 		}
 		
 		
 		return "sae_product/productmain";
+	}
+	// 장바구니 구매
+	@RequestMapping(value = "/buycart", method = RequestMethod.POST)
+	public String buycart(BuyVO buyVO, CouponVO couponVO, CartVO cartVO,
+			HttpServletRequest req) throws Exception{
+		
+		logger.info("buycart");
+		
+		HttpSession session = req.getSession();
+		String user_id = (String)session.getAttribute("userid");
+		
+		couponVO.setCoupon_id(user_id);
+		cartVO.setCt_id(user_id);
+		
+		service.cartwrite(buyVO);
+		pservice.stocks(buyVO);
+		service.cartdelete(cartVO);
+		
+		int coupon = couponVO.getCoupon_price();
+		if(coupon != 0) {
+			cservice.used(couponVO);
+		}
+		
+		return "sae_member/mypageBuy";
 	}
 }

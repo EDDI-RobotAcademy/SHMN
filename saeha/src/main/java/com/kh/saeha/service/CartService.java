@@ -18,5 +18,11 @@ public interface CartService {
 	
 	// 재고 수
 	public int stock(CartVO cartVO) throws Exception;
+	
+	// 카트 삭제
+	public void delete(CartVO cartVO) throws Exception;
+	
+	// 제고 0인 상품 삭제
+	public void nonstock(int ct_pno) throws Exception;
 
 }

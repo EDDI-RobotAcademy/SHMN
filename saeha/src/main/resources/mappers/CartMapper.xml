@@ -46,5 +46,12 @@
 		select pd_stock from sae_product
 		where pd_bno = #{ct_pno}
 	</select>
+	
+	<delete id="delete">
+		DELETE
+		FROM sae_cart
+		WHERE ct_id = #{ct_id} 
+		and ct_pno = #{ct_pno}
+	</delete>
 
 </mapper>

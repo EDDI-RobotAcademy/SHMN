@@ -49,5 +49,12 @@ public class CartDAOImpl implements CartDAO {
 		
 		return stock;
 	}
+
+	@Override
+	public void delete(CartVO cartVO) throws Exception {
+		
+		sqlSession.delete("cartMapper.delete", cartVO);
+		
+	}
 	
 }

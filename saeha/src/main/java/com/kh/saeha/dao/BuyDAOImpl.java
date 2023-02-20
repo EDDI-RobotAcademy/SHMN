@@ -41,7 +41,8 @@ public class BuyDAOImpl implements BuyDAO {
 		}
 		
 	}
-
+	
+	// 삭제
 	@Override
 	public void cartdelete(CartVO cartVO) throws Exception {
 		sqlsession.delete("buyMapper.cartdelete", cartVO);

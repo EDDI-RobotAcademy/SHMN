@@ -4,7 +4,7 @@
 
 <mapper namespace="buyMapper">
 
-	<!-- 상품목록에서 구매하기를 눌렀을때 구매하기한 상품을 얻기d -->
+	<!-- 상품목록에서 구매하기를 눌렀을때 구매하기한 상품을 얻기 -->
 	<select id="buylist" resultType="productVO">
 		SELECT pd_bno
 		, pd_name

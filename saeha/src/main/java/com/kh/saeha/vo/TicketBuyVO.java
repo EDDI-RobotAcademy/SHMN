@@ -10,13 +10,14 @@ public class TicketBuyVO {
    
    
  */
+	private int bt_bno;
 	private int bt_pno;
 	private int bt_price;
 	private int bt_count;
 	private String bt_id;
+	private String bt_age;
 	
 	
-	private int bt_bno;
 	public int getBt_bno() {
 		return bt_bno;
 	}
@@ -47,11 +48,19 @@ public class TicketBuyVO {
 	public void setBt_id(String bt_id) {
 		this.bt_id = bt_id;
 	}
+	public String getBt_age() {
+		return bt_age;
+	}
+	public void setBt_age(String bt_age) {
+		this.bt_age = bt_age;
+	}
 	
 	@Override
 	public String toString() {
 		return "TicketBuyVO [bt_bno=" + bt_bno + ", bt_pno=" + bt_pno + ", bt_price=" + bt_price + ", bt_count="
-				+ bt_count + ", bt_id=" + bt_id + "]";
+				+ bt_count + ", bt_id=" + bt_id + ", bt_age=" + bt_age + "]";
 	}
+	
+	
 	
 }

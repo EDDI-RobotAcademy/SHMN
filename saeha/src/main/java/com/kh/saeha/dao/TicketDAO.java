@@ -7,10 +7,10 @@ import com.kh.saeha.vo.TicketVO;
 
 public interface TicketDAO {
 
-		// 티켓 리스트
+		//티켓 리스트
 		public List<TicketVO> list(SearchCriteria scri) throws Exception;
 		
-		// 티켓 등록
+		//티켓 등록
 		public void insert(TicketVO vo) throws Exception;
 		
 		//티켓 조회
@@ -24,5 +24,6 @@ public interface TicketDAO {
 		
 		public List<TicketVO> sday(String date) throws Exception;
 		
+		//수량 업뎃
 		public void stockupdate(TicketVO vo) throws Exception;
 }

@@ -16,6 +16,7 @@
 	
 	<table class = "table table-hover">
 	
+	
 	<thead>
 		
 		<tr>
@@ -23,7 +24,7 @@
 			<th>구분</th> <!-- 일반인지 야간인지 구분 -->
 		<!--  	<th>가격</th> -->
 			<th>예약 가능 인원</th><!-- 남은 재고 -->
-			
+		<!-- 	<th> 수량 </th> -->
 			<th>예약하기</th>
 		</tr>
 	</thead>
@@ -37,8 +38,11 @@
 			<!-- 	<td><c:out value="${day.tk_price}" /></td> -->
 				<td><c:out value="${day.tk_stock}" /></td>
 				<td><!--  button type="button" class="book_btn" value="${ day.tk_bno}">예매하기</button>-->
+				<!-- <td><input type="number" min="1" name="bt_count" value="1"></input> </td>
+				<button type="submit" >	버튼</button> -->
 				<a href="/sae_ticket/tkBookPage?tk_bno=${day.tk_bno}" target="_parent">예매</a>
 				</td>
+				
 			</tr>	
 				
 				<td>

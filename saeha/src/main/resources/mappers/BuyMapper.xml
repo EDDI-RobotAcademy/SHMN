@@ -61,5 +61,43 @@
 		FROM sae_cart
 		WHERE ct_id = #{ct_id}
 	</delete>
-
+	
+	<!-- 사용자 구매 리스트 -->
+	<select id="getlist" resultType="BuyVO" parameterType="com.kh.saeha.vo.SearchCriteria">
+		SELECT 
+		by_bno,
+		by_pno,
+		by_name,
+		by_count,
+		by_id,
+		by_date,
+		by_price
+		FROM(
+		SELECT
+		by_bno,
+		by_pno,
+		by_name,
+		by_count,
+		by_id,
+		by_date,
+		by_price,
+		ROW_NUMBER()
+		OVER(ORDER BY by_date desc)
+		AS RNUM
+		FROM
+		sae_buy
+		WHERE 1=1
+		)
+		WHERE
+		by_id = #{id}
+		and (RNUM BETWEEN #{rowStart} AND #{rowEnd})
+		order BY by_date desc
+	</select>
+	
+	<select id="buylistCount" resultType="int">
+		SELECT COUNT(by_bno)
+		FROM sae_buy
+		WHERE 1=1
+		and by_id = #{userId}
+	</select>
 </mapper>

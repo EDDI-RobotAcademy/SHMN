@@ -1,5 +1,7 @@
 package com.kh.saeha.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import com.kh.saeha.dao.BuyDAO;
 import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.ProductVO;
+import com.kh.saeha.vo.SearchCriteria;
 
 @Service
 public class BuyServiceImpl implements BuyService {
@@ -37,5 +40,19 @@ public class BuyServiceImpl implements BuyService {
 	public void cartdelete(CartVO cartVO) throws Exception {
 		dao.cartdelete(cartVO);
 	}
+	
+	// 사용자 구매 리스트 카운트
+	@Override
+	public int buylistCount(String user_id) throws Exception {
+		return dao.buylistCount(user_id);
+	}
+	
+	// 사용자 구매 리스트
+	@Override
+	public List<BuyVO> getlist(SearchCriteria scri) throws Exception {
+		return dao.getlist(scri);
+	}
+
+
 
 }

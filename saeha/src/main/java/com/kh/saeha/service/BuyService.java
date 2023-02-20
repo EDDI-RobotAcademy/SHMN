@@ -1,8 +1,11 @@
 package com.kh.saeha.service;
 
+import java.util.List;
+
 import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.ProductVO;
+import com.kh.saeha.vo.SearchCriteria;
 
 public interface BuyService {
 	
@@ -17,5 +20,11 @@ public interface BuyService {
 	
 	// 구매후 장바구니 비우기
 	public void cartdelete(CartVO cartVO) throws Exception;
+	
+	// 사용자 구매 리스트 카운트
+	public int buylistCount(String user_id) throws Exception;
+	
+	// 사용자 구매 리스트
+	public List<BuyVO> getlist(SearchCriteria scri) throws Exception;
 
 }

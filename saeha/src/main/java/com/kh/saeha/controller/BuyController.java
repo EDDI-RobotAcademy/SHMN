@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,7 +21,9 @@ import com.kh.saeha.service.ProductService;
 import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.CouponVO;
+import com.kh.saeha.vo.PageMaker;
 import com.kh.saeha.vo.ProductVO;
+import com.kh.saeha.vo.SearchCriteria;
 
 @Controller
 @RequestMapping("/sae_buy/*")
@@ -90,7 +93,7 @@ public class BuyController {
 		}
 		
 		
-		return "sae_product/productmain";
+		return "redirect:/sae_buy/buylist";
 	}
 	// 장바구니 구매
 	@RequestMapping(value = "/buycart", method = RequestMethod.POST)
@@ -114,6 +117,43 @@ public class BuyController {
 			cservice.used(couponVO);
 		}
 		
+		return "redirect:/sae_buy/buylist";
+	}
+	
+	@RequestMapping(value = "/buylist", method = RequestMethod.GET)
+	public String buylist(BuyVO buyVO, Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest req)
+			throws Exception{
+		logger.info("buylist");
+		
+		HttpSession session = req.getSession();
+		String user_id = (String)session.getAttribute("userid");
+		
+		if(user_id == null || user_id == "") {
+			return "sae_member/login";
+		}
+		scri.setId(user_id);
+		
+		List<BuyVO> buylist = service.getlist(scri);
+		
+		for (int i = 0; i < buylist.size(); i++) {
+			buyVO = buylist.get(i);
+			String path = pservice.getImg(buyVO.getBy_pno());
+			
+			if (path == null) {
+				buyVO.setBy_filepath("/productimg/img.png");
+			} else {
+				buyVO.setBy_filepath(path);
+			}
+		}
+		
+		model.addAttribute("buylist", buylist);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.buylistCount(user_id));
+		
+		model.addAttribute("bpageMaker", pageMaker);
+		
 		return "sae_member/mypageBuy";
 	}
+	
 }

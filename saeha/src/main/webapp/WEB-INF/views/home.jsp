@@ -279,6 +279,7 @@
 		<div><a href="/sae_product/productmain">상품</a></div>
 		<div><a href="/sae_coupon/couponregisterView">쿠폰</a></div><br>
 		<div><a href="/sae_cart/cartlist">장바구니</a></div>
+		<div><a href="/sae_buy/buylist">구매목록</a></div>
 		
 	<header class="nav-down responsive-nav hidden-lg hidden-md">
 		<button type="button" id="nav-toggle" class="navbar-toggle"

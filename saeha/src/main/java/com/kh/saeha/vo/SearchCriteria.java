@@ -6,6 +6,15 @@ public class SearchCriteria extends Criteria {
 	private String keyword = "";
 	private String pno = "";
 	private Integer score = null;
+	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getSearchType() {
 		return searchType;

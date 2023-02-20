@@ -1,6 +1,9 @@
 package com.kh.saeha.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.ProductVO;
+import com.kh.saeha.vo.SearchCriteria;
 
 @Repository
 public class BuyDAOImpl implements BuyDAO {
@@ -37,9 +41,24 @@ public class BuyDAOImpl implements BuyDAO {
 		}
 		
 	}
-
+	
+	// 삭제
 	@Override
 	public void cartdelete(CartVO cartVO) throws Exception {
 		sqlsession.delete("buyMapper.cartdelete", cartVO);
 	}
+
+	// 사용자 구매 리스트 카운트
+	@Override
+	public int buylistCount(String user_id) throws Exception {
+		return sqlsession.selectOne("buyMapper.buylistCount",user_id);
+	}
+	
+	// 사용자 구매 리스트
+	@Override
+	public List<BuyVO> getlist(SearchCriteria scri) throws Exception {
+		return sqlsession.selectList("buyMapper.getlist", scri);
+	}
+
+	
 }

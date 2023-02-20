@@ -12,11 +12,17 @@ public class BuyVO {
 	private String by_id;
 	private Date by_date;
 	private int by_price;
+	private String by_filepath;
+	
 	
 	private List<BuyVO> buyvolist;
 	
-	
-	
+	public String getBy_filepath() {
+		return by_filepath;
+	}
+	public void setBy_filepath(String by_filepath) {
+		this.by_filepath = by_filepath;
+	}
 	public List<BuyVO> getBuyvolist() {
 		return buyvolist;
 	}
@@ -65,11 +71,11 @@ public class BuyVO {
 	public void setBy_price(int by_price) {
 		this.by_price = by_price;
 	}
+	
 	@Override
 	public String toString() {
 		return "BuyVO [by_bno=" + by_bno + ", by_pno=" + by_pno + ", by_name=" + by_name + ", by_count=" + by_count
-				+ ", by_id=" + by_id + ", by_date=" + by_date + ", by_price=" + by_price + "]";
+				+ ", by_id=" + by_id + ", by_date=" + by_date + ", by_price=" + by_price + ", by_filepath="
+				+ by_filepath + ", buyvolist=" + buyvolist + "]";
 	}
-	
-	
 }

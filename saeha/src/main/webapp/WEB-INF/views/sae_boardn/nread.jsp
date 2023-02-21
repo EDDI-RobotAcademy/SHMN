@@ -8,6 +8,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>공지게시판 상세보기</title>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
+
 </head>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -33,37 +35,49 @@ $(document).ready(function() {
 	})
 </script>
 <body>
+<%@include file="../include/nav.jsp" %>
+	<div class="page-content">
 
-<div align="center">
-<h1> 공지사항 </h1>
+<section id="blog" class="content-section">		
+		<div class="section-content">
+				<div class="tabs-content">
+				<div class="wrapper">
+						<ul class="tabs clearfix" data-tabgroup="first-tab-group">
+							<li><a href="#tab1" class="active">NOTICE</a></li>
+						</ul>
 
 <form name="readnForm" role="form" method="post">
  <input type="hidden" id="bno" name="n_bno" value="${nread.n_bno }" />
 </form>
+<section id="first-tab-group" class="tabgroup">
+<div style="height: 50px;">
+<h4>${nread.n_title}</h4>
+</div>
+<div style="border-bottom: 1px solid black;border-top: 1px solid black; height: 30px; text-align: right;">
+<fmt:formatDate value = "${nread.n_regdate }" pattern="yyyy-MM-dd" />
+</div>
+<div style="text-align: left;">
+${nread.n_content}
+<br>
+<br>
+</div>
 
-<table border="0" width="80%" height="80">
-<thead>
-	<tr>
-		<th height="40"><h3>${nread.n_title}</h3></th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<th align="right"> 등록일 : <fmt:formatDate value = "${nread.n_regdate }" pattern="yyyy-MM-dd" /> </th>
-	</tr>
-</tbody>
-<tbody>
-	<tr>
-		<td rows="15" cols="67"> ${nread.n_content}"</td>
-	</tr>
-</tbody>
-</table>
-<tfoot>
+</section>
+
+</div>
+</div>
+</div>
+</section>
+</div>
+
+
 <c:if test="${member.userId == 'admin'}">
    <button type="button" class="nupdate_btn">수정</button>
    <button type="button" class="ndelete_btn">삭제</button>
    <button type="button"><a href="/sae_boardn/nlist">목록</a></button>
 </c:if>
-</tfoot>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

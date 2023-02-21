@@ -5,12 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <!-- 아래 제이쿼리는 1.0이상이면 원하는 버전을 사용하셔도 무방합니다. -->
@@ -146,53 +140,65 @@ function fnReplace(val) {
 </script>
 <meta charset="UTF-8">
 <title>상품 구매</title>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
+<style type="text/css">
+input{border: none;}
+</style>
 </head>
 
 <body>
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="padding:60px 0;height: 100%;width: 90%;">
+<div class="section-heading">
+				<h1>Purchasing<br><em>Products</em></h1>
+                        <p>Curabitur hendrerit mauris mollis ipsum vulputate rutrum. 
+                        <br>Phasellus luctus odio eget dui imperdiet.</p>
+                        
+                    </div>
 	
 	<form name="singlebuy" action="/sae_buy/buysingle" role="form" method="post">
-		
-	<div class="form-grop">
-		<img src="/resources/productimg/${img}"/>
-	</div>
-	
-	
-	 <input	type="hidden" id="pd_pno" name="by_pno" class="form-control"
+		<input	type="hidden" id="pd_pno" name="by_pno" class="form-control"
 				value="${buylist.pd_bno }"/>
-	<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">상품 이름</label> <input
-				type="text" id="pd_name" name="by_name" class="form-control"
-				value="${buylist.pd_name }" readonly="readonly" />
-		</div>
 
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">재고 수량</label> <input
-				type="text" id="pd_stock" name="go_stock" class="form-control"
-				value="${buylist.pd_stock }" readonly="readonly" />
-		</div>
+<h3>
+					구매하기
+				</h3>				
+<div style="width: 80%;">
+<table style="width:100%;text-align: center;">
+<tr style="height: 50px;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #444;">
+<td>번호</td>
+<td colspan="2">제품정보</td>
+<td>수량</td>
+<td>상품가격</td>
+<td>삭제</td>
+</tr>
+ <tr style=" border-bottom: 0.5px solid #eee;">
+    <td style="padding:10px 0;">1</td>
+    <td style="padding:10px 0;width:80px;height: 100px;background-color: orange;"><img src="/resources/productimg/${img}"/></td>
+     <td style="padding:10px 0;"><input
+				type="text" id="pd_name" name="go_name" 
+				value="${buylist.pd_name }" readonly="readonly" /></td>
+     <td style="padding:10px 0;">
+     <input	type="number" id="pd_number" name="by_count"value="${number }" />/
+     <input	type="text" id="pd_stock" name="go_stock"value="${buylist.pd_stock }" readonly="readonly" /></td>
+     <td style="padding:10px 0;"><input
+				type="text" id="pd_price" name="go_price" 
+				value="${buylist.pd_price }" readonly="readonly" /></td>
+    <td style="padding:10px 0;"><button style="background: none;border: 1px solid #eee;">X</button></td>
+  </tr>
+</table>		
+	<br><br><br><br><br>
 
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">하나당가격</label> <input
-				type="text" id="pd_price" name="go_price" class="form-control"
-				value="${buylist.pd_price }" readonly="readonly" />
-		</div>
-		
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">총가격</label> <input
-				type="text" id="pd_total" name="by_price" class="form-control"
-				value="${buylist.pd_price }" readonly="readonly" />
-		</div>
-	
-	<div class="form-grop">
-			<lable for="title" class="col-sm-2 control-label">수량</lable>
-			 <input
-				type="number" id="pd_number" name="by_count"
-				value="${number }" />
-		</div>
-		
-	
-	<div>
-		<select class="coupon" name="coupon_price">
+<div style="display: flex; border-top: 2px solid #444;border-bottom: 2px solid #444;padding: 20px 0;justify-content: center;">
+<div style="width: 50%; font-size: x-large;font-weight: 600;"> 총 주문금액</div>
+<div style="width:40%;">
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문상품 수 <span>3개</span></div>
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문금액 <span>35000원</span></div>
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;">쿠폰  
+ <select class="coupon" name="coupon_price">
 			<option value="0">쿠폰없음</option>
 			<c:forEach items="${couponlist }" var="couponlist">	
 					<c:if test="${couponlist.coupon_content != '사용완료' }">
@@ -201,9 +207,30 @@ function fnReplace(val) {
 					</c:if>
 			</c:forEach>
 		</select>
-	</div>
+		</div>
+  <hr>
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;font-size: large;font-weight: 600;">최종결제금액
+  <span style="color: red;"><input
+				type="text" id="pd_total" name="by_price" 
+				value="${buylist.pd_price }" readonly="readonly" /></span></div>
+</div>
+
+</div>
+<br>
+<div style="text-align: center;">
+	<button onclick="history.go(-1)" style="background-color: #333;font-size:17px; height:45px;border-radius:10px; color: white;padding:0 10px;">뒤로</button>
+	&nbsp;
+	<button class="buybtn" style="background-color: white;font-size:17px; height:45px;border-radius:10px; color: black;">카카오페이로 결제하기</button>
+</div>	
+	</div>	
+
 	</form>
-	<button class="buybtn">카카오페이로 결제하기</button>
-	<button onclick="history.go(-1)">뒤로</button>
+
+	</div>
+	</div>
+	<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
+	
 </body>
 </html>

@@ -1,8 +1,11 @@
 package com.kh.saeha.dao;
 
+import java.util.List;
+
 import com.kh.saeha.vo.BuyVO;
 import com.kh.saeha.vo.CartVO;
 import com.kh.saeha.vo.ProductVO;
+import com.kh.saeha.vo.SearchCriteria;
 
 public interface BuyDAO {
 	
@@ -17,6 +20,12 @@ public interface BuyDAO {
 	
 	// 구매시 장바구니 삭제
 	public void cartdelete(CartVO cartVO) throws Exception;
+	
+	// 사용자 구매 리스트 카운트
+	public int buylistCount(String user_id) throws Exception;
+	
+	// 사용자 구매 리스트
+	public List<BuyVO> getlist(SearchCriteria scri) throws Exception;
 
 
 }

@@ -79,6 +79,9 @@ label{
 </style>   
 <meta charset="UTF-8">
 <title>회원정보수정</title>
+
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
+
 </head>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -133,11 +136,18 @@ $(document).ready(function(){
 
 <%@include file='../include/nav.jsp' %>
 
-<div class="user-wrap">
-<div class="login_text"><p>회원가입</p></div>
-</div>
-
+<div class="page-content">
 <div style="padding:60px 0; height: 100%;">
+<div class="section-heading">
+				<h1>
+					Update<br>
+					<em>Register</em>
+				</h1>
+				<p>
+					Praesent pellentesque efficitur magna, <br>sed pellentesque
+					neque malesuada vitae.
+				</p>
+			</div>
 
 	<!--아이콘박스 -->
 	<div style="display: flex; width: 720px;">
@@ -208,5 +218,9 @@ $(document).ready(function(){
 	</section>
 </div>
 </div>
+</div>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

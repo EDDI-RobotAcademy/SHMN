@@ -1,48 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<meta charset="UTF-8">
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>공지게시판</title>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
+
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
 </head>
 <body>
-<div align="center">
-<header>
-<h1> 공지게시판 </h1>
-</header>
-<form role="form" method="get" >
-<table border="0" width="80%">
-<thead>
-	<tr>
-		<th width="8%" height="40">번호</th>
-		<th>제목</th>
-		<th width="13%">등록일</th>
-	<!--<th>이미지</th>-->	
-	</tr>
-</thead>
-<tbody>
-	<c:forEach var="nlist" items="${nlist}">
-	<!-- 받은 items값만큼 반복 컨트롤러에서 설정한 이름 -->
-	<tr>
-		<td height="35"><c:out value="${nlist.n_bno}" /></td>
-		<td><a href="/sae_boardn/nread?n_bno=${nlist.n_bno}"><c:out value=" ${nlist.n_title} " /></a></td>
-	<%-- <td><c:out value="${nlist.n_content}" /></td> --%>
-		<td><fmt:formatDate value="${nlist.n_regdate}" pattern="yyyy-MM-dd" /></td>
-	<!--<td><input name="n_file" src="${nlist.n_file}" /></td>-->		
-	</tr>
-	</c:forEach>
-</tbody>
-</table>
-<tfoot>
-<c:if test="${member.userId == 'admin'}">
-<button type="button"><a href="/sae_boardn/nwriteView">글 등록</a></button>
-</c:if>
-</tfoot>
-</form>
+<%@include file="../include/nav.jsp" %>
+
+		<div class="page-content">
+		
+<section id="blog" class="content-section">		
+		<div class="section-content">
+				<div class="tabs-content">
+				<div class="wrapper">
+						<ul class="tabs clearfix" data-tabgroup="first-tab-group">
+							<li><a href="#tab1" class="active">NOTICE</a></li>
+						</ul>
+		<form role="form" method="get">
+			<section id="first-tab-group" class="tabgroup">
+				<div>
+					<ul>
+						<c:forEach var="nlist" items="${nlist}">
+							<li>
+							<input type="hidden" value="<c:out value="${nlist.n_bno}" />">
+								<div class="item">
+									<div class="text-content">
+										<h4>
+											<a href="/sae_boardn/nread?n_bno=${nlist.n_bno}"><c:out
+													value=" ${nlist.n_title} " /></a>
+										</h4>
+										<span><fmt:formatDate value="${nlist.n_regdate}"
+												pattern="yyyy-MM-dd" /></span>
+									</div>
+								</div></li>
+						</c:forEach>
+					</ul>
+				</div>
+			</section>
+			</form>
+		</div>
 </div>
+</div>
+</section>
+			<c:if test="${member.userId == 'admin'}">
+				<button type="button">
+					<a href="/sae_boardn/nwriteView">글 등록</a>
+				</button>
+			</c:if>
+
+</div>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

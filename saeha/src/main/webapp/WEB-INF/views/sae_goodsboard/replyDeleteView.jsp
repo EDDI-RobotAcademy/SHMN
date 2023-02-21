@@ -26,16 +26,15 @@ $(document).ready(function(){
 });
 </script>
 <body>
-<div id="root">
-<header>
-<h1>게시판 reply Delete</h1>
-</header>
-<hr />
+<%@include file="../include/nav.jsp" %>
+<div class="page-content" style="display: flex; justify-content: center;">
+<div style="padding:60px 0; height: 100%;width: 90%;">
+	<div class="section-heading">
+				<h1>
+				&nbsp;댓글 수정하기<br><Br>
+				</h1>
+	</div>
 
-<div>
-<%@ include file="nav.jsp" %>
-</div>
-<hr />
 
 <section id="container">
 <form name="deleteForm" role="form" method="post" action="/sae_goodsboard/replyDelete">
@@ -53,7 +52,10 @@ $(document).ready(function(){
 </div>
 </form>
 </section>
-<hr />
 </div>
+</div>
+<footer class="footer">
+<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+</footer>
 </body>
 </html>

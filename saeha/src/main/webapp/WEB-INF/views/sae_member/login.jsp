@@ -8,6 +8,7 @@
 <head>
 <title>로그인 페이지</title>
 
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
 <style type="text/css">
 body {
 	justify-content: center;
@@ -49,20 +50,19 @@ body {
 	$(document).ready(function() {
 		$("#logoutBtn").on("click", function() {
 			location.href = "/sae_member/logout";
-		});
+		})
 
 		$("#registerBtn").on("click", function() {
 			location.href = "/sae_member/register";
-		});
+		})
+
+		$("#memberUpdateBtn").on("click", function() {
+			location.href = "/sae_member/memberUpdateView";
+		})
 
 		$("#findPassBtn").on("click", function() {
 			location.href = "/sae_member/findPass";
 		});
-		
-		$("#memberpageBtn").on("click", function() {
-			location.href = "/sae_member/mypage";
-		});
-		
 	});
 </script>
 <!-- 카카오 로그인 스크립트 -->
@@ -134,28 +134,25 @@ body {
 </script>
 <body>
 
-	<%@include file='../include/nav.jsp'%>
+<%@include file='../include/nav.jsp' %>
+<div class="page-content">
+<div style="padding:60px 0; height: 100%;">
 
+			<div class="section-heading">
+				<h1>
+					Login<br>
+					<em>Saehamano</em>
+				</h1>
+				<p>
+					Praesent pellentesque efficitur magna, <br>sed pellentesque
+					neque malesuada vitae.
+				</p>
+			</div>
 
-	<div class="user-wrap">
-		<div class="login_text">
-			<p>로그인</p>
-		</div>
-	</div>
-
-	<div style="padding: 60px 20px; height: 100%;">
 
 		<div
 			style="width: 1100px; height: 450px; background-color: #f8f8f8; padding: 60px 0; text-align: center; line-height: center;">
 
-			<div
-				style="width: 400px; height: 320px; margin: 0; display: inline-block;">
-				<p>
-					<span>새하마노</span><br> <span>로그인 정보를 입력해 주세요.</span>
-				</p>
-				<img src="<spring:url value='/resources/img/login_visual.png'/>"
-					style="width: 200px;">
-			</div>
 
 			<div
 				style="width: 370px; height: 320px; margin: 0; display: inline-block;">
@@ -197,7 +194,7 @@ body {
 						<div>
 							<p>${member.userId}님환영합니다.</p>
 							<c:if test="${loginlogin == null }">
-								<button id="memberpageBtn" type="button">마이페이지</button>
+								<button id="memberUpdateBtn" type="button">회원정보수정</button>
 								<button id="logoutBtn" type="button">로그아웃</button>
 							</c:if>
 
@@ -224,5 +221,9 @@ body {
 		naver_id_login.setState(state);
 		naver_id_login.init_naver_id_login();
 	</script>
+	</div>
+	<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

@@ -5,82 +5,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
+    <link href="/resources/css/templatemo-xtra-blog.css" rel="stylesheet">
+
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>상품 리스트</title>
 </head>
 <body>
-	
-	<div>
-		<button><a href="/">메인페이지로</a></button>
-	</div>
-	<div>
-		<button><a href="/sae_product/productmain">상품페이지로</a></button>
-	</div>
-	
-	
-	<div class="container">
-		<header>
-			<h1>굿즈 리스트</h1>
-		</header>
-		<hr />
+<%@include file='../include/nav.jsp' %>
+<div class="page-content">
+<div style="padding:60px 0; height: 100%;">
+<div class="section-heading">
+				<h1>
+					Saeha Shop<br>
+					<em>Goods</em>
+				</h1>
+				<p>
+					굿즈보러가기 <br>한복 보러가기
+				</p>
+			</div>	
 
-		<section id="container">
-		 <form role="form" method="get">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-					 <th>상품번호</th>
-					 <th>상품사진</th>
-					 <th>상품 이름</th>
-					 <th>상품 가격</th>
-					 <th>재고수량</th>
-					 <th>등록일자</th>
-					 <th>상품 조회수</th>
-					</tr>
-				</thead>
-				<c:forEach items="${goodslist }" var="goodslist">
-					<tr>
-						<td><c:out value="${goodslist.pd_bno }" /></td>
-						<td><a href="/sae_product/read?pd_bno=${goodslist.pd_bno}&pd_type=${goodslist.pd_type}&page=${scri.page}&perPageNum=${scri.perPageNum}
-									&searchType=${scri.searchType }&keyword=${srci.keyword }">
-							<img src="/resources/productimg/${goodslist.p_filepath }"/></a></td>
-							
-						<td><c:out value="${goodslist.pd_name}" /></td>
-						<td><c:out value="${goodslist.pd_price }" /></td>
-						<td><c:out value="${goodslist.pd_stock }"/></td>
-						<td><fmt:formatDate value="${goodslist.pd_date}" pattern="yyyy-MM-dd" /></td>
-						<td><c:out value="${goodslist.pd_readcount }"/></td>
-					</tr>
-				</c:forEach>
-
-			</table>
-
-			<div class="search row">
-				<div class="col-xs-2 col-sm-2">
-					<select name="searchType" class="form-control">
-						<option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}" />>---------</option>
-						<option value="pn" <c:out value="${scri.searchType eq 'pn' ? 'selected' : ''}" />>상품이름</option>
-					</select>
-				</div>
-
-				<div class="col-xs-10 col-sm-10">
-					<div class="input-group">
-						<input type="text" name="keyword" id="keywordInput" 
-							   value="${srci.keyword}" class="form-control" /> 
-						 <span class="input-group-btn">
-							<button id="searchBtn" type="button" class="btn btn-default">검색</button>
-						</span>
-					</div>
-				</div>
-
+<!-- Search form -->
+            <div class="row tm-row">
+                <div class="col-12">
+                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">                
+                        <input class="form-control tm-search-input"  name="keyword" id="keywordInput" 
+							   value="${srci.keyword}"  type="text" placeholder="Search..." aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            검색
+                        </button>                                
+                    </form>
+                </div>                
+            </div> 
 				<script>
 					$(function() { 
 						$('#searchBtn').click(function() {
@@ -90,26 +48,75 @@
 						});
 			
 	</script>
-		</div>
-		<div class="col=md-offset-3">
-			<ul class="pagination">
-			 <c:if test="${gpageMaker.prev}">
-				<li><a href="goodslist${gpageMaker.makeSearch(gpageMaker.startPage - 1)}">이전</a></li>
-			 </c:if>
 
-			<c:forEach begin="${gpageMaker.startPage}" end="${gpageMaker.endPage}" var="idx">
-			 <li <c:out value = "${gpageMaker.cri.page == idx ? 'class=info' : ''}" />>
-				<a href="goodslist${gpageMaker.makeSearch(idx)}">${idx}</a>
-			 </li>
+		
+		
+            
+            
+
+		 <form role="form" method="get">
+		 
+				<c:forEach items="${goodslist }" var="goodslist">
+
+                <article class="col-12 col-md-6 tm-post">
+                    <hr class="tm-hr-primary">
+                    <input value="<c:out value="${goodslist.pd_bno }" />" type="hidden">
+                    <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                           
+                        <div class="tm-post-link-inner">
+							
+							<a href="/sae_product/read?pd_bno=${goodslist.pd_bno}&pd_type=${goodslist.pd_type}&page=${scri.page}&perPageNum=${scri.perPageNum}
+									&searchType=${scri.searchType }&keyword=${srci.keyword }"><img src="/resources/productimg/${goodslist.p_filepath }"/></a>
+                        </div>
+						                         
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title"><c:out value="${goodslist.pd_name}" /></h2>
+                    </a>                    
+                    <p class="tm-pt-30">
+                        <fmt:formatDate value="${goodslist.pd_date}" pattern="yyyy-MM-dd" />
+                    </p>
+                    <div class="d-flex justify-content-between tm-pt-45">
+                        <span class="tm-color-primary">
+                        <c:out value="${goodslist.pd_price }" /> 원 </span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span><c:out value="${goodslist.pd_readcount }"/> read</span>
+                        <span>by people</span>
+                    </div>
+                </article>
+
+</c:forEach>
+
+
+
+
+<div class="row tm-row tm-mt-100 tm-mb-75">
+                <div class="tm-prev-next-wrapper">
+                    <a href="goodslist${gpageMaker.makeSearch(gpageMaker.startPage - 1)}" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
+                    <a href="goodslist${gpageMaker.makeSearch(gpageMaker.endPage + 1 )}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+                </div>
+                <div class="tm-paging-wrapper">
+                    <span class="d-inline-block mr-3">Page</span>
+                    <nav class="tm-paging-nav d-inline-block">
+                        <ul>
+                           <c:forEach begin="${gpageMaker.startPage}" end="${gpageMaker.endPage}" var="idx">
+                            <li class="tm-paging-item active">
+                                <a href="#" class="mb-2 tm-btn tm-paging-link">${idx}</a>
+                            </li>
 			</c:forEach>
+                        </ul>
+                    </nav>
+                </div>                
+            </div>            
+			
 
-			<c:if test="${gpageMaker.next && gpageMakerendPage > 0 }">
-			 <li><a href="goodslist${gpageMaker.makeSearch(gpageMaker.endPage + 1 )}">다음</a></li>
-			</c:if>
-		   </ul>
-		</div>
 	</form>
-</section>
-</div>	
+
+</div>
+</div>
+
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

@@ -114,9 +114,6 @@ $(document).ready(function(){
 </header>
 <hr />
 
-<div>
-<%@include file="nav.jsp" %>
-</div>
 
 <!-- 
   role="form" : html5에 새롭게 추가된 태그로서 해당 태그에 대한 정의를 해 줌으로서

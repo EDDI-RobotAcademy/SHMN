@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+el.css">
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
 <style type="text/css">
 body{justify-content: center; margin: 0 auto;width:100%;}
 .user-wrap {
@@ -266,15 +268,21 @@ label{
 <body>
 
 <%@include file='../include/nav.jsp' %>
-
-<div class="user-wrap">
-<div class="login_text"><p>회원가입</p></div>
-</div>
+<div class="page-content">
 
 <div style="padding:60px 0; height: 100%;">
-
+<div class="section-heading">
+				<h1>
+					Register<br>
+					<em>Saehamano</em>
+				</h1>
+				<p>
+					Praesent pellentesque efficitur magna, <br>sed pellentesque
+					neque malesuada vitae.
+				</p>
+			</div>
 	<!--아이콘박스 -->
-	<div style="display: flex; width: 720px;">
+	<div style="display: flex; justify-content:space-around; width: 85%; ">
 		<div>
 		<div class="agree" style="background-image: url(/resources/img/join1g.png);"><strong>약관동의</strong></div>
 		<span class="agree2">STEP.1</span>
@@ -398,5 +406,9 @@ label{
 	</section>
 	</div>
 </div>
+</div>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

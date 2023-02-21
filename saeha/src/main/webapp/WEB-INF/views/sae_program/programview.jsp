@@ -5,11 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-      <!-- 최소화된 최신 CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-      <!-- 부가적인 테마 -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-       
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
+     
        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>프로그램 view</title>
@@ -99,58 +96,51 @@ $('#heart').click(function(e){
 })
 </script>
 <body>
-
-<div class="container">
-<header>
-<h1> 프로그램 </h1>
-</header>
-<hr />
-
-<%-- <div>
-<%@include file="nav.jsp" %>
-</div> --%>
-
-<!-- 
-  role="form" : html5에 새롭게 추가된 태그로서 해당 태그에 대한 정의를 해 줌으로서
-                컴퓨터의 리더기를 이용하여 웹 페이지를 읽을 때 해당 부분이 form 이라는 것을 알려줌
-                
-  https://aibees.github.io./Why-Use-Service/
- -->
-
-<section id="container">
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="padding:60px 0; height: 100%;">
+	<div class="section-heading">
+				<h1>
+					Ongoing<br>
+					<em>Programs</em>
+				</h1>
+				<p>
+					Praesent pellentesque efficitur magna, <br>sed pellentesque
+					neque malesuada vitae.
+				</p>
+	</div>
 <form name="readForm" role="form" method="post">
 <input type="hidden" id="pg_bno" name="pg_bno" value="${programread.pg_bno}" />
 <input type="hidden" id="pg_name" name="pg_name" value="${programread.pg_name}" />
 <input type="hidden" id="pg_time" name="pg_time" value="${programread.pg_time}" />
 </form>
-<div class="form-group">
- <label for="pg_type" class="col-sm-2 control-laber"></label>
- <input type="text" id="pg_type" name="pg_type" class="form-control" value="${programread.pg_type }" readonly="readonly" />
- </div>
-<div class="form-group">
-<label for="pg_name" class="col-sm-2 control-laber">관람 이름</label>
-<input type="text" id="pg_name" name="pg_name" class="form-control" value="${programread.pg_name}" readonly="readonly" />
+
+
+<div style="padding: 25px;display: flex;border-top: 0.5px solid gray;">
+<div style="background-color: orange;width:45%; height: 400px;">
 </div>
-<div class="form-group">
-<label for="pg_content" class="col-sm-2 control-label">관람 내용</label>
-<textarea id="pg_content" name="pg_content" class="form-control" readonly="readonly"><c:out value="${programread.pg_content}"/></textarea>
+<div style="width: 5%"></div>
+<div style="width:50%;">
+<div style="font-size: x-large;"><br><b><input style="border:0 solid black" type="text" id="pg_name" name="pg_name" value="${programread.pg_name}" readonly="readonly" /></b></div><br>
+<div style="text-align: right;"><input type="text" id="pg_stock" name="pg_stock" value="${programread.pg_stock}" readonly="readonly" style="border:0 solid black" /> 명 예약가능&nbsp;&nbsp;</div><br>
+<div><br>
+<textarea id="pg_content" name="pg_content" style="width: 100%; height: 100px;"  readonly="readonly"><c:out value="${programread.pg_content}"/></textarea>
+</div><br>
+<div style="font-size: 15.5px; padding-bottom: 4px;"><br><input type="text" id="pg_startdate" name="pg_startdate" value="${programread.pg_startdate}" style="border:0 solid black" readonly="readonly" />
+ - <input type="text" id="pg_enddate" name="pg_enddate"  value="${programread.pg_enddate}" readonly="readonly"style="border:0 solid black" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" id="pg_time" name="pg_time" value="${programread.pg_time}" readonly="readonly"style="border:0 solid black" /> 
+<span style="float: right;"><button type="button" >예매하기</button></span>
+</div><br>
+<c:if test="${member.userId == null}">
+<p style="float: right;">예매하시려면 로그인 해주세요!</p>
+</c:if>
 </div>
-<div class="form-group">
-<label for="pg_stock" class="col-sm-2 control-laber">예약 가능 인원</label>
-<input type="text" id="pg_stock" name="pg_stock" class="form-control" value="${programread.pg_stock}" readonly="readonly" />
-</div>
- <div class="form-group">
-<label for="pg_startdate" class="col-sm-2 control-laber">기간1</label>
-<input type="text" id="pg_startdate" name="pg_startdate" class="form-control" value="${programread.pg_startdate}" readonly="readonly" />
-~
-<label for="pg_startdate" class="col-sm-2 control-laber">기간2</label>
-<input type="text" id="pg_enddate" name="pg_enddate" class="form-control" value="${programread.pg_enddate}" readonly="readonly" />
-</div> 
- <div class="form-group">
-<label for="pg_time" class="col-sm-2 control-laber">관람 시간</label>
-<input type="text" id="pg_time" name="pg_time" class="form-control" value="${programread.pg_time}" readonly="readonly" />
 </div>
 
+
+
+<table>
+<tr>
 <td id="like">
 					<c:choose>
 						<c:when test="${lk_bno ==0}">
@@ -164,22 +154,24 @@ $('#heart').click(function(e){
 					</c:choose>					
 				</td>
 <!-- <button class="write_btn" type="submit">작성</button> -->
+</tr>
+</table>
 <c:if test = "${member.userId == 'admin' }">
 <button type="button" class="update_btn btn btn-warning">수정</button>
 <button type="button" class="delete_btn btn btn-danger">삭제</button>
 <button type="button" class="list_btn btn btn-primary">목록</button>
 </c:if>
 
-<button type="button" class="book_btn btn btn-primary">예매하기</button>
-<c:if test="${member.userId == null}">
-<p>예매하시려면 로그인 해주세요!</p>
-</c:if>
+
 <input type="hidden" value="${member.userId }" id="lk_id" name="lk_id" />
 <input type="hidden" value="${programread.pg_bno}" id="lk_pno" name="lk_pno" />
 
-</section>
+
 <hr />
 </div>
-
+</div>
+<footer class="footer">
+<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+</footer>
 </body>
 </html>

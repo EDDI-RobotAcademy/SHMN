@@ -5,11 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-      <!-- 최소화된 최신 CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-      <!-- 부가적인 테마 -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-       
+      <link rel="stylesheet" href="/resources/css/templatemo-style.css">
        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>프로그램 수정페이지</title>
@@ -57,18 +53,17 @@ $(document).ready(function(){
 </script>
 
 <body>
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="padding:60px 0; height: 100%;">
+	<div class="section-heading">
+				<h1>
+				&nbsp;프로그램 수정
+				</h1>
+	</div>
+	
 <div id="root">
-<header>
-<h1>프로그램 수정페이지</h1>
-</header>
-<hr  />
 
-<%-- <div>
-<%@include file="nav.jsp" %>
-</div> --%>
-<hr />
-
-<section id="container">
 <!-- <form name="updateForm" method="post" action="sae_program/upload"> -->
 <form action="/sae_program/programUpdate" name="updateForm" role="form" method="post">
 <input type="hidden" id="pg_bno" name="pg_bno" value="${programUpdate.pg_bno}" readonly="readonly"/>
@@ -77,12 +72,10 @@ $(document).ready(function(){
 <table>
 <tbody>
 <%-- <c:if test="${member.userId != null}"> --%>
-  <tr>
-  <%-- <td>
-    <a href="/sae_program/programview?pg_bno=${book.pg_bno}"><c:out value="${book.pg_name}" /></a>
-  </td> --%>
-  <td>
-  <label for="pg_type">프로그램 분류</label>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_type">프로그램 분류</label></td>
+			<td>
   <select  id="pg_type" name="pg_type" class="chk" >
     <option value="1">관람</option>
     <option value="2">2</option>
@@ -91,48 +84,58 @@ $(document).ready(function(){
   </select>
   </td>
   </tr>
-  <tr>
-  <td>
-  <label for="pg_name">프로그램 이름</label><input type="text" id="pg_name" name="pg_name" class="chk" value="${programUpdate.pg_name }"/>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_name">프로그램 이름</label></td>
+			<td><input type="text" id="pg_name" name="pg_name" class="chk" value="${programUpdate.pg_name }"/>
   </td>
   </tr>
-  <tr>
-  <td>
-  <label for="pg_content">프로그램 내용</label><textarea id="pg_content" name="pg_content" class="chk"><c:out value="${programUpdate.pg_content}"/></textarea>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_content">프로그램 내용</label></td>
+			<td><textarea id="pg_content" name="pg_content" class="chk"><c:out value="${programUpdate.pg_content}"/></textarea>
   </td>
   </tr>
-  <tr>
-  <td>
-  <label for="pg_file">프로그램 파일</label><input type="file" id="pg_file" name="pg_file" class="chk" value="${programUpdate.pg_file }"/>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_file">프로그램 파일</label></td>
+			<td><input type="file" id="pg_file" name="pg_file" class="chk" value="${programUpdate.pg_file }"/>
   </td>
   </tr>
-  <tr>
-  <td>
-  <label for="pg_stock">수용 인원</label><input type="text" id="pg_stock" name="pg_stock" class="chk" value="${programUpdate.pg_stock }"/>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_stock">수용 인원</label></td>
+			<td><input type="text" id="pg_stock" name="pg_stock" class="chk" value="${programUpdate.pg_stock }"/>
   </td>
   </tr>
-  <tr>
-  <td>
-  <label for="pg_startdate">기간1</label><input type="date" id="pg_startdate" name="pg_startdate" class="chk" value="${programUpdate.pg_startdate }"/>
-  <label for="pg_enddate">기간2</label><input type="date" id="pg_enddate" name="pg_enddate" class="chk" value="${programUpdate.pg_enddate }"/>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_startdate">기간1</label></td>
+			<td><input type="date" id="pg_startdate" name="pg_startdate" class="chk" value="${programUpdate.pg_startdate }"/>
+  </td>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_enddate">기간2</label></td><td><input type="date" id="pg_enddate" name="pg_enddate" class="chk" value="${programUpdate.pg_enddate }"/>
   </td>
   </tr>
-  <tr>
-  <td>
-  <label for="pg_bstartdate">예약 시작일</label><input type="date" id="pg_bstartdate" name="pg_bstartdate" class="chk" value="${programUpdate.pg_bstartdate }"/>
-  <label for="pg_benddate">예약 종료일</label><input type="date" id="pg_benddate" name="pg_benddate" class="chk" value="${programUpdate.pg_benddate }"/>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_bstartdate">예약 시작일</label></td><td><input type="date" id="pg_bstartdate" name="pg_bstartdate" class="chk" value="${programUpdate.pg_bstartdate }"/>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
+  <label for="pg_benddate">예약 종료일</label></td><td><input type="date" id="pg_benddate" name="pg_benddate" class="chk" value="${programUpdate.pg_benddate }"/>
   </td>
   </tr>
-  <tr>
-  <td>
+  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+			&nbsp;&nbsp;
     <ul id='pg_time'></ul>
-  <label for="pg_time">프로그램 시간</label><input type="time" id="pg_time" name="pg_time" class="chk" value="${programUpdate.pg_time }"/>
+  <label for="pg_time">프로그램 시간</label></td><td><input type="time" id="pg_time" name="pg_time" class="chk" value="${programUpdate.pg_time }"/>
       <input type='button' value='추가' onclick='addList()' />
   </td> 
   </tr>
-  <tr>
+  <tr >
   <td>
-  <button class="update_btn" type="submit">수정 완료</button>
+  <button class="update_btn" type="submit" style="background-color: #45489a; color: white; border-color: #45489a;">수정 완료</button>
   </td>
   </tr>
 <%-- </c:if> --%>
@@ -142,9 +145,12 @@ $(document).ready(function(){
 </tbody>
 </table>
 </form>
-</section>
-<hr />
-</div>
 
+</div>
+</div>
+</div>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

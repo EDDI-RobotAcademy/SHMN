@@ -38,6 +38,7 @@
 				<td style="font-size: 16px;">
 				- 매주 화요일은 휴궁일(休宮日)입니다.<br> ※ 휴궁일이 공휴일(대체공휴일 포함)과 겹칠 경우 개방하며, 이
 				경우 개방한 공휴일 다음의 첫 번째 비공휴일을 휴궁일로 합니다.
+<<<<<<< Updated upstream
 				</td>
 				</tr>
 				<tr>
@@ -75,12 +76,52 @@
 		<div style="width: 10%;">
 		</div>
 	</div>
+=======
+			</p>
+			
+			<p class="gbg_hypen" style="color: blue; font-weight: bold;">- 단체
+				예약은 경복궁 문화재 안내실로 별도 문의 바랍니다.</p>
+			&nbsp;
+			<p>* 문의처 : 경복궁 문화재안내실 02-3700-3904</p>
+			<br />
+			<br />
+
+>>>>>>> Stashed changes
 
 			<c:if test="${member.userId == 'admin' }">
 				<button>
 					<a href="/sae_ticket/tkWriteView"> 티켓 등록</a>
 				</button>
+<<<<<<< Updated upstream
 			</c:if>
+=======
+			</c:if><br />
+			<c:if test="${member.userId != null }">
+			<button>
+				<a href="/sae_ticket/tkMyBook"> 예약 확인</a>
+			</button>
+			</c:if>
+			<br />
+			<br />
+			<br />
+			<!-- 검색 -->
+			<div class="search row"></div>
+
+
+		</div>
+
+		<section id="container">
+
+			<input type="date" id="calendar"> &nbsp;&nbsp;&nbsp;
+
+			<iframe id="ticket" src="/sae_ticket/ticketBook?day=2" width="80%" height="50%"> </iframe>
+
+
+			<hr />
+
+
+		</section>
+>>>>>>> Stashed changes
 	</div>
 	
 	<script>

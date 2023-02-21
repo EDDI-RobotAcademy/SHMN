@@ -259,85 +259,9 @@
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <body>
-<<<<<<< HEAD
 		<%@include file="include/nav.jsp" %>
-=======
-		<!-- test용 로그인/마이페이지버튼 -->
-		<div><a href="/sae_member/login">로그인</a></div>
-		<div><a href="/sae_event/main">이벤트페이지</a></div>
-		<!-- test용 로그인/마이페이지버튼 -->
-		<!-- test용 리뷰게시판 -->
-		<div><a href="/sae_goodsboard/list">리뷰게시판</a></div>
-		<!-- test용 리뷰게시판 -->
-		<!-- test용 리뷰게시판 -->
-		<div><a href="/sae_program/program">프로그램 등록</a></div>
-		<div><a href="/sae_program/programlist?pg_type=1">프로그램1</a></div>
-		<div><a href="/sae_program/programlist?pg_type=2">프로그램2</a></div>
-		<!-- test용 리뷰게시판 -->
-		<div><a href="/sae_ticket/ticketList">입장권</a></div>
-		<div><a href="/sae_faq/faqList">faq</a></div>
-		<div><a href="/sae_product/productmain">상품</a></div>
-		<div><a href="/sae_coupon/couponregisterView">쿠폰</a></div><br>
-		<div><a href="/sae_cart/cartlist">장바구니</a></div>
-		<div><a href="/sae_buy/buylist">구매목록</a></div>
-		
-	<header class="nav-down responsive-nav hidden-lg hidden-md">
-		<button type="button" id="nav-toggle" class="navbar-toggle"
-			data-toggle="collapse" data-target="#main-nav">
-			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
-			<span class="icon-bar"></span> <span class="icon-bar"></span>
-		</button>
-		<!--/.navbar-header-->
 
-		<div id="main-nav" class="collapse navbar-collapse">
-			<nav>
-				<ul class="nav navbar-nav">
-					<li><a href="#top">Home</a></li>
-					<li><a href="#featured">Featured</a></li>
-					<li><a href="#projects">Recent Projects</a></li>
-					<li><a href="#video">Presentation</a></li>
-					<li><a href="#blog">Blog Entries</a></li>
-					<li><a href="#contact">Contact Us</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
 
-	<div class="sidebar-navigation hidde-sm hidden-xs">
-		<div class="logo">
-			<a href="#">Saha<em>mano</em></a>
-		</div>
-		<nav>
-			<ul>
-				<li><a href="#top"> <span class="rect"></span> <span
-						class="circle"></span> Home
-				</a></li>
-				<li><a href="#featured"> <span class="rect"></span> <span
-						class="circle"></span> Programs
-				</a></li>
-				<li><a href="#projects"> <span class="rect"></span> <span
-						class="circle"></span> Saeha Shop
-				</a></li>
-				<li><a href="#video"> <span class="rect"></span> <span
-						class="circle"></span> Presentation
-				</a></li>
-				<li><a href="#blog"> <span class="rect"></span> <span
-						class="circle"></span> Board Entires
-				</a></li>
-				<li><a href="#contact"> <span class="rect"></span> <span
-						class="circle"></span> Contact Us
-				</a></li>
-			</ul>
-		</nav>
-		<ul class="social-icons">
-			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-			<li><a href="#"><i class="fa fa-rss"></i></a></li>
-			<li><a href="#"><i class="fa fa-behance"></i></a></li>
-		</ul>
-	</div>
->>>>>>> 720c5f696bf629c37f9829675938c76f07688620
 
 	<div class="slider">
 		<div class="Modern-Slider content-section" id="top">

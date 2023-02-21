@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <style type="text/css">
@@ -176,25 +177,33 @@ var form;
 <title>장바구니</title>
 </head>
 <body>
-	<div class="container">
-		<header>
-			<h1>${member.userId }님의 장바구니 목록</h1>
-		</header>
-		<hr/>
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="padding:60px 0;height: 100%;width: 90%;">
+<div class="section-heading">
+				<h1>Saehamano<br><em>MyCart</em></h1>
+                        <p>Curabitur hendrerit mauris mollis ipsum vulputate rutrum. 
+                        <br>Phasellus luctus odio eget dui imperdiet.</p>
+                        
+                    </div>
+
 		<% if(cartlist.size() != 0){ %>
 			<form name="cartbuy" action="/sae_buy/buycart" role="form" method="post">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th></th>
-							<th>상품 사진</th>
-							<th>상품 이름</th>
-							<th>재고 수량</th>
-							<th>하나당 가격</th>
-							<th>수량</th>
-							<th>총 가격</th>
-						</tr>
-					</thead>
+
+			<h3>${member.userId }님의 장바구니 목록</h3>
+<div style="width: 80%;">
+<table style="width:100%;text-align: center;">
+<tr style="height: 50px;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #444;">
+<td>번호</td>
+<td colspan="2">제품정보</td>
+<td>수량</td>
+<td>상품가격</td>
+<td>총 가격</td>
+<td>삭제</td>
+</tr>
+
 							<%
 								for(int i = 0; i < cartlist.size(); i++){
 									CartVO ct = (CartVO) cartlist.get(i);
@@ -204,41 +213,41 @@ var form;
 							<%
 							} 
 							%>
-					<tr>
-							<td>
-							</td>
-							<td>
-								<a href="/sae_product/read?pd_bno=<%=ct.getCt_pno()%>"><img height="100px" width="100px"
-								 src="/resources/productimg/<%=ct.getP_filepath() %>"></a>
-							</td>
-							<td>
-								<input type="hidden" name="buyvolist[<%=i %>].by_id" value="${member.userId }">
+ <tr style=" border-bottom: 0.5px solid #eee;">
+    <td style="padding:10px 0;">1</td>
+    <td style="padding:10px 0;width:80px;height: 100px;background-color: orange;"><a href="/sae_product/read?pd_bno=<%=ct.getCt_pno()%>"><img height="100px" width="100px"
+								 src="/resources/productimg/<%=ct.getP_filepath() %>"></a></td>
+     <td style="padding:10px 0;">
+     <input type="hidden" name="buyvolist[<%=i %>].by_id" value="${member.userId }">
 								<input type="hidden" name="buyvolist[<%=i %>].by_pno" value="<%=ct.getCt_pno()%>">
 								<input name="buyvolist[<%=i %>].by_name" id="input" type="text" value="<%= ct.getCt_name()%>" readonly="readonly" style="text-align:center">
-							</td>
-							<td>
-								<input id="input" class="stock<%=i %>" type="text" value="<%= ct.getCt_stock()%>" readonly="readonly" style="text-align:center">
-							</td>
-							<td>
-								<input id="input" class="price<%=i %>" type="text" value="<%= ct.getCt_price()%>" readonly="readonly" style="text-align:center">
-							</td>
-							<td>
-								<input name="buyvolist[<%=i %>].by_count" type="number" class="count<%=i %>"  value="<%= ct.getCt_count()%>" max="<%= ct.getCt_stock()%>" style="text-align:center">
-							</td>
-							<td>
-								<input name="buyvolist[<%=i %>].by_price" id="input" class="total<%=i %>" style="text-align:center" readonly="readonly">
-							</td>
-							<td>
-								<button type="button" onclick="location.href='/sae_cart/cartdelete?ct_pno=<%=ct.getCt_pno()%>'">삭제</button>
-							</td>
-					</tr>
+							
+		</td>
+     <td style="padding:10px 0;">
+     <input name="buyvolist[<%=i %>].by_count" type="number" class="count<%=i %>"  value="<%= ct.getCt_count()%>" max="<%= ct.getCt_stock()%>" style="text-align:center">/
+     <input id="input" class="stock<%=i %>" type="text" value="<%= ct.getCt_stock()%>" readonly="readonly" style="text-align:center"></td>
+     <td style="padding:10px 0;">
+     <input id="input" class="price<%=i %>" type="text" value="<%= ct.getCt_price()%>" readonly="readonly" style="text-align:center">
+	</td>
+    <td style="padding:10px 0;"><input name="buyvolist[<%=i %>].by_price" id="input" class="total<%=i %>" style="text-align:center" readonly="readonly"></button></td>
+  <td>
+	<button style="background: none;border: 1px solid #eee;" type="button" onclick="location.href='/sae_cart/cartdelete?ct_pno=<%=ct.getCt_pno()%>'">X</button>		  
+  </td>
+  </tr>		
 					<%
 						}
 					%>
-				</table>
-				<div>
-					<div>
-						<select class="coupon" name="coupon_price">
+</table>
+<br><br><br><br><br>
+
+
+<div style="display: flex; border-top: 2px solid #444;border-bottom: 2px solid #444;padding: 20px 0;justify-content: center;">
+<div style="width: 50%; font-size: x-large;font-weight: 600;"> 총 주문금액</div>
+<div style="width:40%;">
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문상품 수 <span>3개</span></div>
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문금액 <span><input type="text" style="text-align:center" id="finalinput" class="totaltotal" readonly="readonly"></span></div>
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;">
+  <select class="coupon" name="coupon_price">
 							<option value="0">쿠폰없음</option>
 							<c:forEach items="${couponlist }" var="couponlist">
 								<c:if test="${couponlist.coupon_content != '사용완료' }">
@@ -247,34 +256,32 @@ var form;
 								</c:if>
 							</c:forEach>
 						</select>
-					</div>
-				</div>
-				<br>
-				<br>
-				<br>
-					<table>
-						<tr>
-							<td style="text-align:center">가격</td>
-							<td style="text-align:center">쿠폰</td>
-							<td style="text-align:center">결제할 금액</td>
-						</tr>
-						<tr>
-							<td>
-								<input type="text" style="text-align:center" id="finalinput" class="totaltotal" readonly="readonly"> -
-							</td>
-							<td>
-								 <input type="text" style="text-align:center" id="finalinput" class="couponval" readonly="readonly"> 
-							</td>
-							<td>
-							 = <input id="finalinput" style="text-align:center" type="text" class="finaltotal" value="" readonly="readonly">
-							</td>
-						</tr>
-					</table>
+  <input type="text" style="text-align:center" id="finalinput" class="couponval" readonly="readonly">  
+</div>
+  <hr>
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;font-size: large;font-weight: 600;">최종결제금액
+  <span style="color: red;"><input id="finalinput" style="text-align:center" type="text" class="finaltotal" value="" readonly="readonly"></span></div>
+</div>
+
+</div>
+<br>
+<div style="text-align: center;">
+	<button class="buybtn" style="background-color: white;font-size:17px; height:45px;border-radius:10px; color: black;">카카오페이로 결제하기</button>
+</div>	
+	</div>	
+
 			</form>
-			<button class="buybtn">카카오페이로 결제하기</button>
+			
 	</div>
 	<%
 		}
 	%>
+	
+	
+	</div>
+		<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
+	
 </body>
 </html>

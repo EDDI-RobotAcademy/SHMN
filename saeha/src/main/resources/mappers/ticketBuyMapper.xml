@@ -33,10 +33,10 @@ where bt_id = #{bt_id}
 DELETE FROM sae_buyticket
 WHERE bt_bno = #{bt_bno}
 </delete>
-<!-- 
-<delete id="delete" parameterType="String">
+<!--  예약 전체 취소 -->
+<delete id="alldelete" parameterType="String">
 DELETE FROM sae_buyticket
 WHERE bt_id = #{bt_id}
 </delete>
- -->
+
 </mapper>

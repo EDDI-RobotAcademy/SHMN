@@ -33,4 +33,11 @@ public class TicketBuyServiceImpl implements TicketBuyService {
 		dao.delete(bt_bno);
 	}
 
+	@Override
+	public void alldelete(String bt_id) throws Exception {
+		// TODO Auto-generated method stub
+		dao.alldelete(bt_id);
+		
+	}
+
 }

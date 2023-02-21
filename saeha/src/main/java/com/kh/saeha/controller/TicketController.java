@@ -151,12 +151,24 @@ public class TicketController {
 		
 	}	
 	
-	//취소
+	//예약 취소
 	@RequestMapping(value = "/bookdelete", method = RequestMethod.GET)
 	public String bookdelete(int bt_bno, int count, int bt_pno) throws Exception {
 		logger.info("**********Controller delete start**********");
 		
 		buyservice.delete(bt_bno);
+		TicketVO vo = service.read(bt_pno);
+		int num = vo.getTk_stock() + count;
+		vo.setTk_stock(num);
+		service.update(vo);
+		return "redirect:/sae_ticket/tkMyBook";
+	}	
+	//예약 전체 취소
+	@RequestMapping(value = "/alldelete", method = RequestMethod.GET)
+	public String alldelete(String bt_id, int count, int bt_pno) throws Exception {
+		logger.info("**********Controller delete start**********");
+		
+		buyservice.alldelete(bt_id);
 		TicketVO vo = service.read(bt_pno);
 		int num = vo.getTk_stock() + count;
 		vo.setTk_stock(num);

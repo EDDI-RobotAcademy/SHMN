@@ -62,10 +62,7 @@ $(document).ready(function() {
     		<td><label for = "tk_name">구분</label>
     		<td><label for = "tk_name">${read.tk_name}</label></td>
     	</tr>
-    	<tr>
-    		<td><label for = "tk_price">가격</label>
-    		<td><label for = "tk_price">${read.tk_price}</label></td>
-    	</tr>
+    	
     	<tr>
     		<td><label for = "tk_stock ">예약 가능 인원</label>
     		<td><label for = "tk_stock ">${read.tk_stock }</label></td>

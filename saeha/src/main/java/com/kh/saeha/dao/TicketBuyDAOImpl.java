@@ -36,4 +36,10 @@ public class TicketBuyDAOImpl implements TicketBuyDAO {
 		sqlSession.delete(namespace + ".delete", bt_bno);
 	}
 
+	@Override
+	public void alldelete(String bt_id) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace + ".alldelete", bt_id);
+	}
+
 }

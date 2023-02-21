@@ -11,4 +11,6 @@ public interface TicketBuyService {
 	public List<TicketBuyVO> booklist(String bt_id) throws Exception;
 	
 	public void delete(int bt_bno) throws Exception;
+	
+	public void alldelete(String bt_id) throws Exception;
 }

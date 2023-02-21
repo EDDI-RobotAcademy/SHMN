@@ -160,7 +160,7 @@ input{border: none;}
 	<form name="singlebuy" action="/sae_buy/buysingle" role="form" method="post">
 		<input	type="hidden" id="pd_pno" name="by_pno" class="form-control"
 				value="${buylist.pd_bno }"/>
-<<<<<<< HEAD
+
 <h3>
 					구매하기
 				</h3>				
@@ -198,52 +198,16 @@ input{border: none;}
   <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문상품 수 <span>3개</span></div>
   <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문금액 <span>35000원</span></div>
   <div style="display: flex; justify-content: space-between;padding: 10px 0;">쿠폰  
-  <select class="coupon" name="coupon_price">
-			<option value="">쿠폰없음</option>
-=======
-	<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">상품 이름</label> <input
-				type="text" id="pd_name" name="by_name" class="form-control"
-				value="${buylist.pd_name }" readonly="readonly" />
-		</div>
-
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">재고 수량</label> <input
-				type="text" id="pd_stock" name="go_stock" class="form-control"
-				value="${buylist.pd_stock }" readonly="readonly" />
-		</div>
-
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">하나당가격</label> <input
-				type="text" id="pd_price" name="go_price" class="form-control"
-				value="${buylist.pd_price }" readonly="readonly" />
-		</div>
-		
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">총가격</label> <input
-				type="text" id="pd_total" name="by_price" class="form-control"
-				value="${buylist.pd_price }" readonly="readonly" />
-		</div>
-	
-	<div class="form-grop">
-			<lable for="title" class="col-sm-2 control-label">수량</lable>
-			 <input
-				type="number" id="pd_number" name="by_count"
-				value="${number }" />
-		</div>
-		
-	
-	<div>
-		<select class="coupon" name="coupon_price">
+ <select class="coupon" name="coupon_price">
 			<option value="0">쿠폰없음</option>
->>>>>>> 720c5f696bf629c37f9829675938c76f07688620
 			<c:forEach items="${couponlist }" var="couponlist">	
 					<c:if test="${couponlist.coupon_content != '사용완료' }">
 						<option value="${couponlist.coupon_price }">
 						<c:out value="${couponlist.coupon_name }"/></option>
 					</c:if>
 			</c:forEach>
-		</select></div>
+		</select>
+		</div>
   <hr>
   <div style="display: flex; justify-content: space-between;padding: 10px 0;font-size: large;font-weight: 600;">최종결제금액
   <span style="color: red;"><input

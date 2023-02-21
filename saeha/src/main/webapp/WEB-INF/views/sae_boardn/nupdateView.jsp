@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>공지게시판 수정</title>
@@ -27,42 +28,49 @@ $(document).ready(function() {
 
 </script>
 <body>
-
-<div align="center">
-<h1> 공지사항 수정</h1>
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="padding:60px 0; height: 100%;">
+	<div class="section-heading">
+				<h1>
+				&nbsp;공지사항 수정
+				</h1>
+	</div>
 
 <form name="nupdateForm" action="/sae_boardn/nupdate" method="post" role="form">
  <input type="hidden" name="n_bno" value="${nupdate.n_bno}" readonly="readonly" />
-<table>
+<table style="width: 60%;">
 		<tr>
-			<td>
-   			<h3><label for="title">제목</label></h3>
-   			<input type="text" id="title" name="n_title" value="${nupdate.n_title}" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-    		<h3><label for="content">내용</label></h3>
-    		<textarea id="content" name="n_content" rows="15" cols="67"><c:out value="${nupdate.n_content}" /></textarea>
-			</td>
-		</tr>
-	
-		<tr>
-			<td>
+			<td style="width: 100%; height: 40px;">
    			<label for="regdate" >작성 날짜</label>
    			<fmt:formatDate value="${nupdate.n_regdate }" pattern = "yyyy-MM-dd" />
 			</td>
 		</tr>
-</table>
+		<tr>
+			<td>
+   			<input style="width: 100%; height: 40px;" type="text" id="title" name="n_title" value="${nupdate.n_title}" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+    		<textarea style="height: 400px;width:100%;" id="content" name="n_content" rows="15" cols="67"><c:out value="${nupdate.n_content}" /></textarea>
+			</td>
+		</tr>
+	
 	
 <tr>
-	<td>
-	<button type="submit" class="nupdate_btn">저장</button>
-	<button type="button" class="cancel_btn">취소</button>
+	<td style="text-align: right;">
+	<button style="background-color: #45489a; color: white; border-color: #45489a;" type="submit" class="nupdate_btn">저장</button>&nbsp;
+	<button type="button" class="cancel_btn" style="background-color: #45489a; color: white; border-color: #45489a;">취소</button>
 	</td>
 </tr>
+</table>
 
 </form>
 </div>
+</div>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

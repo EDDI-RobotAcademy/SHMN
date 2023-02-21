@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
       <!-- 최소화된 최신 CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
       <!-- 부가적인 테마 -->
@@ -15,44 +16,27 @@
 <title>게시판</title>
 </head>
 <body>
-<div class="container">
-<header>
-<h1>게시판</h1>
-</header>
-<hr />
-
-<div>
-<%@include file="nav.jsp" %>
-</div>
-<section id="container">
+<%@include file="../include/nav.jsp" %>
+<div class="page-content" style="display: flex; justify-content: center;">
+<div style="padding:60px 0; height: 100%;width: 90%;">
 <form role="form" method="get">
-<div>
-평균&nbsp;${devideCount }점
-</div>
-<div>
-리뷰 총 갯수&nbsp;${pageMaker.totalCount}개
-</div>
-<table class="table table-hover">
-<thead>
-<tr><th>번호</th><th>제목</th><th>작성자</th><th>별점</th><th>등록일</th></tr>
-</thead>
-
-<c:forEach items="${list}" var = "list">
-<tr>
-<td><c:out value="${list.gwBno}" /></td>
-<td>
-<a href="/sae_goodsboard/readView?gwBno=${list.gwBno}&page=${scri.page}&perPageNum=${scri.perPageNum}&score=${scri.score}&keyword=${scri.keyword}"><c:out value="${list.gwTitle}" /></a>
-</td>
-<td><c:out value="${list.gwWriter}" /></td>
-<td><c:forEach var="score" begin="1" end="${list.gwScore}">★
-</c:forEach></td>
-<td><c:out value="${list.gwDate}" /></td>
-</tr>
-</c:forEach>
-</table>
-
-<div class="search row">
-<div class="col-xs-2 col-sm-2">
+	<div class="section-heading">
+				<h1>
+				&nbsp;REVIEW<br><Br>
+				</h1>
+	</div>
+<DIV style="display: flex; height: 150px; padding: 15px; border: 1px solid gray;">
+        <div style="width: 40%; text-align: center; border-right: 1px solid gray; justify-content: center; display: grid;">
+            <div style="height: 70%;font-size: 60px;text-align: center;align-items: baseline;display: flex;">
+            <img  src="/resources/img/star.PNG" style="width: 57px;">${devideCount }</div> 
+            <div> ${pageMaker.totalCount}개 리뷰</div>
+        </div>
+        <div></div>
+    </DIV>
+    <br>
+<div style="display: flex;justify-content: space-between;">
+ <div class="search row" style="width:280px; padding-left: 5px; ">
+<div class="col-xs-2 col-sm-2" style="width: 55%;">
 
  <select
 					id="score" name="score" class="form-control">
@@ -68,7 +52,7 @@
 
 </div>
 
-<div class="col-xs-10 col-sm-10">
+<div class="col-xs-10 col-sm-10" style="width: 45%;">
 <div class="input-group">
 <input type="hidden" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control" />
 <span class="input-group-btn">
@@ -87,6 +71,34 @@ $(function(){
 });
 </script>
 </div>
+<div><a href="/sae_goodsboard/writeView?pno=${pno}"><button class="btn btn-default">리뷰작성</button></a>&nbsp;&nbsp;</div>
+</div>
+<br><br>
+    
+<table class="table table-hover">
+<thead>
+<tr><th style="width: 10%;text-align: center;">번호</th>
+<th>제목</th>
+<th style="width: 15%;text-align: center;">작성자</th>
+<th style="width: 10%;text-align: center;">별점</th>
+<th style="width: 15%;text-align: center;">등록일</th></tr>
+</thead>
+
+<c:forEach items="${list}" var = "list">
+<tr>
+<td style="width: 10%;text-align: center;"><c:out value="${list.gwBno}" /></td>
+<td>
+<a href="/sae_goodsboard/readView?gwBno=${list.gwBno}&page=${scri.page}&perPageNum=${scri.perPageNum}&score=${scri.score}&keyword=${scri.keyword}"><c:out value="${list.gwTitle}" /></a>
+</td>
+<td style="width: 15%;text-align: center;"><c:out value="${list.gwWriter}" /></td>
+<td style="width: 10%;text-align: center;"><c:forEach var="score" begin="1" end="${list.gwScore}">★
+</c:forEach></td>
+<td style="width: 15%;text-align: center;"><c:out value="${list.gwDate}" /></td>
+</tr>
+</c:forEach>
+</table>
+
+
 
 <div class="col-md-offset-3">
 <ul class="pagination">
@@ -106,7 +118,12 @@ $(function(){
 </ul>
 </div>
 </form>
-</section>
 </div>
+
+</div>
+
+<footer class="footer">
+<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+</footer>
 </body>
 </html>

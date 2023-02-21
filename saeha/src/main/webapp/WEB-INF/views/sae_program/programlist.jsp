@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
+
       <!-- 최소화된 최신 CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
       <!-- 부가적인 테마 -->
@@ -15,38 +17,21 @@
 <title>관람 목록</title>
 </head>
 <body>
-<div class="container">
-<header>
-<h1>관람목록</h1>
-</header>
-<hr />
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="padding:60px 0; height: 100%;">
+	<div class="section-heading">
+				<h1>
+					Ongoing<br>
+					<em>Programs</em>
+				</h1>
+				<p>
+					Praesent pellentesque efficitur magna, <br>sed pellentesque
+					neque malesuada vitae.
+				</p>
+	</div>
 
-<%-- <div>
-<%@include file="nav.jsp" %>
-</div> --%>
-<section id="container">
-<form role="form" method="get">
-<table class="table table-hover">
-<thead>
-<tr><th>번호</th><th>제목</th><th>수용인원</th><th>시작일</th><th>종료일</th><th>시간</th></tr>
-</thead>
-
-<c:forEach items="${programlist}" var = "programlist">
-<tr>
-<td><c:out value="${programlist.pg_bno}" /></td>
-<td>
-<a href="/sae_program/programview?pg_bno=${programlist.pg_bno}"><c:out value="${programlist.pg_name}" /></a>
-</td>
-<td><c:out value="${programlist.pg_stock}" /></td>
-<td><c:out value="${programlist.pg_startdate}" /></td>
-<td><c:out value="${programlist.pg_enddate}" /></td>
-<td><c:out value="${programlist.pg_time}" /></td>
-<%-- <td><fmt:formatDate value="${programlist.regdate}" pattern="yyyy-MM-dd" /></td> --%>
-</tr>
-</c:forEach>
-</table>
-
-<div class="search row">
+<div class="search row" style="width:90%;">
 <div class="col-xs-2 col-sm-2">
 <select name="searchType" class="form-control">
 <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}" />>--------</option>
@@ -75,6 +60,23 @@ $(function(){
 </script>
 </div>
 
+<div style="width:90%; margin: 20px 0;">
+<form role="form" method="get">
+
+<c:forEach items="${programlist}" var = "programlist">
+<div style="padding: 25px;display: flex;border-top: 0.5px solid gray;">
+<div style="background-color: orange;width:220px; height: 140px;">
+</div>
+<div style="width: 5%"></div>
+<div style="width:70%;"><br>
+<div style="font-size: x-large;"><c:out value="${programlist.pg_bno}" />.&nbsp;<b><a href="/sae_program/programview?pg_bno=${programlist.pg_bno}"><c:out value="${programlist.pg_name}" /></a></b></div>
+<div style="font-size: 15.5px; padding-bottom: 4px;"><br><c:out value="${programlist.pg_startdate}" /> - <c:out value="${programlist.pg_enddate}" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${programlist.pg_time}" /></div>
+<div>정원ㅣ <c:out value="${programlist.pg_stock}" />명</div>
+</div>
+</div>
+</c:forEach>
+
+
 <div class="col-md-offset-3">
 <ul class="pagination">
 <c:if test="${pageMaker.prev}">
@@ -90,16 +92,25 @@ $(function(){
 <li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a>
 </li>
 </c:if>
-
-<c:if test="${member.userId == 'admin'}">
-  <button type="button">
-    <a href="/sae_program/program">프로그램 추가</a>
-  </button>
-</c:if>
 </ul>
+
+<div style="text-align: right; width: 92%;">
+<c:if test="${member.userId == 'admin'}">
+    <a href="/sae_program/program">
+  <button type="button">
+    프로그램 추가
+  </button>
+    </a>
+</c:if>
+</div>
+
 </div>
 </form>
-</section>
 </div>
+</div>
+</div>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

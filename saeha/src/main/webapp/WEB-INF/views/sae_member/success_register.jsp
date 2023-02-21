@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입완료</title>
+
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
 <style type="text/css">
 body{justify-content: center; margin: 0 auto;width:100%;}
 .user-wrap {
@@ -62,12 +64,18 @@ body{justify-content: center; margin: 0 auto;width:100%;}
 <body>
 
 <%@include file='../include/nav.jsp' %>
-
-<div class="user-wrap">
-<div class="login_text"><p>회원가입</p></div>
-</div>
-
+<div class="page-content">
 <div style="padding:60px 0; height: 100%;">
+<div class="section-heading">
+				<h1>
+					Success<br>
+					<em>Register</em>
+				</h1>
+				<p>
+					Praesent pellentesque efficitur magna, <br>sed pellentesque
+					neque malesuada vitae.
+				</p>
+			</div>
 
 	<!--아이콘박스 -->
 	<div style="display: flex; width: 720px;">
@@ -112,7 +120,10 @@ body{justify-content: center; margin: 0 auto;width:100%;}
 	</div>
 
 </div>
-
 </div>
+</div>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <meta charset="UTF-8">
@@ -44,11 +45,13 @@ $(document).ready(function() {
 
 </script>
 <body>
- <header>
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div class="section-heading">
    <h1>상세보기</h1>
-   </header>
-   <hr />
+</div>
     
+<div style="padding:60px 0; height: 100%;">
     <form name="readForm" method="post">
     <table>
     <!-- 	<tr>
@@ -89,7 +92,10 @@ $(document).ready(function() {
 
 	
     </form>
-   <br>
-   <hr />
+   </div>
+   </div>
+   <footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

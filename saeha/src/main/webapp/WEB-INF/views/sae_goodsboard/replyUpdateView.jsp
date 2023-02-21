@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/templatemo-style.css">
  <!-- 최소화된 최신 CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
       <!-- 부가적인 테마 -->
@@ -29,16 +30,15 @@ $(document).ready(function(){
 });
 </script>
 <body>
-<div id="root">
-<header>
-<h1>게시판 reply updateView</h1>
-</header>
-<hr />
+<%@include file="../include/nav.jsp" %>
+<div class="page-content" style="display: flex; justify-content: center;">
+<div style="padding:60px 0; height: 100%;width: 90%;">
+	<div class="section-heading">
+				<h1>
+				&nbsp;댓글 수정하기<br><Br>
+				</h1>
+	</div>
 
-<div>
-<%@ include file="nav.jsp" %>
-</div>
-<hr />
 
 <section id="container">
 <form name="updateForm" role="form" method="post" action="/sae_goodsboard/replyUpdate">
@@ -64,5 +64,9 @@ $(document).ready(function(){
 </form>
 </section>
 </div>
+</div>
+<footer class="footer">
+<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+</footer>
 </body>
 </html>

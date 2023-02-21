@@ -37,11 +37,11 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "test";
 	}
 	
 	
-	// 오시는 길
+	// �삤�떆�뒗 湲�
 	@RequestMapping(value = "/sae_map/map", method = RequestMethod.GET)
 	public String delete() throws Exception {
 

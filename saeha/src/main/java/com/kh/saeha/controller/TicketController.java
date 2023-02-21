@@ -1,6 +1,9 @@
 package com.kh.saeha.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.saeha.service.TicketBuyService;
 import com.kh.saeha.service.TicketService;
-import com.kh.saeha.vo.TicketVO;
+import com.kh.saeha.vo.MemberVO;
 import com.kh.saeha.vo.SearchCriteria;
 import com.kh.saeha.vo.TicketBuyVO;
+import com.kh.saeha.vo.TicketListVO;
+import com.kh.saeha.vo.TicketVO;
 
 @Controller
 @RequestMapping("/sae_ticket/*")
@@ -45,6 +50,7 @@ public class TicketController {
 		return "sae_ticket/ticketList";
 	}
 	*/
+	
 	//ticket 등록 view 페이지로 이동(GET)
 	@RequestMapping(value="/tkWriteView", method = RequestMethod.GET)
 	public void	 tkWriteView() throws Exception{
@@ -95,6 +101,7 @@ public class TicketController {
 		return "redirect:/sae_ticket/ticketBook?day=2";
 	}	
 	
+	//iframe 정보
 	@RequestMapping(value = "/ticketBook", method = RequestMethod.GET)
 	public String ticketBook(String day, Model model) throws Exception {
 		logger.info("**********Controller book **********");
@@ -103,6 +110,8 @@ public class TicketController {
 		
 		return "sae_ticket/ticketBook";
 	}	
+	
+	//예약 수량 버튼 페이지 수정 필요
 	@RequestMapping(value = "/tkBookPage", method = RequestMethod.GET)
 	public String tkBookPage(int tk_bno, Model model) throws Exception {
 		logger.info("**********Controller book **********");
@@ -110,28 +119,62 @@ public class TicketController {
 		
 		return "sae_ticket/tkBookPage";
 	}	
+	
+	//입장권 구매
 	@RequestMapping(value = "/ticketBuy", method = RequestMethod.POST)
-	public String ticketBuy(TicketBuyVO vo) throws Exception {
-		logger.info("**********Controller book **********");
-		TicketVO ticketVO = service.read(vo.getBt_pno());
-
-		if (ticketVO.getTk_stock()-vo.getBt_count() >= 0) {
-			ticketVO.setTk_stock(ticketVO.getTk_stock()-vo.getBt_count());
-			buyservice.insert(vo);
-			service.stockupdate(ticketVO);
-			
+	public String ticketBuy(TicketListVO volist) throws Exception {
+		logger.info("**********Controller 구매 **********");
+		
+		for(TicketBuyVO vo : volist.getTicketlist()) {
+			TicketVO ticketVO = service.read(vo.getBt_pno());
+	
+			if (vo.getBt_count() != 0 && ticketVO.getTk_stock()-vo.getBt_count() >= 0) {
+				ticketVO.setTk_stock(ticketVO.getTk_stock()-vo.getBt_count());
+				buyservice.insert(vo);
+				service.stockupdate(ticketVO);
+				
+			}
 		}
 		return "sae_ticket/ticketList";
 	}	
-	/*예약 내역 확인
+	
+	//예약 내역 확인
 	@RequestMapping(value = "/tkMyBook", method = RequestMethod.GET)
-	public String tkMyBook(int tk_bno, Model model) throws Exception {
-		logger.info("**********Controller book **********");
-		model.addAttribute("vo", service.read(tk_bno));
+	public String tkMyBook(HttpSession id, Model model) throws Exception {
 		
-		return "sae_ticket/tkBookPage";
+		logger.info("********** 예약 내역 확인 **********");
+		MemberVO member = (MemberVO)id.getAttribute("member");
+		model.addAttribute("booklist", buyservice.booklist(member.getUserId()));
+		
+		return "sae_ticket/tkMyBook";
+		
+		
 	}	
-	*/
+	
+	//예약 취소
+	@RequestMapping(value = "/bookdelete", method = RequestMethod.GET)
+	public String bookdelete(int bt_bno, int count, int bt_pno) throws Exception {
+		logger.info("**********Controller delete start**********");
+		
+		buyservice.delete(bt_bno);
+		TicketVO vo = service.read(bt_pno);
+		int num = vo.getTk_stock() + count;
+		vo.setTk_stock(num);
+		service.update(vo);
+		return "redirect:/sae_ticket/tkMyBook";
+	}	
+	//예약 전체 취소
+	@RequestMapping(value = "/alldelete", method = RequestMethod.GET)
+	public String alldelete(String bt_id, int count, int bt_pno) throws Exception {
+		logger.info("**********Controller delete start**********");
+		
+		buyservice.alldelete(bt_id);
+		TicketVO vo = service.read(bt_pno);
+		int num = vo.getTk_stock() + count;
+		vo.setTk_stock(num);
+		service.update(vo);
+		return "redirect:/sae_ticket/tkMyBook";
+	}	
 	
 	
 }

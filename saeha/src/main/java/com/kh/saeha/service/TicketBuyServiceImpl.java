@@ -20,11 +20,24 @@ public class TicketBuyServiceImpl implements TicketBuyService {
 		// TODO Auto-generated method stub
 		dao.insert(vo);
 	}
-/*
+
 	@Override
-	public List<TicketBuyVO> list() throws Exception {
+	public List<TicketBuyVO> booklist(String bt_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.list();
+		return dao.booklist(bt_id);
 	}
-*/
+
+	@Override
+	public void delete(int bt_bno) throws Exception {
+		// TODO Auto-generated method stub
+		dao.delete(bt_bno);
+	}
+
+	@Override
+	public void alldelete(String bt_id) throws Exception {
+		// TODO Auto-generated method stub
+		dao.alldelete(bt_id);
+		
+	}
+
 }

@@ -15,7 +15,17 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>게시판 goodsView</title>
+<!-- CSS -->
+<link rel="stylesheet"
+	href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<!-- JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </head>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Hahmlet:wght@300&display=swap')
+	;
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 						var formObj = $("form[name='readForm']");			
@@ -97,7 +107,7 @@
 			function stockChk() {
 			var number = $('#pd_number').val();
 			if (number <= 0){
-				alert("구매수량은 1이상 입력하셔야 합니다");
+				alert("수량은 1이상 선택하셔야 합니다");
 				$("#go_price").val(${read.pd_price });
 				$('#pd_number').val('1');
 				return ture;
@@ -167,151 +177,120 @@
 </script>
 
 <body>
-	<section id="container">
-
-
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">상품 이름</label> <input
-				type="text" id="go_name" name="go_name" class="form-control"
-				value="${read.pd_name }" readonly="readonly" />
-		</div>
-
-		<div class="form-grop">
-			<label for="content" class="col-sm-2 control-label">상세설명</label> <input
-				type="text" id="go_content" name="go_content" class="form-control"
-				value="${read.pd_content }" readonly="readonly" />
-		</div>
-
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">재고 수량</label> <input
-				type="text" id="go_stock" name="go_stock" class="form-control"
-				value="${read.pd_stock }" readonly="readonly" />
-		</div>
-
-		<div class="form-grop">
-			<label for="title" class="col-sm-2 control-label">가격</label> <input
-				type="text" id="go_price" name="go_price" class="form-control"
-				value="${read.pd_price }" readonly="readonly" />
-		</div>
-
-
-		<form name="readForm" role="form" method="post">
-			<input type="hidden" id="pd_bno" name="pd_bno"
-				value="${read.pd_bno }" /> <input type="hidden" id="page"
-				name="page" value="${scri.page }" /> <input type="hidden"
-				id="perPageNum" name="perPageNum" value="${scri.perPageNum }" /> <input
-				type="hidden" id="searchType" name="searchType"
-				value="${scri.searchType }" /> <input type="hidden" id="keyword"
-				name="keyword" value="${scri.keyword }" /> <input type="hidden"
-				id="pd_type" name="pd_type" value="${read.pd_type }" /><input
-				type="number" id="pd_number" name="pd_number" value="1" />
-		</form>
-
-		<c:if test="${read.pd_stock == 0 }">
-			<h1>품절</h1>
-		</c:if>
-
-		<div class="form-grop">
-			<label for="go_date" class="col-sm-2 control-label">등록 날짜</label>
-			<fmt:formatDate value="${read.pd_date }" pattern="yyyy-MM-dd" />
-		</div>
-
-		<c:forEach items="${imglist }" var="imglist">
-			<div class="form-grop">
-
-				<img src="/resources/productimg/${imglist.ipath }" />
-			</div>
-
-			<br>
-		</c:forEach>
-		<div>
-			<c:if test="${member.userId == 'admin' }">
-				<button type="button" class="update_btn btn btn-warning">수정</button>
-				<button type="button" class="delete_btn btn btn-danger">삭제</button>
-			</c:if>
-			<c:if test="${read.pd_stock != 0 }">
-				<button type="button" class="buy_btn btn btn-primary">구매</button>
-				<button type="button" class="cart_btn btn btn-primary">장바구니에
-					담기</button>
-			</c:if>
-
-			<button type="button" class="list_btn btn btn-primary">목록</button>
-
-		</div>
-	</section>
-	<!-- 댓글 보기 -->
-	<hr />
-	<div id="reply">
-		<ol class="replyList">
-			<c:forEach items="${replyList}" var="replyList">
-				<!--  var 사용할 변수 명  -->
-				<p>
-					작성자: ${replyList.py_writer }님/
-					<fmt:formatDate value="${replyList.py_date}" pattern="yyyy-MM-dd" />
-				</p>
-				<p>문의 내용 : ${replyList.py_content }</p>
-
-				<%-- <c:if test="${member.userId != true == 'admin'}"> --%>
-				<!-- 댓글을 쓴 사람과 관리자만이 삭제 할 수 있다. -->
-				<div>
-					<%-- <button type="button" class="replyUpdateBtn" data-pno="${replyList.py_pno}">수정</button> --%>
-					<button type="button" class="replyDeleteBtn"
-						data-pno="${replyList.py_pno}">삭제</button>
-					<c:if test="${member.userId == 'admin' }">
-						<!-- 아이디 admin 만이 답글을 달 수 있다. -->
-						<button type="submit">답글달기</button>
-					</c:if>
+	<%@include file="../include/nav.jsp"%>
+	<div class="page-content" style="padding-bottom:0px">
+		<div style="width: 80%; margin: 0px;">
+			<div style="padding: 60px 0; height: 100%;">
+				<div class="section-heading" style="margin: 0px;">
+					<!-- <div class="section-heading" style="margin-bottom: 0px"> -->
+					<h1>
+						SAE-HA<br> <em>Shop</em>
+					</h1>
+					<p>
+						It's a shop in Saehamano.<br> It consists of hanbok and
+						products. Take a look.
+					</p>
+					<hr style="border: 3px solid #b4c3ff">
+					<br>
+					<!-- </div> -->
 				</div>
+				<section id="container">
+					<br>
+					<div style="display: flex; width: 100%">
+						<div class="form-grop" style="padding-top: 0; width: 60%;">
+							<div class="carousel" data-flickity>
+								<c:forEach items="${imglist }" var="imglist">
+									<div class="form-grop carousel-cell" style="width: 100%">
+										<img style="height: 500px"
+											src="/resources/productimg/${imglist.ipath }" /> <br>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+						<div style="width: 3%"></div>
+						<div style="width: 37%">
+							<div class="form-grop">
+								<label style="font-family: 'Hahmlet', serif; font-size: large">상품
+									이름: </label> <input style="border: none; font-size: large" type="text"
+									id="go_name" name="go_name" value="${read.pd_name }"
+									readonly="readonly" />
+							</div>
+							<hr>
+							<div style="font-family: 'Hahmlet', serif;">
+								<label style="font-size: large">등록 날짜: </label> <label
+									style="font-size: large"><fmt:formatDate
+										value="${read.pd_date }" pattern="yyyy-MM-dd" /></label>
+							</div>
+							<hr>
+							<div class="form-grop">
+								<label style="font-family: 'Hahmlet', serif; font-size: large">재고
+									수량: </label> <input style="border: none; font-size: large" type="text"
+									id="go_stock" name="go_stock" value="${read.pd_stock }"
+									readonly="readonly" />
+							</div>
+							<hr>
+							<div class="form-grop">
+								<label style="font-family: 'Hahmlet', serif; font-size: large">가격:
+								</label> <input style="border: none; font-weight: 600; font-size: large"
+									type="text" id="go_price" name="go_price"
+									value="${read.pd_price }" readonly="readonly" />
+								<hr>
+								<form name="readForm" role="form" method="post">
+									<input type="hidden" id="pd_bno" name="pd_bno"
+										value="${read.pd_bno }" /> <input type="hidden" id="page"
+										name="page" value="${scri.page }" /> <input type="hidden"
+										id="perPageNum" name="perPageNum" value="${scri.perPageNum }" />
+									<input type="hidden" id="searchType" name="searchType"
+										value="${scri.searchType }" /> <input type="hidden"
+										id="keyword" name="keyword" value="${scri.keyword }" /> <input
+										type="hidden" id="pd_type" name="pd_type"
+										value="${read.pd_type }" /><label
+										style="font-family: 'Hahmlet', serif; font-size: large">선택수량:
+									</label> <input
+										style="width: 60px; border: 0px solid #ffffff; font-size: large"
+										type="number" id="pd_number" name="pd_number" value="1" />
+									<hr>
+								</form>
+							</div>
+							<div class="form-grop">
+								<div style="font-family: 'Hahmlet', serif; font-size: large">상세설명:
+								</div>
+								<textarea id="go_content" name="go_content"
+									style="height: 100px; width: 100%; vertical-align: top; border: 0px solid #ffffff; font-size: large"
+									readonly="readonly">${read.pd_content }</textarea>
+							</div>
+						</div>
+					</div>
+					<br> <br>
+					<div class="form-grop" align="right">
+						<c:if test="${member.userId == 'admin' }">
+							<button type="button" class="update_btn btn btn-warning">수정</button>
+							<button type="button" class="delete_btn btn btn-danger">삭제</button>
+						</c:if>
+						<c:if test="${read.pd_stock != 0 }">
+							<button type="button" class="buy_btn btn btn-primary">구매</button>
+							<button type="button" class="cart_btn btn btn-primary">장바구니에
+								담기</button>
+						</c:if>
+						<button type="button" class="list_btn btn btn-primary">목록</button>
+					</div>
 
-			</c:forEach>
-		</ol>
-	</div>
 
-	<hr>
+					<c:if test="${read.pd_stock == 0 }">
+						<h1>품절</h1>
+					</c:if>
 
-
-	<!-- 댓글 작성 폼 -->
-	<c:if test="${member.userId != null}">
-		<div>
-			<form name="replyForm" method="get" >
-				<input type="hidden" id="bno" name="py_bno" value="${read.pd_bno }" />
-				<input type="hidden" id="page" name="page" value="${scri.page}">
-				<input type="hidden" id="perPageNum" name="perPageNum"
-					value="${scri.perPageNum}"> <input type="hidden"
-					id="searchType" name="searchType" value="${scri.searchType}">
-				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}">
-				<p>
-					<label for="writer"> 작성자 : </label> <input type="text" id="writer"
-						name="py_writer" value="${member.userId}" readonly="readonly" />
-				</p>
-				<p>
-					<label for="content">문의</label> <input type="text" id="content"
-						name="py_content" />
-				</p>
-				<p>
-					<button type="submit" class="replyWriteBtn">댓글 작성</button>
-				</p>
-			</form>
+				</section>
+			</div>
 		</div>
-	</c:if>
+	</div>
+	<!-- 리뷰 공간 -->
+	<iframe src="/sae_goodsboard/list?pno=${read.pd_bno }"
+		style="width: 100%; height: 1200px; padding-top: 0px" frameBorder="0"></iframe>
+	<!-- 리뷰 공간 -->
 
-<!-- 리뷰 공간 -->
-<iframe src="/sae_goodsboard/list?pno=${read.pd_bno }" style="width:100%; height:600px" frameBorder="0"></iframe>
-<!-- 리뷰 공간 -->
-
-
-	<!-- 삭제 폼 -->
-	<form name="deleteForm" role="form" method="post"
-		action="/sae_product/replyDelete">
-		<input type="hidden" id="bno" name="py_bno" value="${read.pd_bno}"
-			readonly="readonly" /> <input type="hidden" id="DeleteFormPno"
-			name="py_pno" /> <input type="hidden" id="page" name="page"
-			value="${scri.page }" /> <input type="hidden" id="perPageNum"
-			name="perPageNum" value="${scri.perPageNum }" /> <input
-			type="hidden" id="searchType" name="searchType"
-			value="${scri.searchType }" /> <input type="hidden" id="keyword"
-			name="keyword" value="${scri.keyword }" />
-	</form>
+	<footer class="footer">
+		<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+	</footer>
 </body>
 </html>

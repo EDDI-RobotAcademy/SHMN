@@ -49,7 +49,7 @@
    </header>
    <hr />
     
-    <form name="readForm" method="post">
+    <form method="post">
     <table>
     	<tr>
     		<td><label for = "faq_title">제목</label>

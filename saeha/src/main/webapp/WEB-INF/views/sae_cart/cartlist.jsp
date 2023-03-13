@@ -179,6 +179,7 @@ var form;
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width: 90%;">
 <div style="padding:60px 0;height: 100%;width: 90%;">
 <div class="section-heading">
 				<h1>Saehamano<br><em>MyCart</em></h1>
@@ -207,7 +208,7 @@ var form;
 							<%
 								for(int i = 0; i < cartlist.size(); i++){
 									CartVO ct = (CartVO) cartlist.get(i);
-									if(ct.getCt_stock() == 0){
+									if(ct.getCt_stock() <= 0){
 							%>
 							<meta http-equiv="refresh" content="0; URL='/sae_cart/cartdelete?ct_pno=<%=ct.getCt_pno()%>'">
 							<%
@@ -264,20 +265,21 @@ var form;
 </div>
 
 </div>
+			</form>
 <br>
+	</div>	
 <div style="text-align: center;">
 	<button class="buybtn" style="background-color: white;font-size:17px; height:45px;border-radius:10px; color: black;">카카오페이로 결제하기</button>
 </div>	
-	</div>	
 
-			</form>
 			
 	</div>
+	
+	<!-- </div> -->
+	
 	<%
 		}
 	%>
-	
-	
 	</div>
 		<footer class="footer">
 			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>

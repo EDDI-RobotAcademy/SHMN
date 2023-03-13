@@ -23,8 +23,8 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public void bookDelete(BookVO vo) throws Exception {
-		sql.delete("bookMapper.bookDelete",vo);
+	public void bookDelete(int bno) throws Exception {
+		sql.delete("bookMapper.bookDelete",bno);
 	}
 
 	@Override
@@ -44,7 +44,6 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public List<BookVO> booklist(BookVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		return sql.selectList("bookMapper.booklist",vo);
 	}
 

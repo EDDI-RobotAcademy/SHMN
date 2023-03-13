@@ -17,85 +17,87 @@
 </head>
 
 <body>
-<div class="container">
-<header>
-<h1>예약목록</h1>
-</header>
-<hr />
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="width:90%;">
+<div class="section-heading">
+   <h1>예약목록</h1>
+</div>
+    
+<div style="padding:60px 0; height: 100%;">
 
-<%-- <div>
-<%@include file="nav.jsp" %>
-</div> --%>
 <section id="container">
 <form role="form" method="get">
 <input type="hidden" id="bk_bno" name="bk_bno" value="${bookread.bk_bno}" />
 <input type="hidden" id="bk_pno" name="bk_pno" value="${bookread.bk_pno}" />
 <input type="hidden" id="bk_id" name="bk_id" value="${bookread.bk_id}" />
+<input type="hidden" id="bk_time" name="bk_time" value="${bookread.bk_time}" />
 <input type="hidden" id="pg_bno" name="pg_bno" value="${programread.pg_bno}" />
 <input type="hidden" id="pg_name" name="pg_name" value="${programread.pg_name}" />
 <input type="hidden" id="pg_content" name="pg_content" value="${programread.pg_content}" />
+
+<h4>관람 예약목록</h4>
 <table class="table table-hover">
 <thead>
-<tr><th>예약번호</th><th>프로그램</th><th>예약자</th><th>예약인원</th><th>예약일</th></tr>
+<tr><th>예약번호</th><th>프로그램</th><th>예약자</th><th>예약인원</th><th>예약일</th><th>예약시간</th></tr>
 </thead>
 
 <c:forEach items="${booklist1}" var = "booklist1">
 <tr>
 <td><c:out value="${booklist1.bk_bno}" /></td>
 <td>
-<a href="/sae_book/bookread?bk_bno=${booklist1.bk_bno}"><c:out value="${booklist1.pg_name}" /></a>
+<a href="/sae_book/bookread?bk_bno=${booklist1.bk_bno}&bk_pno=${booklist1.bk_pno}"><c:out value="${booklist1.pg_name}" /></a>
 </td>
 <td><c:out value="${booklist1.bk_name}" /></td>
 <td><c:out value="${booklist1.bk_inwon}" /></td>
 <td><c:out value="${booklist1.bk_pdate}" /></td>
-<%-- <td><fmt:formatDate value="${programlist.regdate}" pattern="yyyy-MM-dd" /></td> --%>
-</tr>
-</c:forEach>
-<tr><td>.</td></tr>
-<tr><td>.</td></tr>
-<c:forEach items="${booklist2}" var = "booklist2">
-<tr>
-<td><c:out value="${booklist2.bk_bno}" /></td>
-<td>
-<a href="/sae_book/bookread?bk_bno=${booklist2.bk_bno}"><c:out value="${booklist2.pg_name}" /></a>
-</td>
-<td><c:out value="${booklist2.bk_name}" /></td>
-<td><c:out value="${booklist2.bk_inwon}" /></td>
-<td><c:out value="${booklist2.bk_pdate}" /></td>
-<%-- <td><fmt:formatDate value="${programlist.regdate}" pattern="yyyy-MM-dd" /></td> --%>
-</tr>
-</c:forEach>
-<tr><td>.</td></tr>
-<tr><td>.</td></tr>
-<c:forEach items="${booklist3}" var = "booklist3">
-<tr>
-<td><c:out value="${booklist3.bk_bno}" /></td>
-<td>
-<a href="/sae_book/bookread?bk_bno=${booklist3.bk_bno}"><c:out value="${booklist3.pg_name}" /></a>
-</td>
-<td><c:out value="${booklist3.bk_name}" /></td>
-<td><c:out value="${booklist3.bk_inwon}" /></td>
-<td><c:out value="${booklist3.bk_pdate}" /></td>
-<%-- <td><fmt:formatDate value="${programlist.regdate}" pattern="yyyy-MM-dd" /></td> --%>
-</tr>
-</c:forEach>
-<tr><td>.</td></tr>
-<tr><td>.</td></tr>
-<c:forEach items="${booklist4}" var = "booklist4">
-<tr>
-<td><c:out value="${booklist4.bk_bno}" /></td>
-<td>
-<a href="/sae_book/bookread?bk_bno=${booklist4.bk_bno}"><c:out value="${booklist4.pg_name}" /></a>
-</td>
-<td><c:out value="${booklist4.bk_name}" /></td>
-<td><c:out value="${booklist4.bk_inwon}" /></td>
-<td><c:out value="${booklist4.bk_pdate}" /></td>
+<td><c:out value="${booklist1.bk_time}" /></td>
 <%-- <td><fmt:formatDate value="${programlist.regdate}" pattern="yyyy-MM-dd" /></td> --%>
 </tr>
 </c:forEach>
 </table>
 
-<div class="search row">
+<h4>체험 예약목록</h4>
+<table class="table table-hover">
+<thead>
+<tr><th>예약번호</th><th>프로그램</th><th>예약자</th><th>예약인원</th><th>예약일</th><th>예약시간</th></tr>
+</thead>
+<c:forEach items="${booklist2}" var = "booklist2">
+<tr>
+<td><c:out value="${booklist2.bk_bno}" /></td>
+<td>
+<a href="/sae_book/bookread?bk_bno=${booklist2.bk_bno}&bk_pno=${booklist2.bk_pno}"><c:out value="${booklist2.pg_name}" /></a>
+</td>
+<td><c:out value="${booklist2.bk_name}" /></td>
+<td><c:out value="${booklist2.bk_inwon}" /></td>
+<td><c:out value="${booklist2.bk_pdate}" /></td>
+<td><c:out value="${booklist2.bk_time}" /></td>
+<%-- <td><fmt:formatDate value="${programlist.regdate}" pattern="yyyy-MM-dd" /></td> --%>
+</tr>
+</c:forEach>
+</table>
+
+<h4>전시 예약목록</h4>
+<table class="table table-hover">
+<thead>
+<tr><th>예약번호</th><th>프로그램</th><th>예약자</th><th>예약인원</th><th>예약일</th><th>예약시간</th></tr>
+</thead>
+<c:forEach items="${booklist3}" var = "booklist3">
+<tr>
+<td><c:out value="${booklist3.bk_bno}" /></td>
+<td>
+<a href="/sae_book/bookread?bk_bno=${booklist3.bk_bno}&bk_pno=${booklist3.bk_pno}"><c:out value="${booklist3.pg_name}" /></a>
+</td>
+<td><c:out value="${booklist3.bk_name}" /></td>
+<td><c:out value="${booklist3.bk_inwon}" /></td>
+<td><c:out value="${booklist3.bk_pdate}" /></td>
+<td><c:out value="${booklist3.bk_time}" /></td>
+<%-- <td><fmt:formatDate value="${programlist.regdate}" pattern="yyyy-MM-dd" /></td> --%>
+</tr>
+</c:forEach>
+</table>
+
+<%-- <div class="search row">
 <div class="col-xs-2 col-sm-2">
 <select id="typechange" name="searchType" class="form-control">
 <option value="0">=========</option>
@@ -128,7 +130,7 @@ $(function(){
 /* $('#typechange').change(function () {
 		location.href = '/sae_book/booklist?bk_type=' + this.value;
 }); */
-</script>
+</script> --%>
 </div>
 
 <div class="col-md-offset-3">
@@ -150,7 +152,11 @@ $(function(){
 </ul>
 </div>
 </form>
-</section>
+
 </div>
+   </div>
+   <footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

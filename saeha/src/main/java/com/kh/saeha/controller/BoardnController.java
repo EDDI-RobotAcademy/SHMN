@@ -57,33 +57,6 @@ public class BoardnController {
 			
 		}
 		
-//		//공지게시판 글, 이미지 등록
-//		@RequestMapping(value = "/sae_boardn/nwrite", method = RequestMethod.POST)
-//		public String nwrite(MultipartHttpServletRequest request) {
-//			BoardnVO vo = new BoardnVO();
-//			vo.setN_bno(Integer.parseInt(request.getParameter("n_bno")));
-//			vo.setN_title(request.getParameter("n_title"));
-//			vo.setN_content(request.getParameter("n_content"));
-//		
-//		//파일 업로드
-//		MultipartFile mf = request.getFile("boardn_file");
-//		String path = request.getRealPath("uploadFile/boardn");//저장 될 위치
-//		String n_file = mf.getOriginalFilename();
-//		File uploadFile = new File(path+"//"+n_file);
-//		try {
-//			mf.transferTo(uploadFile);
-//		} catch (IllegalStateException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		vo.setFilename(n_file);
-//		
-//		sql.insert("boardnMapper.insert", vo);
-//		
-//		return "/sae_boardn/nwrite";
-//	}
 		
 		
 		//공지게시판 상세보기
@@ -92,7 +65,8 @@ public class BoardnController {
 			logger.info("공지게시판 상세보기");
 			
 			model.addAttribute("nread", service.nread(boardnVO.getN_bno()));
-		
+			model.addAttribute("nhit", service.nhit(boardnVO.getN_bno()));
+			
 			
 			return "sae_boardn/nread";
 			

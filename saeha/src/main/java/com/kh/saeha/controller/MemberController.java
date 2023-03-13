@@ -299,36 +299,7 @@ public class MemberController {
 		return "sae_member/mypageProgram";
 	}
 	
-	// 찜목록 리스트
-	@RequestMapping(value = "/likelist", method = RequestMethod.POST)
-	public String Mypage(Model model, HttpSession session) throws Exception {
-		MemberVO login = (MemberVO) session.getAttribute("member");
 
-		// 빈 LikeVo를 만든다.
-		LikeVO lvo = new LikeVO();
-		// 빈 LikeVo에 유저 정보를 넣는다.
-		lvo.setLk_id(login.getUserId());
-		// 해당 유저가 좋아요한 pno만 뽑아온다.(1)
-		List<LikeVO> likevo = likeservice.likelist(lvo);
-		// 빈 ProgramVO 리스트를 만든다.(2)
-		List<ProgramVO> pvo = new LinkedList<ProgramVO>();
-
-		for (int i = 0; i < likevo.size(); i++) {
-			// (1)에서 뽑아온 pno 리스트에서 하나씩 뽑아낸다.
-			LikeVO lv = likevo.get(i);
-			// pno값을 빼온다.
-			int pno = lv.getLk_pno();
-			// 해당 pno의 프로그램 정보를 읽어온다.
-			ProgramVO pv = programservice.programread(pno);
-			// (2)의 비어있던 programVO에 읽어온 pno 프로그램 정보들을 하나씩 추가한다.
-			pvo.add(pv);
-		}
-
-		model.addAttribute("likelist", pvo);
-
-		return "sae_member/mypageLike";
-
-	}
 
 	// 마이페이지 - 구매내역 이동
 	@RequestMapping(value = "/mypageBuy", method = RequestMethod.GET)
@@ -348,6 +319,6 @@ public class MemberController {
 	@RequestMapping(value = "/mypageCoupon", method = RequestMethod.GET)
 	public String mypageCoupon() throws Exception {
 
-		return "sae_member/mypageCoupon";
+		return "sae_coupon/couponregisterView";
 	}
 }

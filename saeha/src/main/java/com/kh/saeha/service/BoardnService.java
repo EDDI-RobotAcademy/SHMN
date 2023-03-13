@@ -19,5 +19,8 @@ public interface BoardnService {
 	
 	//공지게시판 글 삭제
 	public void ndelete(int n_bno) throws Exception;
+	
+	//공지게시판 조회수
+	public BoardnVO nhit(int n_bno) throws Exception; 
 
 }

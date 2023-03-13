@@ -28,15 +28,16 @@
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 	<div class="section-heading">
 				<h1>
-				&nbsp;공지사항 등록
+				&nbsp; 자주하는 질문 등록
 				</h1>
 	</div>
 
 	<form action="/sae_faq/faqWrite" name = "writeForm" method="POST">
-<table style="width: 60%;">
+<table style="width: 90%;">
 		
 		<tr>
 		<td>
@@ -58,7 +59,7 @@
 		
 	</table>
 	</form>
-	</div>
+</div>	</div>
 	</div>
 	<footer class="footer">
 			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>

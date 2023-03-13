@@ -56,18 +56,19 @@ $(document).ready(function(){
 
 </script>
 <body>
+<%@include file='../include/nav.jsp' %>
+<div class="page-content">
+<div style="width:90%">
+<div style="padding:60px 0; height: 100%;">
+<div class="section-heading">
+				<h1>
+예약확인</h1>
 
-<div class="container">
-<header>
-<h1> 예약확인 페이지 </h1>
-</header>
 <hr />
-
-<%-- <div>
-<%@include file="nav.jsp" %>
-</div> --%>
-
+</div>
+<div class="container">
 <!-- 
+
   role="form" : html5에 새롭게 추가된 태그로서 해당 태그에 대한 정의를 해 줌으로서
                 컴퓨터의 리더기를 이용하여 웹 페이지를 읽을 때 해당 부분이 form 이라는 것을 알려줌
                 
@@ -115,6 +116,10 @@ $(document).ready(function(){
 <label for="bk_pdate" class="col-sm-2 control-laber">관람 날짜</label>
 <input type="text" id="bk_pdate" name="bk_pdate" class="form-control" value="${bookread.bk_pdate}" readonly="readonly" />
 </div>
+ <div class="form-group">
+<label for="bk_pdate" class="col-sm-2 control-laber">관람 시간</label>
+<input type="text" id="bk_time" name="bk_time" class="form-control" value="${bookread.bk_time}" readonly="readonly" />
+</div>
 <!-- <button class="write_btn" type="submit">작성</button> -->
 <c:if test = "${member.userId != null }">
 <button type="button" class="update_btn btn btn-warning">예매변경</button>
@@ -125,6 +130,10 @@ $(document).ready(function(){
 </section>
 <hr />
 </div>
-
+				</div></div>
+	</div>
+	<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.saeha.vo.LikeVO;
+import com.kh.saeha.vo.LikelistVO;
 @Repository
 public class LikeDAOImpl implements LikeDAO {
 	
@@ -35,8 +36,8 @@ public class LikeDAOImpl implements LikeDAO {
 	}
 
 	@Override
-	public List<LikeVO> likelist(LikeVO lvo) throws Exception {
-		return sql.selectList("likeMapper.likelist", lvo);
+	public List<LikelistVO> likelist(String userId) throws Exception {
+		return sql.selectList("likeMapper.likelist", userId);
 	}
 
 }

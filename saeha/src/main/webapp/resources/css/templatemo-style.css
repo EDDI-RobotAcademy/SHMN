@@ -22,6 +22,14 @@ p {
 .page-content {
   width: 79%;
   float: right;
+  display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+    
+}
+.page-content2 {
+  width: 79%;
+  float: right;
 }
 
 .content-section {
@@ -921,6 +929,9 @@ header {
   text-align: center;
   float: right;
     width: 80.5%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
 
 .footer p {

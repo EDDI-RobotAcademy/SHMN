@@ -5,8 +5,22 @@
 <mapper namespace="likeMapper">
     
     <!-- 찜목록에 필요한 프로그램 정보 -->
-    <select id="likelist" parameterType="likeVO" resultType="likeVO">
-    	select lk_pno from sae_like where lk_id=#{lk_id} and lk_bno = 1
+    <select id="likelist" parameterType="String" resultType="likelistVO">
+    	select 
+    		  pg_bno
+    		, pg_name
+    		, pg_file
+    		, pg_stock
+    		, pg_startdate
+    		, pg_enddate
+    		, pg_bstartdate
+    		, pg_benddate
+    		, pg_type
+    		, lk_id
+    	from sae_like a 
+    	inner join sae_program b 
+    	on a.lk_pno = b.pg_bno 
+    	where lk_id=#{userId} and lk_bno = 1
     </select>
 
     <!-- 찜하기 갯수(불필요시 삭제) -->

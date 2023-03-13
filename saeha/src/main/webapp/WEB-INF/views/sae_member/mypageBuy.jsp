@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 최소화된 최신 CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+      <!-- 부가적인 테마 -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+       
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -13,9 +18,18 @@
 <title>구매 리스트</title>
 </head>
 <body>
-<h2>구매내역</h2>
-<a href="/">홈</a>
-	
+<%@include file='../include/nav.jsp' %>
+<div class="page-content">
+<div style="width:90%">
+<div style="padding:60px 0; height: 100%;">
+<div class="container">
+<div class="section-heading">
+				<h1>
+구매내역</h1>
+
+<hr />
+</div>
+	<section id="container">
 	<table class="table table-hover">
 				<thead>
 					<tr>
@@ -58,6 +72,11 @@
 			 <li><a href="buylist${bpageMaker.makeSearch(bpageMaker.endPage + 1 )}">다음</a></li>
 			</c:if>
 		   </ul>
-		</div>
+		</div></section>
+				</div></div>
+	</div></div>
+	<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

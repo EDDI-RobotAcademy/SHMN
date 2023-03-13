@@ -24,6 +24,7 @@
 	<body>
 	<%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 	<div class="section-heading">
 				<h1>
@@ -33,7 +34,7 @@
 	
 				<form name="updateForm" role="form" method="post" action="/sae_faq/faqupdate">
 					<input type="hidden" name="faq_bno" value="${update.faq_bno}" readonly="readonly"/>
-					<table style="width: 60%;">
+					<table style="width: 90%;">
 							<tr>
 								<td>
 <input style="width: 100%; height: 40px" type="text" id="title" name="faq_title" value="${update.faq_title}"/>
@@ -52,6 +53,7 @@
 </td></tr>
 					</table>
 				</form>
+		</div>
 		</div>
 		</div>
 			<footer class="footer">

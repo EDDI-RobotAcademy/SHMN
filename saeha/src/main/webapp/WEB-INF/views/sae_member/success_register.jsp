@@ -65,6 +65,7 @@ body{justify-content: center; margin: 0 auto;width:100%;}
 
 <%@include file='../include/nav.jsp' %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 <div class="section-heading">
 				<h1>
@@ -119,6 +120,7 @@ body{justify-content: center; margin: 0 auto;width:100%;}
 		<a href="/"><button  style=" height: 45px; padding: 12px 18px; background-color: black;color:white;">확인</button></a>
 	</div>
 
+</div>
 </div>
 </div>
 </div>

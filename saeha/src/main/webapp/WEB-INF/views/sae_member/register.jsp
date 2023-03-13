@@ -268,7 +268,8 @@ label{
 <body>
 
 <%@include file='../include/nav.jsp' %>
-<div class="page-content">
+<div class="page-content" >
+<div style="width:90%">
 
 <div style="padding:60px 0; height: 100%;">
 <div class="section-heading">
@@ -308,7 +309,7 @@ label{
 		
 			<div class="formdiv">
 				<label  for="userId">아이디</label>
-				<input	 type="text" id="userId" name="userId" />
+				<input	 type="text" id="userId" name="userId" />&nbsp;&nbsp;&nbsp;&nbsp;
 				<span id="over1">&nbsp;&nbsp;&nbsp;</span>
 			</div>
 			<hr>
@@ -319,7 +320,7 @@ label{
 				</div>
 				<div style="width:60%;display:flex;">
 				<label  for="userPass2">비밀번호 확인</label>
-			    <input	type="password" id="userPass2" name="userPass2" />
+			    <input	type="password" id="userPass2" name="userPass2" />&nbsp;&nbsp;&nbsp;&nbsp;
 				<div id="warning" name="warning" style="padding-top: 10px;"></div>
 			    </div>
 			</div>
@@ -407,8 +408,10 @@ label{
 	</div>
 </div>
 </div>
+</div>
 <footer class="footer">
 			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
 		</footer>
+
 </body>
 </html>

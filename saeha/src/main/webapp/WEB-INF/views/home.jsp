@@ -10,12 +10,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>main</title>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="/resources/css/fontAwesome.css">
-<link rel="stylesheet" href="/resources/css/light-box.css">
-<link rel="stylesheet" href="/resources/css/owl-carousel.css">
-<link rel="stylesheet" href="/resources/css/templatemo-style.css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="resources/css/fontAwesome.css">
+<link rel="stylesheet" href="resources/css/light-box.css">
+<link rel="stylesheet" href="resources/css/owl-carousel.css">
+<link rel="stylesheet" href="resources/css/templatemo-style.css">
 
 <script src="/resources/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
@@ -25,7 +25,6 @@
 #center-text {
 	display: flex;
 	flex: 1;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
@@ -33,7 +32,7 @@
 
 #chat-circle {
 	position: fixed;
-	bottom: 50px;
+	bottom: 100px;
 	right: 50px;
 	background: #5A5EB9;
 	width: 70px;
@@ -73,7 +72,7 @@
 	background: #efefef;
 	position: fixed;
 	right: 30px;
-	bottom: 50px;
+	bottom: 100px;
 	width: 350px;
 	max-width: 85vw;
 	max-height: 100vh;
@@ -249,6 +248,12 @@
 	clear: both;
 	margin-bottom: 70px;
 }
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
 </style>
 
 <!-- 채팅방 css끝 -->
@@ -260,9 +265,6 @@
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <body>
 		<%@include file="include/nav.jsp" %>
-
-
-
 	<div class="slider">
 		<div class="Modern-Slider content-section" id="top">
 			<!-- Item -->
@@ -272,14 +274,14 @@
 					<div class="info">
 						<div>
 							<h1>
-								Beautiful Template<br>Sentra
+								SAE-HA-MA-NO
 							</h1>
 							<p>
-								Sentra is free Bootstrap CSS Template by templatemo website.<br>
-								Please share our site link to your friends.
+								If you come to Saehamano Palace, the pride of Korea,<br> 
+								you won't regret it. Welcome, Sae-ha-ma-no.
 							</p>
 							<div class="white-button button">
-								<a href="/sae_ticket/ticketList" >보러가기</a>
+								<a href="/sae_ticket/ticketList" >입장권 구매</a>
 							</div>
 						</div>
 					</div>
@@ -293,15 +295,15 @@
 					<div class="info">
 						<div>
 							<h1>
-								Please tell <br>your friends
+								SAE-HA-MA-NO
 							</h1>
 							<p>
-								Support templatemo by sharing a link to your friends. <br>Thank
-								you for helping us.
+								Saehamano Palace is located in Gwanghwamun, Seoul.<br>
+								There are Gyeongbokgung Palace and Changgyeonggung Palace in Gwanghwamun.
 							</p>
 
 							<div class="white-button button">
-								<a href="/sae_ticket/ticketList" >관람하기</a>
+								<a href="/sae_ticket/ticketList" >입장권 구매</a>
 							</div>
 						</div>
 					</div>
@@ -318,12 +320,12 @@
 								Suspendisse suscipit<br>nulla sed
 							</h1>
 							<p>
-								Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-								<br>posuere cubilia Curae; Sed at massa turpis.
+								I ask you. What is Korean? To that question, <br>
+								we answer the Sahamano Palace. Come and experience it yourself.
 							</p>
 
 							<div class="white-button button">
-							<a href="/sae_ticket/ticketList" >입장권구매하기</a>
+							<a href="/sae_ticket/ticketList" >입장권 구매</a>
 							</div>
 						</div>
 					</div>
@@ -334,7 +336,7 @@
 	</div>
 
 
-	<div class="page-content">
+	<div class="page-content2">
 		<section id="featured" class="content-section">
 			<div class="section-heading">
 				<h1>
@@ -353,9 +355,9 @@
 					%>
 					<div class="item">
 						<div class="image">
-							<img src="resources/img/program1.jpg" alt="">
-							<div class="featured-button button">
-								<a href="#projects">Continue Reading</a>
+							<a href="/sae_program/programlist?pg_type=관람"><img src="resources/img/program1.jpg" alt="">
+							<div class="featured-button button">Continue Reading</a>
+								
 							</div>
 						</div>
 						<div class="text-content">
@@ -368,9 +370,8 @@
 					</div>
 					<div class="item">
 						<div class="image">
-							<img src="resources/img/program2.jpg" alt="">
-							<div class="featured-button button">
-								<a href="#projects">Continue Reading</a>
+							<a href="/sae_program/programlist?pg_type=관람"><img src="resources/img/program2.jpg" alt="">
+							<div class="featured-button button">Continue Reading</a>
 							</div>
 						</div>
 						<div class="text-content">
@@ -385,10 +386,9 @@
 					</div>
 					<div class="item">
 						<div class="image">
-							<img src="resources/img/program3.jpg" alt="">
-							<div class="featured-button button">
-								<a href="#projects">Continue Reading</a>
-							</div>
+						<a href="/sae_program/programlist?pg_type=관람">	<img src="resources/img/program3.jpg" alt="">
+							<div class="featured-button button">Continue Reading
+							</a></div>
 						</div>
 						<div class="text-content">
 							<h4>Proin sit amet fringilla</h4>
@@ -420,36 +420,31 @@
 					<div class="row">
 						<div class="item">
 							<div class="col-md-8">
-								<a href="resources/img/portfolio_big_1.jpg"
-									data-lightbox="image"><img src="resources/img/product3.jpg"
+								<a href="/sae_product/hanboklist"><img src="resources/img/product3.jpg"
 									alt="image 1"></a>
 							</div>
 						</div>
 						<div class="item second-item">
 							<div class="col-md-4">
-								<a href="resources/img/portfolio_big_2.jpg"
-									data-lightbox="image"><img src="resources/img/product4.jpg"
+								<a href="/sae_product/goodslist"><img src="resources/img/product4.jpg"
 									alt="image 2"></a>
 							</div>
 						</div>
 						<div class="item">
 							<div class="col-md-4">
-								<a href="resources/img/portfolio_big_3.jpg"
-									data-lightbox="image"><img src="resources/img/product1.PNG"
+								<a href="/sae_product/goodslist"><img src="resources/img/product1.PNG"
 									alt="image 3"></a>
 							</div>
 						</div>
 						<div class="item">
 							<div class="col-md-4">
-								<a href="resources/img/portfolio_big_4.jpg"
-									data-lightbox="image"><img src="resources/img/product2.jpg"
+								<a href="/sae_product/hanboklist"><img src="resources/img/product2.jpg"
 									alt="image 4"></a>
 							</div>
 						</div>
 						<div class="item">
 							<div class="col-md-8">
-								<a href="resources/img/portfolio_big_5.jpg"
-									data-lightbox="image"><img
+								<a href="/sae_product/hanboklist"><img
 									src="resources/img/portfolio_5.jpg" alt="image 5"></a>
 							</div>
 						</div>
@@ -505,28 +500,43 @@
 				<div class="tabs-content">
 					<div class="wrapper">
 						<ul class="tabs clearfix" data-tabgroup="first-tab-group">
-							<li><a href="#tab1" class="active">NOTICE</a></li>
-							<li><a href="#tab2"></a></li>
-							<li><a href="#tab3"></a></li>
-							<li><a href="#tab4"></a></li>
+							<li><a id="water" class="tablinks" onclick="openCity(event, 'NOTICE')">NOTICE</button></li>
+							<li><a class="tablinks" onclick="openCity(event, 'FAQ')">FAQ</button></a></li>
 						</ul>
-						<section id="first-tab-group" class="tabgroup">
+						<section id="NOTICE" class="tabcontent tabgroup">
 							<div id="tab1">
 								<ul>
-									<%
-									for (int i = 0; i < 6; i++) {
-									%>
+								<c:forEach items="${nlist}" var="nlist" varStatus="status">
+								<c:if test="${status.index < 6}">
 									<li>
 										<div class="item">
 											<div class="text-content">
-												<h4>Integer ultrices augue</h4>
-												<span>25 July 2018</span>
+												<h4>${nlist.n_title}</h4>
+												<div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">${nlist.n_content}</div>
 											</div>
 										</div>
 									</li>
-									<%
-									}
-									%>
+									</c:if>
+								</c:forEach>
+								</ul>
+							</div>
+						</section>
+						<section id="FAQ" class="tabcontent tabgroup">
+							<div id="tab2">
+								<ul>
+								
+								<c:forEach items="${list}" var="list" varStatus="status">
+								<c:if test="${status.index < 6}">
+									<li>
+										<div class="item">
+											<div class="text-content">
+												<h4>${list.faq_title}</h4>
+												<div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">${list.faq_content}</div>
+											</div>
+										</div>
+									</li>
+									</c:if>
+								</c:forEach>
 								</ul>
 							</div>
 						</section>
@@ -534,48 +544,6 @@
 				</div>
 			</div>
 		</section>
-<section id="blog" class="content-section">
-			<div class="section-heading">
-				<h1>
-					FAQ<br>
-					<em>Entries</em>
-				</h1>
-				<p>
-					Curabitur hendrerit mauris mollis ipsum vulputate rutrum. <br>Phasellus
-					luctus odio eget dui imperdiet.
-				</p>
-			</div>
-			<div class="section-content">
-				<div class="tabs-content">
-					<div class="wrapper">
-						<ul class="tabs clearfix" data-tabgroup="first-tab-group">
-							<li><a href="#tab1" class="active">FAQ</a></li>
-						</ul>
-						<section id="first-tab-group" class="tabgroup">
-							<div id="tab1">
-								<ul>
-									<%
-									for (int i = 0; i < 6; i++) {
-									%>
-									<li>
-										<div class="item">
-											<div class="text-content">
-												<h4>Integer ultrices augue</h4>
-												<span>25 July 2018</span>
-											</div>
-										</div>
-									</li>
-									<%
-									}
-									%>
-								</ul>
-							</div>
-						</section>
-					</div>
-				</div>
-			</div>
-		</section>
-
 <section id="contact" class="content-section">
                 <div id="map">
       <jsp:include page="/WEB-INF/views/sae_map/map.jsp"/>
@@ -588,7 +556,6 @@
                         
                     </div>
                     <div class="section-content">
-                        
                     </div>
                 </div>
             </section>
@@ -692,7 +659,7 @@
 					str += "          <span class=\"msg-avatar\">";
 					str += "            <img src=\"resources\/img\/chat1.jpg\">";
 					str += "          <\/span>";
-					str += "          <div class=\"cm-msg-text\">";
+					str += "          <div class=\"cm-msg-text\">"; 
 					str += msg;
 					str += "          <\/div>";
 					str += "        <\/div>";
@@ -820,9 +787,23 @@
 
 			lastScrollTop = st;
 		}
+		function openCity(evt, cityName) {
+			  var i, tabcontent, tablinks;
+			  tabcontent = document.getElementsByClassName("tabcontent");
+			  for (i = 0; i < tabcontent.length; i++) {
+			    tabcontent[i].style.display = "none";
+			  }
+			  tablinks = document.getElementsByClassName("tablinks");
+			  for (i = 0; i < tablinks.length; i++) {
+			    tablinks[i].className = tablinks[i].className.replace(" active", "");
+			  }
+			  document.getElementById(cityName).style.display = "block";
+			  evt.currentTarget.className += " active";
+		}
+		document.getElementById("water").click();
 	</script>
 <footer class="footer">
 			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
-		</footer>
+</footer>
 </body>
 </html>

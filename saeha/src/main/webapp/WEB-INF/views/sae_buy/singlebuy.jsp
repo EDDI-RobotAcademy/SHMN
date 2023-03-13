@@ -149,6 +149,7 @@ input{border: none;}
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width: 90%;">
 <div style="padding:60px 0;height: 100%;width: 90%;">
 <div class="section-heading">
 				<h1>Purchasing<br><em>Products</em></h1>
@@ -169,25 +170,20 @@ input{border: none;}
 <tr style="height: 50px;
     border-top: 2px solid #333;
     border-bottom: 1px solid #444;">
-<td>번호</td>
 <td colspan="2">제품정보</td>
 <td>수량</td>
 <td>상품가격</td>
-<td>삭제</td>
 </tr>
  <tr style=" border-bottom: 0.5px solid #eee;">
-    <td style="padding:10px 0;">1</td>
     <td style="padding:10px 0;width:80px;height: 100px;background-color: orange;"><img src="/resources/productimg/${img}"/></td>
      <td style="padding:10px 0;"><input
-				type="text" id="pd_name" name="go_name" 
+				type="text" id="pd_name" name="by_name" 
 				value="${buylist.pd_name }" readonly="readonly" /></td>
      <td style="padding:10px 0;">
-     <input	type="number" id="pd_number" name="by_count"value="${number }" />/
-     <input	type="text" id="pd_stock" name="go_stock"value="${buylist.pd_stock }" readonly="readonly" /></td>
+     <input style="text-align:center;"	type="text" id="pd_stock" name="go_stock"value="${buylist.pd_stock }" readonly="readonly" /></td>
      <td style="padding:10px 0;"><input
-				type="text" id="pd_price" name="go_price" 
+				style="text-align:center; width: 70px" type="text" id="pd_price" name="go_price" 
 				value="${buylist.pd_price }" readonly="readonly" /></td>
-    <td style="padding:10px 0;"><button style="background: none;border: 1px solid #eee;">X</button></td>
   </tr>
 </table>		
 	<br><br><br><br><br>
@@ -195,8 +191,7 @@ input{border: none;}
 <div style="display: flex; border-top: 2px solid #444;border-bottom: 2px solid #444;padding: 20px 0;justify-content: center;">
 <div style="width: 50%; font-size: x-large;font-weight: 600;"> 총 주문금액</div>
 <div style="width:40%;">
-  <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문상품 수 <span>3개</span></div>
-  <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문금액 <span>35000원</span></div>
+  <div style="display: flex; justify-content: space-between;padding: 10px 0;">주문상품 수<input style="width:60px;" type="number" id="pd_number" name="by_count"value="${number }" /> </div>
   <div style="display: flex; justify-content: space-between;padding: 10px 0;">쿠폰  
  <select class="coupon" name="coupon_price">
 			<option value="0">쿠폰없음</option>
@@ -216,16 +211,17 @@ input{border: none;}
 </div>
 
 </div>
+
+	</div>	
+
+	</form>
 <br>
 <div style="text-align: center;">
 	<button onclick="history.go(-1)" style="background-color: #333;font-size:17px; height:45px;border-radius:10px; color: white;padding:0 10px;">뒤로</button>
 	&nbsp;
 	<button class="buybtn" style="background-color: white;font-size:17px; height:45px;border-radius:10px; color: black;">카카오페이로 결제하기</button>
 </div>	
-	</div>	
-
-	</form>
-
+	</div>
 	</div>
 	</div>
 	<footer class="footer">

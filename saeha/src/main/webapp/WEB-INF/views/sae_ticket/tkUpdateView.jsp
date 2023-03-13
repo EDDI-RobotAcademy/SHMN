@@ -24,6 +24,7 @@
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 	<div class="section-heading">
 				<h1>
@@ -33,56 +34,50 @@
 	<div id="root">
 				<form name="updateForm" role="form" method="post" action="/sae_ticket/ticketUpdate">
 					<input type="hidden" name="tk_bno" value="${update.tk_bno}" readonly="readonly"/>
-						<table style="width:50%;">
-						<!--  <tr>
-								<td>
-									<label for="tk_bno">번호</label>
-									<input type="text" id="tk_bno" name="tk_bno" value="${update.tk_bno}"/>
-								</td>
-							</tr>-->	
+						<table style="width:70%; margin:auto;">
+					
 							<tr style="border-bottom: 1px solid #ccc; height: 70px;">
 								<td style="width: 30%;">
-			&nbsp;&nbsp;
-									<label for="tk_name">구분</label></td>
-			<td>
-									<input type="radio" id="tk_name" name="tk_name" value="일반"/>일반
-									<input type="radio" id="tk_name" name="tk_name" value="야간"/>야간
+									&nbsp;&nbsp;<label for="tk_name">입장 분류</label>
+								</td>
+								<td>
+									<input type="radio" id="tk_name" name="tk_name" value="일반"/> 일반<br>
+									<input type="radio" id="tk_name" name="tk_name" value="야간"/> 야간
 								</td>
 							</tr>	
 							<tr style="border-bottom: 1px solid #ccc; height: 70px;">
 								<td style="width: 30%;">
-			&nbsp;&nbsp;
-									<label for="tk_price">가격</label></td>
-			<td>
+									&nbsp;&nbsp;<label for="tk_price">가격</label>
+								</td>
+								<td>
 									<input type="text" id="tk_price" name="tk_price" value="${update.tk_price}"/>
 								</td>
 							</tr>	
 							<tr style="border-bottom: 1px solid #ccc; height: 70px;">
 								<td style="width: 30%;">
-			&nbsp;&nbsp;
-									<label for="tk_stock">예약 가능 인원</label></td>
-			<td>
+									&nbsp;&nbsp;<label for="tk_stock">예약 가능 인원</label>
+								</td>
+								<td>
 									<input type="text" id="tk_stock" name="tk_stock" value="${update.tk_stock}"/>
 								</td>
 							</tr>	
 							<tr style="border-bottom: 1px solid #ccc; height: 70px;">
 								<td style="width: 30%;">
-			&nbsp;&nbsp;
-									<label for="tk_date">예약 날짜</label></td>
-			<td>
+									&nbsp;&nbsp;<label for="tk_date">예약 날짜</label>
+								</td>
+								<td>
 									<input type="date" id="tk_date" name="tk_date" value="${update.tk_date}"/>
 								</td>
 							</tr>	
-							<tr style="height: 70px;">	
-			<td style="text-align: right;">
+	</table>
+	<br />
+	
+			<div style="text-align: center;">
 			<button class="update_btn" type="submit" style="background-color: #45489a; color: white; border-color: #45489a;">저장</button>&nbsp; 
-			</td>
-			<td>&nbsp;
-<button class="cancel_btn" type="submit" style="background-color: #45489a; color: white; border-color: #45489a;">취소</button>
-			</td>
-		</tr>
-					</table>
-				</form>
+			<button class="cancel_btn" type="submit" style="background-color: #45489a; color: white; border-color: #45489a;">취소</button>
+			</div>
+	</form>
+		</div>
 		</div>
 		</div>
 		</div>

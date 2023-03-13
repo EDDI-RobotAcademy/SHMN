@@ -21,16 +21,17 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  <typeAlias type="com.kh.saeha.vo.ProgramVO" alias="programVO"/>
  <typeAlias type="com.kh.saeha.vo.BookVO" alias="bookVO"/>
  <typeAlias type="com.kh.saeha.vo.LikeVO" alias="likeVO"/>
+ <typeAlias type="com.kh.saeha.vo.LikelistVO" alias="likelistVO"/>
  <typeAlias type="com.kh.saeha.vo.GoodsBoardReplyVO" alias="GoodsBoardReplyVO"/> 
   <typeAlias type="com.kh.saeha.vo.FaqVO" alias="faqVO"/>
  <typeAlias type="com.kh.saeha.vo.TicketVO" alias="ticketVO"/>
  <typeAlias type="com.kh.saeha.vo.TicketBuyVO" alias="ticketBuyVO"/>
  <typeAlias type="com.kh.saeha.vo.CouponVO" alias="CouponVO"/>
-  <typeAlias type="com.kh.saeha.vo.PdReplyVO" alias="pdreplyVO"/>
   <typeAlias type="com.kh.saeha.vo.CartVO" alias="CartVO"/>
   <typeAlias type="com.kh.saeha.vo.BuyVO" alias="BuyVO"/>
   <typeAlias type="com.kh.saeha.vo.GoodsBoardImgVO" alias="GoodsBoardImgVO"/>
   <typeAlias type="com.kh.saeha.vo.EventVO" alias="EventVO"/>
+  
 </typeAliases>
 
 </configuration>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +23,7 @@
 </head>
 <body>
 
-<header class="nav-down responsive-nav hidden-lg hidden-md">
+	<header class="nav-down responsive-nav hidden-lg hidden-md">
 		<button type="button" id="nav-toggle" class="navbar-toggle"
 			data-toggle="collapse" data-target="#main-nav">
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
@@ -32,7 +34,8 @@
 			<nav>
 				<ul class="nav navbar-nav">
 					<li><a href="/">Home</a></li>
-					<li><a href="/sae_program/programlist">Programs</a></li>
+					
+					<li><a href="/sae_program/programlist?pg_type=관람">Programs</a></li>
 					<li><a href="/sae_product/goodslist">Saeha Shop</a></li>
 					<li><a href="/sae_boardn/nlist">Notice</a></li>
 					<li><a href="/sae_faq/faqList">FAQ</a></li>
@@ -51,26 +54,39 @@
 				<li><a href="/"> <span class="rect"></span> <span
 						class="circle"></span> Home
 				</a></li>
-				<li><a href="/sae_program/programlist"> <span class="rect"></span> <span
-						class="circle"></span> Programs
+				<li><a href="/sae_program/programlist?pg_type=관람"> <span
+						class="rect"></span> <span class="circle"></span> Programs
 				</a></li>
-				<li><a href="/sae_product/goodslist"> <span class="rect"></span> <span
-						class="circle"></span> Saeha Shop
+				<li><a href="/sae_product/productmain"> <span class="rect"></span>
+						<span class="circle"></span> Saeha Shop
 				</a></li>
-				<li><a href="/sae_boardn/nlist"> <span class="rect"></span> <span
-						class="circle"></span> Notice
+				<li><a href="/sae_boardn/nlist"> <span class="rect"></span>
+						<span class="circle"></span> Notice
 				</a></li>
-				<li><a href="/sae_faq/faqList"> <span class="rect"></span> <span
-						class="circle"></span> FAQ
+				<li><a href="/sae_faq/faqList"> <span class="rect"></span>
+						<span class="circle"></span> FAQ
+				</a></li>
+				<li><a href="/sae_event/main"> <span class="rect"></span> <span
+						class="circle"></span> EVENT
 				</a></li>
 				<li><a href="#contact"> <span class="rect"></span> <span
 						class="circle"></span> Contact Us
 				</a></li>
 			</ul>
 		</nav>
-		<ul class="social-icons" >
-			<li><a href="/sae_member/login" style="font-size: 15px;">로그인</a></li>
-			<li><a href="/sae_member/register" style="font-size: 15px;">회원가입</a></li>
+		<ul class="social-icons">
+			<c:choose>
+				<c:when test="${member.userId == null }">
+					<li><a href="/sae_member/login" style="font-size: 15px;">로그인</a></li>
+					<li><a href="/sae_member/register" style="font-size: 15px;">회원가입</a></li>
+				</c:when>
+				<c:otherwise>
+
+					<li><a href="/sae_member/mypage" style="font-size: 15px;">마이페이지</a></li>
+					<li><a href="/sae_cart/cartlist" style="font-size: 15px;">장바구니</a></li>
+					<li><a href="/sae_member/logout" style="font-size: 15px;">로그아웃</a></li>
+				</c:otherwise>
+			</c:choose>
 		</ul>
 	</div>
 

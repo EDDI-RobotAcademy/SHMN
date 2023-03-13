@@ -38,7 +38,7 @@ $(document).ready(function() {
     
     //목록
     $(".list_btn").on("click", function() {
-       location.href = "/sae_ticket/ticketBook?day=2";
+       location.href = "/sae_ticket/ticketList";
 
     })
 })
@@ -47,29 +47,35 @@ $(document).ready(function() {
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
-<div class="section-heading">
-   <h1>상세보기</h1>
-</div>
+<div style="width:100%">
+<div style="padding:40px 0; height: 100%;">
+	<div class="section-heading">
+				<h1>
+				&nbsp;상세보기<br><Br>
+				</h1>
+
+	<img src="/resources/img/tkback.jpg" style="width: 98%">
+	</div>
+	<div style="display: flex; ">
+		<div style="width: 100%;">
+
     
-<div style="padding:60px 0; height: 100%;">
+<div style="padding:0px 0; height: 100%;">
     <form name="readForm" method="post">
-    <table>
-    <!-- 	<tr>
-    		 <td><label for = "tk_bno">번호</label>
-    		<td><label for = "tk_bno">${read.tk_bno}</label></td>
-    	</tr>-->
-    	<tr>
-    		<td><label for = "tk_name">구분</label>
-    		<td><label for = "tk_name">${read.tk_name}</label></td>
+    <table style="width:50%; margin:auto;">
+
+    	<tr style="border-bottom: 1px solid #ccc; height: 70px;">
+    		<td style = "text-align:center; width: 50%;"><label for = "tk_name">구분</label>
+    		<td style = "text-align:center; width: 50%;"><label for = "tk_name">${read.tk_name}</label></td>
     	</tr>
     	
-    	<tr>
-    		<td><label for = "tk_stock ">예약 가능 인원</label>
-    		<td><label for = "tk_stock ">${read.tk_stock }</label></td>
+    	<tr style="border-bottom: 1px solid #ccc; height: 70px;">
+    		<td style = "text-align:center; width: 50%;"><label for = "tk_stock ">예약 가능 인원</label>
+    		<td style = "text-align:center; width: 50%;"><label for = "tk_stock ">${read.tk_stock }</label></td>
     	</tr>
-    	<tr>
-    		<td><label for = "tk_date ">예약 날짜</label>
-    		<td><label for = "tk_date ">${read.tk_date }</label></td>
+    	<tr style="border-bottom: 1px solid #ccc; height: 70px;">
+    		<td style = "text-align:center; width: 50%;"><label for = "tk_date ">예약 날짜</label>
+    		<td style = "text-align:center; width: 50%;"><label for = "tk_date ">${read.tk_date }</label></td>
     	</tr>
     </table>
     	<input type="hidden" value="${read.tk_bno}" name="tk_bno"></input> 
@@ -77,20 +83,25 @@ $(document).ready(function() {
    
    
    <br>
+   <br>
    
    
    <!-- 관리자용 버튼 -->
       <c:if test = "${member.userId == 'admin' }">
-      	<button type="button" class="update_btn">수정</button>
-      	<button type="button" class="delete_btn">삭제</button>
-   		<button type="button" class="list_btn">목록</button>
+      <div style="text-align: center;">
+      	<button style="background-color: #45489a; color: white; border-color: #45489a;" type="button" class="update_btn">수정</button>
+      	<button style="background-color: #45489a; color: white; border-color: #45489a;"type="button" class="delete_btn">삭제</button>
+   		<button style="background-color: #45489a; color: white; border-color: #45489a;" type="button" class="list_btn">목록</button>
+      </div>
       </c:if>
       
 
 	
     </form>
+    </div>
    </div>
    </div>
+   </div></div></div>
    <footer class="footer">
 			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
 		</footer>

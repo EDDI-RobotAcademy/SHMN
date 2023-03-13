@@ -24,6 +24,7 @@ $(document).ready(function() {
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 	<div class="section-heading">
 				<h1>
@@ -32,16 +33,13 @@ $(document).ready(function() {
 	</div>
 <div id = "root">
 	<form action="/sae_ticket/tkWrite" name = "writeForm" method="POST">
-	<table style="width:50%;">
-		
-	<!--  	<tr><td>
-			<label for= "tk_bno">입장권 번호</label><input type="text" id="tk_bno" name="tk_bno" />
-			</td>
-		</tr>-->
-		<tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+	<table style="width:70%; margin:auto;">
+
+		<tr style="border-bottom: 1px solid #ccc; height: 70px;">
+		<td style="width: 30%;">
 			&nbsp;&nbsp;<label for= "tk_name">입장 분류</label></td>
 			<td>
-				<input type="radio" value="일반" id="tk_name" name="tk_name"> 일반 
+				<input type="radio" value="일반" id="tk_name" name="tk_name"> 일반 <br />
 				<input type="radio" value="야간" id="tk_name" name="tk_name"> 야간
 			</td>
 		</tr>
@@ -61,18 +59,16 @@ $(document).ready(function() {
 			</td>
 		</tr>
 
-		<tr style="height: 70px;">	
-			<td style="text-align: right;">
-			<button class="write_btn" type="submit" style="background-color: #45489a; color: white; border-color: #45489a;">작성</button>&nbsp; 
-			</td>
-			<td>&nbsp;
-			<input type="button" value="뒤로" onclick="history.back(-1)" style="background-color: #45489a; color: white; border-color: #45489a;">
-			</td>
-		</tr>
-		
-		
 	</table>
+			<br />
+			<div style="text-align: center;">
+		
+			<button class="write_btn" type="submit" style="background-color: #45489a; color: white; border-color: #45489a;">작성</button>&nbsp; 
+			<input type="button" value="뒤로" onclick="history.back(-1)" style="background-color: #45489a; color: white; border-color: #45489a;">
+	
+			</div>
 	</form>
+	</div>
 	</div>
 	</div>
 	</div>

@@ -55,6 +55,7 @@ $(document).ready(function(){
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 	<div class="section-heading">
 				<h1>
@@ -98,8 +99,10 @@ $(document).ready(function(){
   </tr>
   <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
 			&nbsp;&nbsp;
-  <label for="pg_file">프로그램 파일</label></td>
-			<td><input type="file" id="pg_file" name="pg_file" class="chk" value="${programUpdate.pg_file }"/>
+  <label for="uploadFile">프로그램 파일</label></td>
+			<td><input
+                           multiple="multiple" type="file" id="file" name="file"
+                           class="chk" title="상품 사진을 입력하세요" />
   </td>
   </tr>
   <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
@@ -126,13 +129,6 @@ $(document).ready(function(){
   <label for="pg_benddate">예약 종료일</label></td><td><input type="date" id="pg_benddate" name="pg_benddate" class="chk" value="${programUpdate.pg_benddate }"/>
   </td>
   </tr>
-  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
-			&nbsp;&nbsp;
-    <ul id='pg_time'></ul>
-  <label for="pg_time">프로그램 시간</label></td><td><input type="time" id="pg_time" name="pg_time" class="chk" value="${programUpdate.pg_time }"/>
-      <input type='button' value='추가' onclick='addList()' />
-  </td> 
-  </tr>
   <tr >
   <td>
   <button class="update_btn" type="submit" style="background-color: #45489a; color: white; border-color: #45489a;">수정 완료</button>
@@ -146,6 +142,7 @@ $(document).ready(function(){
 </table>
 </form>
 
+</div>
 </div>
 </div>
 </div>

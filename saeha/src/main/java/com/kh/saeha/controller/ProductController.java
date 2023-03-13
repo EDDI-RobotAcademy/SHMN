@@ -17,18 +17,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kh.saeha.service.PdReplyService;
 import com.kh.saeha.service.ProductService;
-import com.kh.saeha.vo.ProductVO;
 import com.kh.saeha.vo.ImgVO;
 import com.kh.saeha.vo.PageMaker;
-import com.kh.saeha.vo.PdReplyVO;
+import com.kh.saeha.vo.ProductVO;
 import com.kh.saeha.vo.SearchCriteria;
 
 @Controller
@@ -37,14 +33,11 @@ public class ProductController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\spring_1123\\workspace_1\\SHMN\\saeha\\src\\main\\webapp\\resources\\productimg\\";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\Spring_1123\\spring_git\\SHMN\\saeha\\src\\main\\webapp\\resources\\productimg\\";
 
 	@Inject
 	ProductService service;
 	
-	@Inject
-	PdReplyService replyService;
-
 	// 상품 메인화면
 	@RequestMapping(value = "/productmain", method = RequestMethod.GET)
 	public void productmain() throws Exception {
@@ -151,16 +144,18 @@ public class ProductController {
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(ProductVO prodcutVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
-
+		
+		model.addAttribute("img", service.getImg(prodcutVO.getPd_bno()));
 		model.addAttribute("imglist", service.imglist(prodcutVO.getPd_bno()));
 		model.addAttribute("read", service.read(prodcutVO.getPd_bno()));
 		model.addAttribute("readcount", service.readcount(prodcutVO.getPd_bno()));
 		model.addAttribute("scri", scri);
 		
-		// 댓글 조회
-		List<PdReplyVO> replyList = replyService.readReply(prodcutVO.getPd_bno());	
-		model.addAttribute("replyList", replyList);
-
+		/*
+		 * // 댓글 조회 List<PdReplyVO> replyList =
+		 * replyService.readReply(prodcutVO.getPd_bno());
+		 * model.addAttribute("replyList", replyList);
+		 */
 		return "sae_product/productView";
 	}
 
@@ -300,63 +295,62 @@ public class ProductController {
 	
 	
 	
-	//여기서부터 문의사항 게시판
-	//문의 댓글 작성
-		@RequestMapping(value = "/replyWrite", method = RequestMethod.GET)
-		public String replyWrite(PdReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
-			logger.info("댓글 작성 성공");
-					
-			replyService.writeReply(vo);
-			
-			rttr.addAttribute("py_bno", vo.getPy_bno());
-			rttr.addAttribute("page", scri.getPage());
-			rttr.addAttribute("perPageNum", scri.getPerPageNum());
-			rttr.addAttribute("searchType", scri.getSearchType());
-			rttr.addAttribute("keyword", scri.getKeyword());
-			
-		
-			return "redirect:/sae_product/read?pd_bno=" + vo.getPy_bno();
-			//return "sae_product/read";
-			//return "/sae_product/read?pd_bno=" + vo.getPy_bno();
-		   //댓글을 작성했던 게시물로 이동.
-
-		}
-		
-			
-		
-		
-		//댓글삭제를 누르면 보여준다
-		@RequestMapping(value = "/replyDeleteView", method = RequestMethod.GET)
-		public String replyDeleteView(PdReplyVO vo, SearchCriteria scri, Model model) throws Exception{
-			logger.info("reply delete view");
-				
-			model.addAttribute("replyDelete", replyService.selectReply(vo.getPy_pno())); //pno 오타주의
-			model.addAttribute("scri", scri);
-				
-			return "sae_product/replyDeleteView";
-				
-			}
-
-		
-		//문의 댓글 삭제 
-		@RequestMapping(value = "/replyDelete", method = RequestMethod.POST)
-		public String replyDelete(PdReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception{
-			logger.info("댓글 삭제 완료");
-			
-			replyService.deleteReply(vo);
-			
-			//하나씩 삭제
-			rttr.addAttribute("py_pno", vo.getPy_pno());
-			rttr.addAttribute("page", scri.getPage());
-			rttr.addAttribute("perPageNum", scri.getPerPageNum());
-			rttr.addAttribute("searchType", scri.getSearchType());
-			rttr.addAttribute("keyword", scri.getKeyword());
-			
-			return "redirect:/sae_product/read?pd_bno=" + vo.getPy_bno();
-//			return "redirect:/sae_product/productView?pd_bno=" + vo.getPy_pno();
-//			댓글을 작성했던 게시물로 이동.
-			
-		}
-			
+	/*
+	 * //여기서부터 문의사항 게시판 //문의 댓글 작성
+	 * 
+	 * @RequestMapping(value = "/replyWrite", method = RequestMethod.GET) public
+	 * String replyWrite(PdReplyVO vo, SearchCriteria scri, RedirectAttributes rttr)
+	 * throws Exception { logger.info("댓글 작성 성공");
+	 * 
+	 * replyService.writeReply(vo);
+	 * 
+	 * rttr.addAttribute("py_bno", vo.getPy_bno()); rttr.addAttribute("page",
+	 * scri.getPage()); rttr.addAttribute("perPageNum", scri.getPerPageNum());
+	 * rttr.addAttribute("searchType", scri.getSearchType());
+	 * rttr.addAttribute("keyword", scri.getKeyword());
+	 * 
+	 * 
+	 * return "redirect:/sae_product/read?pd_bno=" + vo.getPy_bno(); //return
+	 * "sae_product/read"; //return "/sae_product/read?pd_bno=" + vo.getPy_bno();
+	 * //댓글을 작성했던 게시물로 이동.
+	 * 
+	 * }
+	 * 
+	 * 
+	 * 
+	 * 
+	 * //댓글삭제를 누르면 보여준다
+	 * 
+	 * @RequestMapping(value = "/replyDeleteView", method = RequestMethod.GET)
+	 * public String replyDeleteView(PdReplyVO vo, SearchCriteria scri, Model model)
+	 * throws Exception{ logger.info("reply delete view");
+	 * 
+	 * model.addAttribute("replyDelete", replyService.selectReply(vo.getPy_pno()));
+	 * //pno 오타주의 model.addAttribute("scri", scri);
+	 * 
+	 * return "sae_product/replyDeleteView";
+	 * 
+	 * }
+	 * 
+	 * 
+	 * //문의 댓글 삭제
+	 * 
+	 * @RequestMapping(value = "/replyDelete", method = RequestMethod.POST) public
+	 * String replyDelete(PdReplyVO vo, SearchCriteria scri, RedirectAttributes
+	 * rttr) throws Exception{ logger.info("댓글 삭제 완료");
+	 * 
+	 * replyService.deleteReply(vo);
+	 * 
+	 * //하나씩 삭제 rttr.addAttribute("py_pno", vo.getPy_pno());
+	 * rttr.addAttribute("page", scri.getPage()); rttr.addAttribute("perPageNum",
+	 * scri.getPerPageNum()); rttr.addAttribute("searchType", scri.getSearchType());
+	 * rttr.addAttribute("keyword", scri.getKeyword());
+	 * 
+	 * return "redirect:/sae_product/read?pd_bno=" + vo.getPy_bno(); // return
+	 * "redirect:/sae_product/productView?pd_bno=" + vo.getPy_pno(); // 댓글을 작성했던
+	 * 게시물로 이동.
+	 * 
+	 * }
+	 */	
 	}
 

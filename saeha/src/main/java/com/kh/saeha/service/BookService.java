@@ -16,7 +16,7 @@ public interface BookService {
 	public int book(BookVO vo) throws Exception;
 
 	//예약취소
-	public void bookDelete(BookVO vo) throws Exception; 
+	public void bookDelete(int bno) throws Exception; 
 	
 	//예약변경
 	public void bookUpdate(BookVO vo) throws Exception;

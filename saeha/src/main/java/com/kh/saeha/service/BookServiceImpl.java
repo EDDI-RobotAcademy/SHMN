@@ -22,8 +22,8 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public void bookDelete(BookVO vo) throws Exception {
-		dao.bookDelete(vo);		
+	public void bookDelete(int bno) throws Exception {
+		dao.bookDelete(bno);		
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class BookServiceImpl implements BookService{
 	public List<BookVO> booklist(BookVO vo) throws Exception {
 		return dao.booklist(vo);
 	}
-
+	
 	@Override
 	public BookVO bookread(int bno) throws Exception {
 		return dao.bookread(bno);

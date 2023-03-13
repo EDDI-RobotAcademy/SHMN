@@ -18,10 +18,24 @@
 
 </head>
 <body>
-<%@include file="../include/nav.jsp" %>
 
-		<div class="page-content">
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="padding:60px 0; height: 100%; width: 150%; padding-right: 15%;">
+<div style="width:100%; margin-right: 300px;">
+<div class="section-heading">
+				<h1 style="margin-left: 50px">
+					Notice<br>
+					<em>Boards</em>
+				</h1>
+				<p>
+					This is the announcement board of Saehamano. 
+			<br>We will introduce everything related to announcements.
+				</p>
 		
+		<div class="page-content" style="display: flex; justify-content: center;">
+		<div style="width: 100%">
+		<div style="padding:60px 0;  height: 150%; width: 100%; ">
 <section id="blog" class="content-section">		
 		<div class="section-content">
 				<div class="tabs-content">
@@ -44,6 +58,7 @@
 										</h4>
 										<span><fmt:formatDate value="${nlist.n_regdate}"
 												pattern="yyyy-MM-dd" /></span>
+											ㅣ<span>조회수<c:out value="${nlist.n_hit }" /></span>
 									</div>
 								</div></li>
 						</c:forEach>
@@ -53,15 +68,28 @@
 			</form>
 		</div>
 </div>
+
+   <div style="text-align: right;"> 
+			<c:if test="${member.userId == 'admin'}">
+					<a href="/sae_boardn/nwriteView"><button style="background-color: #45489a; color: white; border-color: #45489a;">글 등록</button></a>
+			
+			</c:if>
+	</div>
 </div>
 </section>
-			<c:if test="${member.userId == 'admin'}">
-				<button type="button">
-					<a href="/sae_boardn/nwriteView">글 등록</a>
-				</button>
-			</c:if>
+</div>
+</div>
 
 </div>
+
+
+</section>
+</div>
+</div>
+</div>
+
+			</div>
+			
 <footer class="footer">
 			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
 		</footer>

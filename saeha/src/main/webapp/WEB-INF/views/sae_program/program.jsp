@@ -54,6 +54,7 @@ $(document).ready (function () {
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 	<div class="section-heading">
 				<h1>
@@ -62,8 +63,8 @@ $(document).ready (function () {
 	</div>
 	
 <div id="root">
-<form name="writeForm" method="post" action="sae_program/upload">
-<table style="width: 65%;">
+<form name="writeForm" method="post" enctype="multipart/form-data" action="/sae_program/upload">
+<table style="width: 90%;">
  <c:if test="${member.userId == 'admin'}"> 
   <tr>
   <td>
@@ -74,29 +75,30 @@ $(document).ready (function () {
 			&nbsp;&nbsp;
   <label for="pg_type">프로그램 분류</label></td><td>
   <select  id="pg_type" name="pg_type" class="chk">
-    <option value="1">관람</option>
-    <option value="2">체험</option>
-    <option value="3">단체</option>
-    <option value="4">4</option>
+    <option value="관람">관람</option>
+    <option value="체험">체험</option>
+    <option value="전시">전시</option>
   </select>
   </td>
   </tr>
   <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
 			&nbsp;&nbsp;
   <label for="pg_name">프로그램 이름</label></td>
-			<td><input type="text" id="pg_name" name="pg_name" class="chk" title="프로그램 번호를 입력하세요."/>
+			<td><input type="text" size="65" id="pg_name" name="pg_name" class="chk" title="프로그램 번호를 입력하세요."/>
   </td>
   </tr>
   <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
 			&nbsp;&nbsp; 
   <label for="pg_content">프로그램 내용</label></td>
-			<td><textarea id="pg_content" name="pg_content" class="chk" title="프로그램 내용을 입력하세요."></textarea>
+			<td><textarea rows="15" cols="65" id="pg_content" name="pg_content" class="chk" title="프로그램 내용을 입력하세요."></textarea>
   </td>
   </tr>
   <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
 			&nbsp;&nbsp;
-  <label for="pg_file">프로그램 파일</label></td>
-			<td><input type="file" id="pg_file" name="pg_file" class="chk" title="프로그램 파일을 입력하세요."/>
+  <label for="uploadFile">프로그램 파일</label></td>
+			<td><input
+                           multiple="multiple" type="file" id="file" name="file"
+                           class="chk" title="상품 사진을 입력하세요" />
   </td>
   </tr>
   <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
@@ -132,7 +134,7 @@ $(document).ready (function () {
       <input type='button' value='추가' onclick='addList()' />
   </td> 
   </tr> -->
-  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+<!--  <tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
 			&nbsp;&nbsp;
   <label for="pg_time">프로그램 시간</label></td>
   <td>
@@ -140,7 +142,7 @@ $(document).ready (function () {
         <input type="time" name="pg_time"> <input type="button" class="btnAdd" value="Add"><br>        
   </div> 
   </td>
-  </tr>
+  </tr> -->
   <tr>
   <td></td>
   <td style="text-align: right;"><br>
@@ -151,6 +153,7 @@ $(document).ready (function () {
 
 </table>
 </form>
+</div>
 </div>
 </div>
 </div>

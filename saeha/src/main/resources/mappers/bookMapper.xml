@@ -5,17 +5,17 @@
 <mapper namespace="bookMapper">
 
 <!-- 예약 전에 프로그램 정보 불러오기 -->
-<select id="bookinfo">
-select pg_bno, pg_name,pg_content pg_startdate,pg_enddate, pg_bstartdate, pg_benddate,pg_time,pg_type from sae_program where pg_bno = #{pg_bno} 
+<select id="bookinfo" parameterType="int" resultType="bookVO">
+select pg_bno, pg_name,pg_content pg_startdate,pg_enddate, pg_bstartdate, pg_benddate,pg_type from sae_program where pg_bno = #{pg_bno} 
 </select>
 
 
 <!-- 예약하기 -->
-<insert id="book" >
+<insert id="book">
     <selectKey keyProperty="bk_bno" resultType="int" order="BEFORE">  
         select sae_book_seq.nextval FROM dual
     </selectKey>
-    INSERT INTO SAE_BOOK(bk_bno, bk_pno, bk_inwon, bk_id, bk_pdate, bk_name, bk_tel,bk_type) values(#{bk_bno}, #{bk_pno}, #{bk_inwon}, #{bk_id}, #{bk_pdate}, #{bk_name}, #{bk_tel},#{bk_type}) 
+    INSERT INTO SAE_BOOK(bk_bno, bk_pno, bk_inwon, bk_id, bk_pdate,bk_time, bk_name, bk_tel,bk_type) values(#{bk_bno}, #{bk_pno}, #{bk_inwon}, #{bk_id}, #{bk_pdate}, #{bk_time}, #{bk_name}, #{bk_tel},#{bk_type}) 
 </insert>
 
 <!-- 예약하기 -->
@@ -27,20 +27,21 @@ select pg_bno, pg_name,pg_content pg_startdate,pg_enddate, pg_bstartdate, pg_ben
 update sae_book set
 bk_inwon=#{bk_inwon},
 bk_pdate=#{bk_pdate},
+bk_time=#{bk_time},
 bk_name =#{bk_name},
 bk_tel=#{bk_tel}
 where bk_bno=#{bk_bno}
 </update>
 
 <!-- 예약취소하기(삭제) -->
-<delete id="bookDelete">
+<delete id="bookDelete" parameterType="int">
 DELETE FROM SAE_BOOK
-WHERE BK_PNO = #{bk_pno}
+WHERE BK_BNO = #{bk_bno}
 </delete>
 
 <!-- 예약 조회 -->
 <select id="bookread" parameterType="int" resultType="bookVO">
-select bk_bno, bk_pno, bk_inwon, bk_id, bk_pdate, bk_name, bk_tel,bk_type from sae_book where bk_bno = #{bk_bno}
+select bk_bno, bk_pno, bk_inwon, bk_id, bk_pdate,bk_time, bk_name, bk_tel,bk_type from sae_book where bk_bno = #{bk_bno}
 </select>
 
 
@@ -48,7 +49,7 @@ select bk_bno, bk_pno, bk_inwon, bk_id, bk_pdate, bk_name, bk_tel,bk_type from s
 
  <!-- 예약목록 -->
 <select id="booklist" resultType="bookVO" parameterType="bookVO">
-select bk_bno, bk_pno,bk_name, bk_inwon, bk_pdate, pg_name 
+select bk_bno, bk_pno,bk_name, bk_inwon, bk_pdate,bk_time, pg_name 
 from sae_book join sae_program 
 on bk_pno = pg_bno 
 where bk_id = #{bk_id} 

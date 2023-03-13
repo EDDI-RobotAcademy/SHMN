@@ -46,5 +46,12 @@ public class BoardnServiceImpl implements BoardnService{
 	public void ndelete(int n_bno) throws Exception {
 		dao.ndelete(n_bno);
 	}
+	
+	//공지게시판 조회수 
+	@Override
+	public BoardnVO nhit(int n_bno) throws Exception {
+		return dao.nhit(n_bno);
+			
+	}
 
 }

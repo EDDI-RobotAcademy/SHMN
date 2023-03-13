@@ -137,6 +137,7 @@ $(document).ready(function(){
 <%@include file='../include/nav.jsp' %>
 
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 <div class="section-heading">
 				<h1>
@@ -150,7 +151,8 @@ $(document).ready(function(){
 			</div>
 
 	<!--아이콘박스 -->
-	<div style="display: flex; width: 720px;">
+
+	<div style="display: flex;ustify-content:space-around; width: 85%;">
 		<div>
 		<div class="agree" style="background-image: url(/resources/img/join1g.png);"><strong>약관동의</strong></div>
 		<span class="agree2">STEP.1</span>
@@ -216,6 +218,7 @@ $(document).ready(function(){
 		</div>
 	</form>
 	</section>
+</div>
 </div>
 </div>
 </div>

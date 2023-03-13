@@ -56,5 +56,11 @@ public class BoardnDAOImpl implements BoardnDAO{
 		sqlSession.delete("boardnMapper.ndelete", n_bno);
 	}
 	
+	//공지게시판 조회수
+	@Override
+	public BoardnVO nhit(int n_bno) throws Exception {
+		return sqlSession.selectOne("boardnMapper.nhit", n_bno);
+		}
+	
 	
 }

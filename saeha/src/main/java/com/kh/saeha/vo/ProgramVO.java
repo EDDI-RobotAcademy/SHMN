@@ -5,15 +5,15 @@ public class ProgramVO {
 	private int pg_bno;
 	private String pg_name;
 	private String pg_content;
-	private String pg_file;
+	private int pg_file;
+	private String pg_thumbnail;
+	private String pg_filepath;
 	private int pg_stock;
 	private String pg_startdate;
 	private String pg_enddate;
 	private String pg_bstartdate;
 	private String pg_benddate;
-	private String pg_time;
 	private String pg_type;
-	
 	
 	public int getPg_bno() {
 		return pg_bno;
@@ -33,11 +33,23 @@ public class ProgramVO {
 	public void setPg_content(String pg_content) {
 		this.pg_content = pg_content;
 	}
-	public String getPg_file() {
+	public int getPg_file() {
 		return pg_file;
 	}
-	public void setPg_file(String pg_file) {
+	public void setPg_file(int pg_file) {
 		this.pg_file = pg_file;
+	}
+	public String getPg_thumbnail() {
+		return pg_thumbnail;
+	}
+	public void setPg_thumbnail(String pg_thumbnail) {
+		this.pg_thumbnail = pg_thumbnail;
+	}
+	public String getPg_filepath() {
+		return pg_filepath;
+	}
+	public void setPg_filepath(String pg_filepath) {
+		this.pg_filepath = pg_filepath;
 	}
 	public int getPg_stock() {
 		return pg_stock;
@@ -69,12 +81,6 @@ public class ProgramVO {
 	public void setPg_benddate(String pg_benddate) {
 		this.pg_benddate = pg_benddate;
 	}
-	public String getPg_time() {
-		return pg_time;
-	}
-	public void setPg_time(String pg_time) {
-		this.pg_time = pg_time;
-	}
 	public String getPg_type() {
 		return pg_type;
 	}
@@ -85,9 +91,9 @@ public class ProgramVO {
 	@Override
 	public String toString() {
 		return "ProgramVO [pg_bno=" + pg_bno + ", pg_name=" + pg_name + ", pg_content=" + pg_content + ", pg_file="
-				+ pg_file + ", pg_stock=" + pg_stock + ", pg_startdate=" + pg_startdate + ", pg_enddate=" + pg_enddate
-				+ ", pg_bstartdate=" + pg_bstartdate + ", pg_benddate=" + pg_benddate + ", pg_time=" + pg_time
-				+ ", pg_type=" + pg_type + "]";
-	}
-
+				+ pg_file + ", pg_thumbnail=" + pg_thumbnail + ", pg_filepath=" + pg_filepath + ", pg_stock=" + pg_stock
+				+ ", pg_startdate=" + pg_startdate + ", pg_enddate=" + pg_enddate + ", pg_bstartdate=" + pg_bstartdate
+				+ ", pg_benddate=" + pg_benddate + ", pg_type=" + pg_type + "]";
+	}		
+	
 }

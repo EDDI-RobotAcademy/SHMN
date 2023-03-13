@@ -36,8 +36,20 @@ $(document).ready(function() {
 </script>
 <body>
 <%@include file="../include/nav.jsp" %>
-	<div class="page-content">
-
+<div class="page-content">
+<div style="padding:60px 0; height: 100%;  padding-bottom: 15%;">
+<div style="width:100%; margin-right: 300px; margin-bottom: 70px">
+<div class="section-heading">
+				<h1>
+					Notice<br>
+					<em>Boards</em>
+				</h1>
+				<p>
+					This is the announcement board of Saehamano. 
+			<br>We will introduce everything related to announcements.
+				</p>
+				</div>
+				
 <section id="blog" class="content-section">		
 		<div class="section-content">
 				<div class="tabs-content">
@@ -63,19 +75,21 @@ ${nread.n_content}
 </div>
 
 </section>
+<div style="text-align: right;">
+   <a href="/sae_boardn/nlist"><button style="background-color: #45489a; color: white; border-color: #45489a;">목록</button></a>
 
+<c:if test="${member.userId == 'admin'}">
+   <button style="background-color: #45489a; color: white; border-color: #45489a;" class="nupdate_btn">수정</button>
+   <button style="background-color: #45489a; color: white; border-color: #45489a;" class="ndelete_btn">삭제</button>
+</c:if>
+</div>
 </div>
 </div>
 </div>
 </section>
 </div>
-
-
-<c:if test="${member.userId == 'admin'}">
-   <button type="button" class="nupdate_btn">수정</button>
-   <button type="button" class="ndelete_btn">삭제</button>
-   <button type="button"><a href="/sae_boardn/nlist">목록</a></button>
-</c:if>
+</div>
+</div>
 <footer class="footer">
 			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
 		</footer>

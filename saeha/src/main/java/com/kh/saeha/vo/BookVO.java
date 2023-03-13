@@ -10,6 +10,7 @@ public class BookVO {
 	private String bk_id; // DB에서 받아올 값
 	private Date bk_date; // view에서 받아올 값(예약한 날짜)
 	private String bk_pdate; // view에서 받아올 값
+	private String bk_time; // view에서 받아올 값
 	private String bk_name; // view에서 받아올 값
 	private String bk_tel; // view에서 받아올 값
 	private String bk_type;
@@ -52,6 +53,12 @@ public class BookVO {
 	public void setBk_pdate(String bk_pdate) {
 		this.bk_pdate = bk_pdate;
 	}
+	public String getBk_time() {
+		return bk_time;
+	}
+	public void setBk_time(String bk_time) {
+		this.bk_time = bk_time;
+	}
 	public String getBk_name() {
 		return bk_name;
 	}
@@ -82,11 +89,12 @@ public class BookVO {
 	public void setPg_bno(int pg_bno) {
 		this.pg_bno = pg_bno;
 	}
+	
 	@Override
 	public String toString() {
 		return "BookVO [bk_bno=" + bk_bno + ", bk_pno=" + bk_pno + ", bk_inwon=" + bk_inwon + ", bk_id=" + bk_id
-				+ ", bk_date=" + bk_date + ", bk_pdate=" + bk_pdate + ", bk_name=" + bk_name + ", bk_tel=" + bk_tel
-				+ ", bk_type=" + bk_type + ", pg_name=" + pg_name + ", pg_bno=" + pg_bno + "]";
-	}
-
+				+ ", bk_date=" + bk_date + ", bk_pdate=" + bk_pdate + ", bk_time=" + bk_time + ", bk_name=" + bk_name
+				+ ", bk_tel=" + bk_tel + ", bk_type=" + bk_type + ", pg_name=" + pg_name + ", pg_bno=" + pg_bno + "]";
+	}	
+	
 }

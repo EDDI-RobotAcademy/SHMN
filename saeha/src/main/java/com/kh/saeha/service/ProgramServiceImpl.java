@@ -1,6 +1,7 @@
 package com.kh.saeha.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.saeha.dao.ProgramDAO;
 import com.kh.saeha.vo.BookVO;
+import com.kh.saeha.vo.ImgVO;
 import com.kh.saeha.vo.ProgramVO;
 import com.kh.saeha.vo.SearchCriteria;
 
@@ -32,8 +34,8 @@ public class ProgramServiceImpl implements ProgramService {
 	
 
 	@Override
-	public List<ProgramVO> programlist(String type) throws Exception {
-		return dao.programlist(type);
+	public List<ProgramVO> programlist(String pg_type) throws Exception {
+		return dao.programlist(pg_type);
 	}
 
 	
@@ -56,6 +58,31 @@ public class ProgramServiceImpl implements ProgramService {
 	@Override
 	public void programDelete(int bno) throws Exception {
 		dao.programDelete(bno);
+	}
+
+	@Override
+	public void pfileSave(Map<String, String> fileMap) throws Exception {
+		dao.pfileSave(fileMap);
+	}
+
+	@Override
+	public int programbno(ProgramVO vo) throws Exception {
+		return dao.programbno(vo);
+	}
+
+	@Override
+	public void pidelete(int pg_bno) throws Exception {
+		dao.pidelete(pg_bno);
+	}
+
+	@Override
+	public String pgetImg(int pg_bno) throws Exception {
+		return dao.pgetImg(pg_bno);
+	}
+
+	@Override
+	public List<ImgVO> pimglist(int pg_bno) throws Exception {
+		return dao.pimglist(pg_bno);
 	}
 
 	

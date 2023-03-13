@@ -54,14 +54,16 @@
 	}
 </script>
 <body>
-	<div id="root">
-		<header>
-			<h1>게시판</h1>
-		</header>
-		<hr />
-		<hr />
+<%@include file="../include/nav.jsp" %>
+<div class="page-content">
+<div style="width:90%">
+<div style="padding:60px 0; height: 100%;">
+	<div class="section-heading">
+				<h1>
+				&nbsp;상품 수정				</h1>
+	</div>
 
-		<section id="container">
+	<div id="root">
 			<form name="updateForm" enctype="multipart/form-data" role="form"
 				method="post" action="/sae_product/update">
 				<input type="hidden" name="pd_bno" value="${update.pd_bno }"
@@ -75,47 +77,62 @@
 					readonly="readonly" />
 
 
-				<table>
-					<tbody>
-						<tr>
-							<td><label for="pd_name">상품 이름</label><input type="text"
+				<table style="width:65%;">
+						<tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+							<label for="pd_name">상품 이름</label>
+							</td><td>
+							<input type="text"
 								id="pd_name" name="pd_name" value="${update.pd_name }"
 								class="chk" title="상품 이름을 입력하세요." /></td>
 						</tr>
-						<tr>
-							<td><label for="pd_content">상세 설명</label>
+							<tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+							<label for="pd_content">상세 설명</label></td><td>
 							<textarea id="pd_content" name="pd_content" class="chk"
 									title="상세 설명을 입력하세요."><c:out
 										value="${update.pd_content }"></c:out></textarea></td>
 						</tr>
-						<tr>
-							<td><label for="pd_stock">재고 수량</label><input type="number"
+							<tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+							<label for="pd_stock">재고 수량</label>
+							</td><td>
+							<input type="number"
 								id="pd_stock" name="pd_stock" value="${update.pd_stock }"
 								class="chk" title="재고 수량을 입력하세요." /></td>
 						</tr>
-						<tr>
-							<td><label for="pd_price">가격</label><input type="number"
+	<tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">						
+<label for="pd_price">가격</label>
+</td><td>
+<input type="number"
 								id="pd_price" name="pd_price" value="${update.pd_price }"
 								class="chk" title="가격을 입력하세요." /></td>
 						</tr>
-						<tr>
-							<td><label for="uploadFile">상품사진</label><input
+	<tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">						
+<label for="uploadFile">상품사진</label>
+</td><td>
+<input
 								multiple="multiple" type="file" id="file" name="file"
 								class="chk" title="상품 사진을 입력하세요" /> 
 						</tr>
-						<tr>
-							<td><label for="regdate">등록 날짜</label> <fmt:formatDate
+	<tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">						
+<label for="regdate">등록 날짜</label> 
+</td><td>
+<fmt:formatDate
 									value="${update.pd_date }" pattern="yyyy-MM-dd" /></td>
 						</tr>
-					</tbody>
-				</table>
-				<div>
-					<button type="submit" class="update_btn">저장</button>
+	<tr style="border-bottom: 1px solid #ccc; height: 70px;"><td style="width: 30%;">
+	<td style="float: right;" colspan="2">
+	<button type="submit" class="update_btn">저장</button>&nbsp;&nbsp;
 					<button type="button" class="cancel_btn">뒤로</button>
-				</div>
+	</td>
+	</tr>
+				</table>
+
 			</form>
-		</section>
-		<hr />
+
 	</div>
+		</div>
+</div></div>
+<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

@@ -49,12 +49,12 @@ public class FaqController {
 	
 	
 	//faq 상세보기
-	@RequestMapping(value = "/faqReadView", method = RequestMethod.GET)
-	public String read(FaqVO faqVO, Model model) throws Exception{
-		logger.info("**********Controller read start**********");
-		model.addAttribute("read", service.read(faqVO.getFaq_bno()));
-		return "sae_faq/faqReadView";
-	}
+//	@RequestMapping(value = "/faqReadView", method = RequestMethod.GET)
+//	public String read(FaqVO faqVO, Model model) throws Exception{
+//		logger.info("**********Controller read start**********");
+//		model.addAttribute("read", service.read(faqVO.getFaq_bno()));
+//		return "sae_faq/faqReadView";
+//	}
 	
 	
 	// faq 수정 view
@@ -80,7 +80,7 @@ public class FaqController {
 		
 		
 	// faq 삭제
-		@RequestMapping(value = "/delete", method = RequestMethod.POST)
+		@RequestMapping(value = "/delete", method = RequestMethod.GET)
 		public String delete(FaqVO faqVO) throws Exception {
 			logger.info("**********Controller delete start**********");
 			

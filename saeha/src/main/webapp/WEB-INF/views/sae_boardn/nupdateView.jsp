@@ -30,6 +30,7 @@ $(document).ready(function() {
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width: 90%;">
 <div style="padding:60px 0; height: 100%;">
 	<div class="section-heading">
 				<h1>
@@ -39,7 +40,7 @@ $(document).ready(function() {
 
 <form name="nupdateForm" action="/sae_boardn/nupdate" method="post" role="form">
  <input type="hidden" name="n_bno" value="${nupdate.n_bno}" readonly="readonly" />
-<table style="width: 60%;">
+<table style="width: 90%;">
 		<tr>
 			<td style="width: 100%; height: 40px;">
    			<label for="regdate" >작성 날짜</label>
@@ -67,6 +68,7 @@ $(document).ready(function() {
 </table>
 
 </form>
+</div>
 </div>
 </div>
 <footer class="footer">

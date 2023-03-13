@@ -70,15 +70,24 @@ $(document).ready(function() {
 	
 })
 </script>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Golos+Text&family=Hahmlet:wght@300&display=swap');
+</style>
 <meta charset="UTF-8">
 <title>쿠폰등록</title>
 </head>
 <body>
-	
-	<div>
-		<button><a href="/">메인페이지로</a></button>
-	</div>
-	
+<div>
+<%@include file="../include/nav.jsp" %>
+</div>
+<div class="page-content">
+<div style="width:90%">
+<div style="padding:60px 0; height: 100%;">
+<div class="container">
+<div class="section-heading">
+</div>
+
 	<form name="1000">
 		<input type="hidden" id="coupon_id" name="coupon_id" value="${member.userId}"/>
 		<input type="hidden" id="coupon_name" name="coupon_name" value="1000원 할인 쿠폰"/>
@@ -97,29 +106,29 @@ $(document).ready(function() {
 		<input type="hidden" id="coupon_price" name="coupon_price" value="10000"/>
 	</form>
 	
-	<h1>${member.userId }님의 쿠폰목록</h1>
+	<h1 style="margin-left: 370px;font-family: 'Hahmlet', serif;">${member.userId }님의 쿠폰목록</h1>
 	<div class="container">
 	<table class="table table-hover">
 	<c:forEach items="${couponlist }" var="couponlist">
 		<c:set var="i" value="${i+1 }"/>
 		<tr>
-			<td><img style="width:100px; height:50px;" src="/resources/img/${couponlist.coupon_price}discount.png">
-			<td><input type="text" id="coupon_name" value="${couponlist.coupon_name}" readonly="readonly" /></td>
-			<td><input type="text" class="${i }" value="${couponlist.coupon_price}" readonly="readonly" /></td>
+			<td style="vertical-align:middle;"><img style="text-align:center;width:100px; height:50px;" src="/resources/img/${couponlist.coupon_price}discount.png">
+			<td style="vertical-align:middle;"><input style="text-align:center; border: none;" type="text" id="coupon_name" value="${couponlist.coupon_name}" readonly="readonly" /></td>
+			<td style="vertical-align:middle;"><input style="text-align:center;border: none;" type="text" class="${i }" value="${couponlist.coupon_price}" readonly="readonly" /></td>
 			<c:choose>
 				<c:when test="${empty couponlist.coupon_content}">
-					<td><c:out value="사용가능" /></td>
+					<td style="vertical-align:middle;"><c:out value="사용가능" /></td>
 				</c:when>
 				<c:otherwise>
-					<td><c:out value="${couponlist.coupon_content}" /></td>
+					<td style="vertical-align:middle;"><c:out value="${couponlist.coupon_content}" /></td>
 				</c:otherwise>
 			</c:choose>
 		</tr>
 	</c:forEach>
 	</table>
-	
-	<div>
-		<label>쿠폰번호</label>
+	<br><br>
+	<div style="margin-left: 340px;">
+		<label style="font-family: 'Hahmlet', serif;">쿠폰번호</label>
 		<input type="text" id="coupon">
 		<button id="couponbtn">등록</button>
 	</div>
@@ -127,5 +136,9 @@ $(document).ready(function() {
 		
 	</div>
 	</div>
+		</div></div></div></div>
+	<footer class="footer">
+			<p>Copyright &copy; 2019 Company Name . Design: TemplateMo</p>
+		</footer>
 </body>
 </html>

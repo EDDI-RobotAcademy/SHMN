@@ -7,7 +7,7 @@ import java.sql.Date;
 //3  n_title varchar2(150) not null,
 //4  n_content varchar2(4000) not null,
 //5  n_regdate date default sysdate,
-//6  n_file varchar2(300));
+//6  n_hit number);
 
 public class BoardnVO {
 	
@@ -16,6 +16,7 @@ public class BoardnVO {
 	private String n_content;
 	private Date n_regdate;
 	private String n_file;
+	private int n_hit;
 	
 	public int getN_bno() {
 		return n_bno;
@@ -48,12 +49,17 @@ public class BoardnVO {
 		this.n_file = n_file;
 	}
 	
+	public int getN_hit() {
+		return n_hit;
+	}
+	public void setN_hit(int n_hit) {
+		this.n_hit = n_hit;
+	}
+	
 	@Override
 	public String toString() {
 		return "BoardnVO [n_bno=" + n_bno + ", n_title=" + n_title + ", n_content=" + n_content + ", n_regdate="
-				+ n_regdate + ", n_file=" + n_file + "]";
+				+ n_regdate + ", n_file=" + n_file + ", n_hit=" + n_hit + "]";
 	}
-	
-	
 
 }

@@ -41,6 +41,7 @@ $(document).ready(function(){
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width: 90%;">
 <div style="padding:60px 0;height: 100%;width: 90%;">
 <div class="section-heading">
 				<h1>
@@ -62,12 +63,12 @@ $(document).ready(function(){
 <input type="hidden" id="pg_content" name="pg_content" class="form-control" value="${bookview.pg_content}" readonly="readonly" />
 <input type="hidden" id="pg_startdate" name="pg_startdate" class="form-control" value="${bookview.pg_startdate}" readonly="readonly" />
 <input type="hidden" id="pg_enddate" name="pg_enddate" class="form-control" value="${bookview.pg_enddate}" readonly="readonly" />
-<input type="hidden" id="pg_time" name="pg_time" class="form-control" value="${bookview.pg_time}" readonly="readonly" />
 <input type="hidden" id="pg_type" name="pg_type" class="form-control" value="${bookview.pg_type}" readonly="readonly" />
 <!-- bk_pno -->
 <input type="hidden" id="bk_pno" name="bk_pno" class="form-control" value="${bookview.pg_bno}" readonly="readonly"/>
+
 <div style="border-top: 2px solid #333;display: flex;padding:40px;padding-bottom:60px; border-bottom: 1px solid gray; justify-content: center;">
-<div style="width:30%; background-color: orange;"></div>
+
 <div style="width: 10%;"></div>
 <table style=" width: 50%;font-size: large;font-weight: 530;">
 <tr>
@@ -101,17 +102,30 @@ $(document).ready(function(){
 </td>
 </tr>
 <tr>
-<td style="padding: 10px 0;">예약 인원</td>
+<td style="padding: 10px 0;">예약인원</td>
 <td>
-<input type="text" id="bk_inwon" name="bk_inwon" class="form-control" value=""/>
+<select id="bk_inwon" name="bk_inwon" class="form-control">
+  <option value="1">1명</option>
+  <option value="2">2명</option>
+  <option value="3">3명</option>
+  <option value="4">4명</option>
+</select>
 </td>
 </tr>
 <tr>
-<td style="padding: 10px 0;">예약 날짜</td>
+<td style="padding: 10px 0;">날짜를 선택하세요</td>
 <td>
 <input type="date" id="bk_pdate" name="bk_pdate"
-       value=""
-       min="${programread.pg_startdate }" max="${programread.pg_enddate }"/>
+       min="${bookview.pg_startdate }" max="${bookview.pg_enddate }"/>
+</td>
+</tr>
+<tr>
+<td style="padding: 10px 0;">예약시간</td>
+<td>
+<input type="radio" id="bk_time" name="bk_time" class="form-control" value="9:00" style="width: 15px; height: 15px;">9:00
+<input type="radio" id="bk_time" name="bk_time" class="form-control" value="11:00" style="width: 15px; height: 15px;">11:00
+<input type="radio" id="bk_time" name="bk_time" class="form-control" value="14:00" style="width: 15px; height: 15px;">14:00
+<input type="radio" id="bk_time" name="bk_time" class="form-control" value="16:00" style="width: 15px; height: 15px;">16:00
 </td>
 </tr>
 </table>
@@ -127,6 +141,7 @@ $(document).ready(function(){
 </c:if>
 
 </form>
+</div>
 </div>
 </div>
 <footer class="footer">

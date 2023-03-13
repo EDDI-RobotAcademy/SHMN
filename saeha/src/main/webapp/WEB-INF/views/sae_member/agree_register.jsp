@@ -67,6 +67,7 @@ body{justify-content: center; margin: 0 auto;width:100%;}
 
 <%@include file='../include/nav.jsp' %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 <div class="section-heading">
 				<h1>
@@ -127,6 +128,7 @@ body{justify-content: center; margin: 0 auto;width:100%;}
 			</div>
 
 	</div>
+</div>
 </div>
 </div>
 <footer class="footer">

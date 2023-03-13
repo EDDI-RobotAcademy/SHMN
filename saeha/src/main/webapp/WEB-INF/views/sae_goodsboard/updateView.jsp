@@ -48,6 +48,7 @@ function fn_valiChk() {
 <body>
 <%@include file="../include/nav.jsp" %>
 <div class="page-content">
+<div style="width:90%">
 <div style="padding:60px 0; height: 100%;">
 <div class="section-heading">
 				<h1>
@@ -124,6 +125,7 @@ function fn_valiChk() {
 
 
 
+</div>
 </div>
 </div>
 </div>

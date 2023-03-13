@@ -6,14 +6,14 @@
 <!-- 공지게시판 목록 보기  -->
 <!-- 쿼리 실행 뒤 결과가 있을 경우 resultType, 데이터를 넣을때는 parameterType -->
 <select id="nlist" resultType="boardnVO">
-SELECT N_BNO, N_TITLE, N_CONTENT, N_REGDATE FROM SAE_BOARDN ORDER BY N_BNO DESC
+SELECT N_BNO, N_TITLE, N_CONTENT, N_REGDATE, N_HIT FROM SAE_BOARDN ORDER BY N_BNO DESC
 </select>
 <!--n_bno 기준 내림차 순으로 나타내 주겠다 -->
 
 <!-- 공지게시판 글 작성 -->
 <insert id="insert" parameterType="boardnVO">
-INSERT INTO SAE_BOARDN (N_BNO, N_TITLE, N_CONTENT) 
-VALUES( SAE_BOARDN_SEQ.NEXTVAL, #{n_title}, #{n_content})
+INSERT INTO SAE_BOARDN (N_BNO, N_TITLE, N_CONTENT, N_HIT) 
+VALUES( SAE_BOARDN_SEQ.NEXTVAL, #{n_title}, #{n_content}, #{n_hit})
 </insert>
 
 <!-- 공지게시판 상세보기 -->
@@ -30,4 +30,12 @@ UPDATE SAE_BOARDN SET N_TITLE = #{n_title}, N_CONTENT = #{n_content} WHERE N_BNO
 <delete id="ndelete" parameterType="int">
 DELETE FROM SAE_BOARDN WHERE N_BNO = #{n_bno}
 </delete>
+
+<!-- 공지게시판 조회수 -->
+<select id="nhit" resultType="boardnVO">
+UPDATE SAE_BOARDN
+SET N_HIT = N_HIT + 1
+WHERE
+N_BNO = #{n_bno}
+</select>
 </mapper>
